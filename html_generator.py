@@ -87,10 +87,7 @@ def render_pc_cards(rows):
   </div>
   {'<div class="pc-dev">🏢 '+esc(dev)+'</div>' if dev else ''}
   {'<div class="pc-content">'+text_to_bullets(content)+'</div>' if content else ''}
-  <div class="pc-feedback">
-    {f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else ''}
-    {f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else ''}
-  </div>
+  {'<div class="pc-feedback">' + (f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else '') + (f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else '') + '</div>' if (pos_fb or neg_fb) else ''}
 </div>''')
     html.append('</div>')
     return ''.join(html)
@@ -117,10 +114,7 @@ def render_rank_cards(rows):
     </div>
   </div>
   {'<div class="mob-content">'+text_to_bullets(content)+'</div>' if content else ''}
-  <div class="mob-feedback">
-    {f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else ''}
-    {f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else ''}
-  </div>
+  {'<div class="mob-feedback">' + (f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else '') + (f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else '') + '</div>' if (pos_fb or neg_fb) else ''}
 </div>''')
     html.append('</div>')
     return ''.join(html)
