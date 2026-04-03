@@ -216,9 +216,9 @@ def render_mkt_cards(rows):
       <span class="chip chip-type">{esc(typ)}</span>
     </div>
   </div>
-  <div class="mkt-actions collapsible" id="mkt-{abs(hash(game))}">{"".join(action_blocks)}</div>
-  {'<div class="mkt-feedback collapsible" id="mktfb-'+str(abs(hash(game)))+'">'+'<div class="fb-pos"><span class="fb-label">👍 正面</span>'+text_to_bullets(all_pos)+'</div><div class="fb-neg"><span class="fb-label">👎 负面</span>'+text_to_bullets(all_neg)+'</div></div>' if all_pos or all_neg else ''}
-  <div class="mkt-toggle" onclick="toggleMkt(this,'{abs(hash(game))}')">展开详情 ›</div>
+  <div class="mkt-actions collapsible open" id="mkt-{abs(hash(game))}">{"".join(action_blocks)}</div>
+  {'<div class="mkt-feedback collapsible open" id="mktfb-'+str(abs(hash(game)))+'">'+'<div class="fb-pos"><span class="fb-label">👍 正面</span>'+text_to_bullets(all_pos)+'</div><div class="fb-neg"><span class="fb-label">👎 负面</span>'+text_to_bullets(all_neg)+'</div></div>' if all_pos or all_neg else ''}
+  <div class="mkt-toggle open" onclick="toggleMkt(this,'{abs(hash(game))}')">收起 ‹</div>
 </div>''')
     html.append('</div>')
     return ''.join(html)
