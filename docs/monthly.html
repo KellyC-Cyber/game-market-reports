@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球游戏市场热点月报 2026年3月</title>
+<style>
+  :root {
+    --navy: #1B2A4A; --sky: #2E86AB; --orange: #E76F51;
+    --purple: #7B2D8B; --rust: #B7410E; --mint: #52B788;
+    --gold: #F4A261; --bg: #0F1923; --surface: #1a2535;
+    --surface2: #243044; --text: #E8EDF3; --muted: #8896A8;
+    --border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.6; font-size: 14px;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #0d1f3c 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .site-header .logo { color: var(--sky); font-weight: 700; font-size: 15px; letter-spacing: 0.5px; }
+  .site-header .nav { display: flex; gap: 4px; }
+  .site-header .nav a {
+    color: var(--muted); text-decoration: none; padding: 6px 12px;
+    border-radius: 6px; font-size: 13px; transition: all .15s;
+  }
+  .site-header .nav a:hover, .site-header .nav a.active {
+    background: rgba(46,134,171,.2); color: var(--sky);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(160deg, #1B2A4A 0%, #0d1f3c 60%, #0F1923 100%);
+    padding: 48px 24px 36px; text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero .badge {
+    display: inline-block; background: rgba(46,134,171,.2);
+    color: var(--sky); border: 1px solid rgba(46,134,171,.4);
+    border-radius: 20px; padding: 4px 14px; font-size: 12px; margin-bottom: 16px;
+  }
+  .hero h1 { font-size: clamp(22px,4vw,36px); font-weight: 700; letter-spacing: -0.5px; }
+  .hero h1 span { color: var(--sky); }
+  .hero .meta { color: var(--muted); font-size: 13px; margin-top: 10px; }
+  .hero .meta strong { color: var(--text); }
+
+  /* ── Market Nav ── */
+  .market-nav {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 0 24px; display: flex; gap: 4px; overflow-x: auto;
+    scrollbar-width: none; position: sticky; top: 56px; z-index: 90;
+  }
+  .market-nav::-webkit-scrollbar { display: none; }
+  .market-nav a {
+    color: var(--muted); text-decoration: none; padding: 12px 16px;
+    white-space: nowrap; font-size: 13px; border-bottom: 2px solid transparent;
+    transition: all .15s; display: flex; align-items: center; gap: 6px;
+  }
+  .market-nav a:hover { color: var(--text); }
+  .market-nav a.active { color: var(--sky); border-bottom-color: var(--sky); }
+
+  /* ── Overview Cards ── */
+  .section { padding: 32px 24px; max-width: 1400px; margin: 0 auto; }
+  .section-title {
+    font-size: 18px; font-weight: 700; color: var(--text);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px; margin-bottom: 32px;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; transition: all .2s;
+  }
+  .card:hover { border-color: rgba(46,134,171,.4); transform: translateY(-2px); }
+  .card .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .card .flag { font-size: 24px; }
+  .card .market-name { font-weight: 600; font-size: 15px; }
+  .card .market-sub { color: var(--muted); font-size: 12px; }
+
+  /* ── Market Sheet ── */
+  .market-sheet { display: none; }
+  .market-sheet.active { display: block; }
+
+  /* ── Section Headers ── */
+  .sh {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; border-radius: 10px; margin-bottom: 16px;
+    font-weight: 700; font-size: 14px; margin-top: 28px;
+  }
+  .sh-pc    { background: rgba(46,134,171,.15);  color: #6ec8e8; border-left: 3px solid var(--sky); }
+  .sh-mob   { background: rgba(231,111,81,.15);  color: #f4a07a; border-left: 3px solid var(--orange); }
+  .sh-mkt   { background: rgba(123,45,139,.15);  color: #c77de0; border-left: 3px solid var(--purple); }
+  .sh-pol   { background: rgba(183,65,14,.15);   color: #e88a5a; border-left: 3px solid var(--rust); }
+
+  /* ── Tables ── */
+  .tbl-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--navy); }
+  thead th {
+    padding: 10px 14px; text-align: left; font-weight: 600;
+    color: rgba(255,255,255,.85); white-space: nowrap; font-size: 12px;
+  }
+  tbody tr { background: var(--surface); border-bottom: 1px solid var(--border); }
+  tbody tr:nth-child(even) { background: var(--surface2); }
+  tbody tr:hover { background: rgba(46,134,171,.1); }
+  tbody td { padding: 10px 14px; vertical-align: top; }
+  .rank-badge {
+    display: inline-block; background: var(--sky); color: white;
+    border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700;
+    white-space: nowrap;
+  }
+  .game-name { font-weight: 600; color: var(--text); }
+  .game-type { color: var(--muted); font-size: 11px; }
+  .content-cell { max-width: 320px; color: #c8d3df; line-height: 1.5; }
+  .feedback-pos { color: #6fcf97; font-size: 12px; }
+  .feedback-neg { color: #eb5757; font-size: 12px; }
+  .dim-badge {
+    display: inline-block; border-radius: 4px; padding: 2px 8px;
+    font-size: 11px; font-weight: 600; white-space: nowrap;
+  }
+  .dim-ugc  { background:rgba(82,183,136,.2); color:#52B788; }
+  .dim-kol  { background:rgba(244,162,97,.2); color:#F4A261; }
+  .dim-ch   { background:rgba(46,134,171,.2); color:#6ec8e8; }
+  .dim-co   { background:rgba(123,45,139,.2); color:#c77de0; }
+  .dim-med  { background:rgba(231,111,81,.2); color:#f4a07a; }
+  .dim-oth  { background:rgba(108,117,125,.2); color:#adb5bd; }
+  .pol-type { font-size: 11px; color: var(--muted); }
+  .pol-risk { color: #eb5757; font-size: 12px; }
+  .pol-good { color: #6fcf97; font-size: 12px; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center; padding: 32px 24px;
+    color: var(--muted); font-size: 12px; border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--sky); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .site-header { padding: 0 16px; }
+    .section { padding: 20px 16px; }
+    .hero { padding: 32px 16px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">🎮 KL游戏·全球市场情报</div>
+  <nav class="nav">
+    <a href="index.html" id="nav-weekly">周报</a>
+    <a href="monthly.html" id="nav-monthly">月报</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="badge">📅 月度报告</div>
+  <h1>全球游戏市场热点月报<br><span>2026年3月</span></h1>
+  <div class="meta">分析周期：<strong>2026年3月1日 — 3月31日</strong> &nbsp;|&nbsp; 生成时间：<strong>2026-04-03 15:47</strong></div>
+</div>
+
+<nav class="market-nav" id="marketNav">
+<a href="#" data-market="中国大陆">🇨🇳 中国大陆</a>
+<a href="#" data-market="美国">🇺🇸 美国</a>
+<a href="#" data-market="欧洲">🇪🇺 欧洲</a>
+<a href="#" data-market="日本">🇯🇵 日本</a>
+<a href="#" data-market="韩国">🇰🇷 韩国</a>
+<a href="#" data-market="港台">🇭🇰🇹🇼 港台</a>
+<a href="#" data-market="东南亚">🌏 东南亚</a>
+<a href="#" data-market="俄罗斯">🇷🇺 俄罗斯</a>
+</nav>
+
+<main>
+
+<section class="section">
+  <div class="section-title">📊 各市场快览</div>
+  <div class="cards-grid">
+        <div class="card" onclick="document.querySelector('[data-market=\'中国大陆\']').click()">
+          <div class="card-header">
+            <span class="flag">🇨🇳</span>
+            <div><div class="market-name">中国大陆</div>
+            <div class="market-sub">PC榜首：— · 手游榜首：—</div></div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">本期营销案例 <strong style="color:var(--gold)">0</strong> 条</div>
+        </div>
+        <div class="card" onclick="document.querySelector('[data-market=\'美国\']').click()">
+          <div class="card-header">
+            <span class="flag">🇺🇸</span>
+            <div><div class="market-name">美国</div>
+            <div class="market-sub">PC榜首：— · 手游榜首：—</div></div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">本期营销案例 <strong style="color:var(--gold)">0</strong> 条</div>
+        </div>
+        <div class="card" onclick="document.querySelector('[data-market=\'欧洲\']').click()">
+          <div class="card-header">
+            <span class="flag">🇪🇺</span>
+            <div><div class="market-name">欧洲</div>
+            <div class="market-sub">PC榜首：— · 手游榜首：—</div></div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">本期营销案例 <strong style="color:var(--gold)">0</strong> 条</div>
+        </div>
+        <div class="card" onclick="document.querySelector('[data-market=\'日本\']').click()">
+          <div class="card-header">
+            <span class="flag">🇯🇵</span>
+            <div><div class="market-name">日本</div>
+            <div class="market-sub">PC榜首：— · 手游榜首：—</div></div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">本期营销案例 <strong style="color:var(--gold)">0</strong> 条</div>
+        </div>
+        <div class="card" onclick="document.querySelector('[data-market=\'韩国\']').click()">
+          <div class="card-header">
+            <span class="flag">🇰🇷</span>
+            <div><div class="market-name">韩国</div>
+            <div class="market-sub">PC榜首：— · 手游榜首：—</div></div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">本期营销案例 <strong style="color:var(--gold)">0</strong> 条</div>
+        </div>
+        <div class="card" onclick="document.querySelector('[data-market=\'港台\']').click()">
+          <div class="card-header">
+            <span class="flag">🇭🇰🇹🇼</span>
+            <div><div class="market-name">港台</div>
+            <div class="market-sub">PC榜首：— · 手游榜首：—</div></div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">本期营销案例 <strong style="color:var(--gold)">0</strong> 条</div>
+        </div>
+        <div class="card" onclick="document.querySelector('[data-market=\'东南亚\']').click()">
+          <div class="card-header">
+            <span class="flag">🌏</span>
+            <div><div class="market-name">东南亚</div>
+            <div class="market-sub">PC榜首：— · 手游榜首：—</div></div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">本期营销案例 <strong style="color:var(--gold)">0</strong> 条</div>
+        </div>
+        <div class="card" onclick="document.querySelector('[data-market=\'俄罗斯\']').click()">
+          <div class="card-header">
+            <span class="flag">🇷🇺</span>
+            <div><div class="market-name">俄罗斯</div>
+            <div class="market-sub">PC榜首：— · 手游榜首：—</div></div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">本期营销案例 <strong style="color:var(--gold)">0</strong> 条</div>
+        </div></div>
+</section>
+
+<div class="market-sheet" id="sheet-中国大陆">
+  <section class="section">
+    <div class="sh sh-pc">🖥️ 一、PC / 主机热门游戏榜单（当期 TOP5）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mob">📱 二、手游热门游戏榜单（iOS · Google · 地区头部商店 畅销+下载 TOP10）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mkt">📣 三、重点营销热点详情</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-pol">⚖️ 四、区域产业政策热闻</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+  </section>
+</div>
+
+<div class="market-sheet" id="sheet-美国">
+  <section class="section">
+    <div class="sh sh-pc">🖥️ 一、PC / 主机热门游戏榜单（当期 TOP5）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mob">📱 二、手游热门游戏榜单（iOS · Google · 地区头部商店 畅销+下载 TOP10）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mkt">📣 三、重点营销热点详情</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-pol">⚖️ 四、区域产业政策热闻</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+  </section>
+</div>
+
+<div class="market-sheet" id="sheet-欧洲">
+  <section class="section">
+    <div class="sh sh-pc">🖥️ 一、PC / 主机热门游戏榜单（当期 TOP5）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mob">📱 二、手游热门游戏榜单（iOS · Google · 地区头部商店 畅销+下载 TOP10）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mkt">📣 三、重点营销热点详情</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-pol">⚖️ 四、区域产业政策热闻</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+  </section>
+</div>
+
+<div class="market-sheet" id="sheet-日本">
+  <section class="section">
+    <div class="sh sh-pc">🖥️ 一、PC / 主机热门游戏榜单（当期 TOP5）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mob">📱 二、手游热门游戏榜单（iOS · Google · 地区头部商店 畅销+下载 TOP10）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mkt">📣 三、重点营销热点详情</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-pol">⚖️ 四、区域产业政策热闻</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+  </section>
+</div>
+
+<div class="market-sheet" id="sheet-韩国">
+  <section class="section">
+    <div class="sh sh-pc">🖥️ 一、PC / 主机热门游戏榜单（当期 TOP5）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mob">📱 二、手游热门游戏榜单（iOS · Google · 地区头部商店 畅销+下载 TOP10）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mkt">📣 三、重点营销热点详情</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-pol">⚖️ 四、区域产业政策热闻</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+  </section>
+</div>
+
+<div class="market-sheet" id="sheet-港台">
+  <section class="section">
+    <div class="sh sh-pc">🖥️ 一、PC / 主机热门游戏榜单（当期 TOP5）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mob">📱 二、手游热门游戏榜单（iOS · Google · 地区头部商店 畅销+下载 TOP10）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mkt">📣 三、重点营销热点详情</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-pol">⚖️ 四、区域产业政策热闻</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+  </section>
+</div>
+
+<div class="market-sheet" id="sheet-东南亚">
+  <section class="section">
+    <div class="sh sh-pc">🖥️ 一、PC / 主机热门游戏榜单（当期 TOP5）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mob">📱 二、手游热门游戏榜单（iOS · Google · 地区头部商店 畅销+下载 TOP10）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mkt">📣 三、重点营销热点详情</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-pol">⚖️ 四、区域产业政策热闻</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+  </section>
+</div>
+
+<div class="market-sheet" id="sheet-俄罗斯">
+  <section class="section">
+    <div class="sh sh-pc">🖥️ 一、PC / 主机热门游戏榜单（当期 TOP5）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mob">📱 二、手游热门游戏榜单（iOS · Google · 地区头部商店 畅销+下载 TOP10）</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-mkt">📣 三、重点营销热点详情</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+
+    <div class="sh sh-pol">⚖️ 四、区域产业政策热闻</div>
+    <p style='color:var(--muted);padding:16px'>暂无数据</p>
+  </section>
+</div>
+</main>
+
+<footer>
+  <p>本报告由 KL游戏市场情报系统 自动生成 · 数据来源：官方平台/权威媒体/第三方数据平台</p>
+  <p style="margin-top:6px">如有数据疑问请联系市场团队 · <a href="#">查看历史报告</a></p>
+</footer>
+
+<script>
+// Market tab switching
+const nav = document.getElementById('marketNav');
+nav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = a.dataset.market;
+    nav.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+    document.querySelectorAll('.market-sheet').forEach(s => s.classList.remove('active'));
+    const sheet = document.getElementById('sheet-' + target);
+    if (sheet) sheet.classList.add('active');
+    // Scroll to top of main
+    window.scrollTo({top: document.querySelector('.hero').offsetHeight + 56 + 48, behavior:'smooth'});
+  });
+});
+// Activate first
+const first = nav.querySelector('a');
+if (first) first.click();
+
+// Active nav link
+const page = location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.nav a').forEach(a => {
+  if (a.href.includes(page)) a.classList.add('active');
+});
+</script>
+</body>
+</html>
