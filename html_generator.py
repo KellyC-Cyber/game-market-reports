@@ -467,8 +467,9 @@ body {
 .mkt-section-wrap .mkt-game { color: var(--gold-lt); }
 .mkt-section-wrap .action-block { background: #2A2620; border-left-color: var(--gold); }
 .mkt-section-wrap .ab-action { color: var(--ivory-dk); }
-.mkt-section-wrap .ab-meta { color: var(--light); }
-.mkt-section-wrap .ab-label { color: var(--gold-dk); }
+.mkt-section-wrap .ab-meta { color: var(--ivory-dk); }
+.mkt-section-wrap .ab-label { color: var(--gold); }
+.mkt-section-wrap .kpi-text { color: var(--gold-lt) !important; font-weight: 600; }
 .mkt-section-wrap .mkt-toggle { color: var(--gold-dk); border-top-color: rgba(201,168,76,.2); }
 .mkt-section-wrap .mkt-toggle:hover { color: var(--gold); }
 .mkt-section-wrap .chip-type { background: rgba(201,168,76,.15); color: var(--gold-lt); border-color: rgba(201,168,76,.3); }
