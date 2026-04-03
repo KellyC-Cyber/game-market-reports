@@ -1,405 +1,513 @@
 #!/usr/bin/env python3
 """
-HTML Report Generator for 全球游戏市场热点报告
-Generates a beautiful, responsive HTML page from report data.
-Called by build_report_LATEST.py and build_weekly_LATEST.py after Excel generation.
+html_generator.py  v2
+Beautiful card-based HTML report generator.
+Features:
+- Card layout (no wide tables)
+- iOS/Android tab switch for mobile rankings
+- Text auto-formatted into bullet points
+- All content visible without horizontal scroll
+- Policy section with timeline cards
 """
 
-import json
 from datetime import datetime
+import re
 
-# ── Color palette (matches Excel theme) ──────────────────────────────────────
-COLORS = {
-    "navy":   "#1B2A4A",
-    "sky":    "#2E86AB",
-    "orange": "#E76F51",
-    "purple": "#7B2D8B",
-    "rust":   "#B7410E",
-    "mint":   "#52B788",
-    "gold":   "#F4A261",
-    "white":  "#FFFFFF",
-    "lt":     "#F8F9FA",
-    "mid":    "#6C757D",
-    "dark":   "#212529",
-}
-
-HTML_TEMPLATE = """<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title}</title>
-<style>
-  :root {{
-    --navy: #1B2A4A; --sky: #2E86AB; --orange: #E76F51;
-    --purple: #7B2D8B; --rust: #B7410E; --mint: #52B788;
-    --gold: #F4A261; --bg: #0F1923; --surface: #1a2535;
-    --surface2: #243044; --text: #E8EDF3; --muted: #8896A8;
-    --border: rgba(255,255,255,0.08);
-  }}
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{
-    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: var(--bg); color: var(--text);
-    line-height: 1.6; font-size: 14px;
-  }}
-
-  /* ── Header ── */
-  .site-header {{
-    background: linear-gradient(135deg, var(--navy) 0%, #0d1f3c 100%);
-    border-bottom: 1px solid var(--border);
-    padding: 0 24px;
-    position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 56px;
-  }}
-  .site-header .logo {{ color: var(--sky); font-weight: 700; font-size: 15px; letter-spacing: 0.5px; }}
-  .site-header .nav {{ display: flex; gap: 4px; }}
-  .site-header .nav a {{
-    color: var(--muted); text-decoration: none; padding: 6px 12px;
-    border-radius: 6px; font-size: 13px; transition: all .15s;
-  }}
-  .site-header .nav a:hover, .site-header .nav a.active {{
-    background: rgba(46,134,171,.2); color: var(--sky);
-  }}
-
-  /* ── Hero ── */
-  .hero {{
-    background: linear-gradient(160deg, #1B2A4A 0%, #0d1f3c 60%, #0F1923 100%);
-    padding: 48px 24px 36px; text-align: center;
-    border-bottom: 1px solid var(--border);
-  }}
-  .hero .badge {{
-    display: inline-block; background: rgba(46,134,171,.2);
-    color: var(--sky); border: 1px solid rgba(46,134,171,.4);
-    border-radius: 20px; padding: 4px 14px; font-size: 12px; margin-bottom: 16px;
-  }}
-  .hero h1 {{ font-size: clamp(22px,4vw,36px); font-weight: 700; letter-spacing: -0.5px; }}
-  .hero h1 span {{ color: var(--sky); }}
-  .hero .meta {{ color: var(--muted); font-size: 13px; margin-top: 10px; }}
-  .hero .meta strong {{ color: var(--text); }}
-
-  /* ── Market Nav ── */
-  .market-nav {{
-    background: var(--surface); border-bottom: 1px solid var(--border);
-    padding: 0 24px; display: flex; gap: 4px; overflow-x: auto;
-    scrollbar-width: none; position: sticky; top: 56px; z-index: 90;
-  }}
-  .market-nav::-webkit-scrollbar {{ display: none; }}
-  .market-nav a {{
-    color: var(--muted); text-decoration: none; padding: 12px 16px;
-    white-space: nowrap; font-size: 13px; border-bottom: 2px solid transparent;
-    transition: all .15s; display: flex; align-items: center; gap: 6px;
-  }}
-  .market-nav a:hover {{ color: var(--text); }}
-  .market-nav a.active {{ color: var(--sky); border-bottom-color: var(--sky); }}
-
-  /* ── Overview Cards ── */
-  .section {{ padding: 32px 24px; max-width: 1400px; margin: 0 auto; }}
-  .section-title {{
-    font-size: 18px; font-weight: 700; color: var(--text);
-    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
-  }}
-  .section-title::after {{
-    content: ''; flex: 1; height: 1px; background: var(--border);
-  }}
-  .cards-grid {{
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px; margin-bottom: 32px;
-  }}
-  .card {{
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px; transition: all .2s;
-  }}
-  .card:hover {{ border-color: rgba(46,134,171,.4); transform: translateY(-2px); }}
-  .card .card-header {{ display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }}
-  .card .flag {{ font-size: 24px; }}
-  .card .market-name {{ font-weight: 600; font-size: 15px; }}
-  .card .market-sub {{ color: var(--muted); font-size: 12px; }}
-
-  /* ── Market Sheet ── */
-  .market-sheet {{ display: none; }}
-  .market-sheet.active {{ display: block; }}
-
-  /* ── Section Headers ── */
-  .sh {{
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 18px; border-radius: 10px; margin-bottom: 16px;
-    font-weight: 700; font-size: 14px; margin-top: 28px;
-  }}
-  .sh-pc    {{ background: rgba(46,134,171,.15);  color: #6ec8e8; border-left: 3px solid var(--sky); }}
-  .sh-mob   {{ background: rgba(231,111,81,.15);  color: #f4a07a; border-left: 3px solid var(--orange); }}
-  .sh-mkt   {{ background: rgba(123,45,139,.15);  color: #c77de0; border-left: 3px solid var(--purple); }}
-  .sh-pol   {{ background: rgba(183,65,14,.15);   color: #e88a5a; border-left: 3px solid var(--rust); }}
-
-  /* ── Tables ── */
-  .tbl-wrap {{ overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 8px; }}
-  table {{ width: 100%; border-collapse: collapse; font-size: 13px; }}
-  thead tr {{ background: var(--navy); }}
-  thead th {{
-    padding: 10px 14px; text-align: left; font-weight: 600;
-    color: rgba(255,255,255,.85); white-space: nowrap; font-size: 12px;
-  }}
-  tbody tr {{ background: var(--surface); border-bottom: 1px solid var(--border); }}
-  tbody tr:nth-child(even) {{ background: var(--surface2); }}
-  tbody tr:hover {{ background: rgba(46,134,171,.1); }}
-  tbody td {{ padding: 10px 14px; vertical-align: top; }}
-  .rank-badge {{
-    display: inline-block; background: var(--sky); color: white;
-    border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700;
-    white-space: nowrap;
-  }}
-  .game-name {{ font-weight: 600; color: var(--text); }}
-  .game-type {{ color: var(--muted); font-size: 11px; }}
-  .content-cell {{ max-width: 320px; color: #c8d3df; line-height: 1.5; }}
-  .feedback-pos {{ color: #6fcf97; font-size: 12px; }}
-  .feedback-neg {{ color: #eb5757; font-size: 12px; }}
-  .dim-badge {{
-    display: inline-block; border-radius: 4px; padding: 2px 8px;
-    font-size: 11px; font-weight: 600; white-space: nowrap;
-  }}
-  .dim-ugc  {{ background:rgba(82,183,136,.2); color:#52B788; }}
-  .dim-kol  {{ background:rgba(244,162,97,.2); color:#F4A261; }}
-  .dim-ch   {{ background:rgba(46,134,171,.2); color:#6ec8e8; }}
-  .dim-co   {{ background:rgba(123,45,139,.2); color:#c77de0; }}
-  .dim-med  {{ background:rgba(231,111,81,.2); color:#f4a07a; }}
-  .dim-oth  {{ background:rgba(108,117,125,.2); color:#adb5bd; }}
-  .pol-type {{ font-size: 11px; color: var(--muted); }}
-  .pol-risk {{ color: #eb5757; font-size: 12px; }}
-  .pol-good {{ color: #6fcf97; font-size: 12px; }}
-
-  /* ── Footer ── */
-  footer {{
-    text-align: center; padding: 32px 24px;
-    color: var(--muted); font-size: 12px; border-top: 1px solid var(--border);
-  }}
-  footer a {{ color: var(--sky); text-decoration: none; }}
-
-  @media (max-width: 768px) {{
-    .site-header {{ padding: 0 16px; }}
-    .section {{ padding: 20px 16px; }}
-    .hero {{ padding: 32px 16px 24px; }}
-  }}
-</style>
-</head>
-<body>
-
-<header class="site-header">
-  <div class="logo">🎮 KL游戏·全球市场情报</div>
-  <nav class="nav">
-    <a href="index.html" id="nav-weekly">周报</a>
-    <a href="monthly.html" id="nav-monthly">月报</a>
-  </nav>
-</header>
-
-<div class="hero">
-  <div class="badge">{report_type}</div>
-  <h1>{title_main}<br><span>{title_sub}</span></h1>
-  <div class="meta">分析周期：<strong>{period}</strong> &nbsp;|&nbsp; 生成时间：<strong>{generated}</strong></div>
-</div>
-
-<nav class="market-nav" id="marketNav">
-{market_nav_items}
-</nav>
-
-<main>
-{overview_section}
-{market_sections}
-</main>
-
-<footer>
-  <p>本报告由 KL游戏市场情报系统 自动生成 · 数据来源：官方平台/权威媒体/第三方数据平台</p>
-  <p style="margin-top:6px">如有数据疑问请联系市场团队 · <a href="#">查看历史报告</a></p>
-</footer>
-
-<script>
-// Market tab switching
-const nav = document.getElementById('marketNav');
-nav.querySelectorAll('a').forEach(a => {{
-  a.addEventListener('click', e => {{
-    e.preventDefault();
-    const target = a.dataset.market;
-    nav.querySelectorAll('a').forEach(x => x.classList.remove('active'));
-    a.classList.add('active');
-    document.querySelectorAll('.market-sheet').forEach(s => s.classList.remove('active'));
-    const sheet = document.getElementById('sheet-' + target);
-    if (sheet) sheet.classList.add('active');
-    // Scroll to top of main
-    window.scrollTo({{top: document.querySelector('.hero').offsetHeight + 56 + 48, behavior:'smooth'}});
-  }});
-}});
-// Activate first
-const first = nav.querySelector('a');
-if (first) first.click();
-
-// Active nav link
-const page = location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.nav a').forEach(a => {{
-  if (a.href.includes(page)) a.classList.add('active');
-}});
-</script>
-</body>
-</html>"""
-
-
-def dim_class(dim):
-    if "UGC" in dim: return "dim-ugc"
-    if "网红" in dim or "KOL" in dim: return "dim-kol"
-    if "渠道" in dim or "平台" in dim: return "dim-ch"
-    if "异业" in dim: return "dim-co"
-    if "媒体" in dim: return "dim-med"
-    return "dim-oth"
-
+# ── Text helpers ──────────────────────────────────────────────────────────────
 def esc(s):
     if not s: return ""
-    return str(s).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;").replace('"',"&quot;")
+    return str(s).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+
+def text_to_bullets(s):
+    """Split Chinese text at ；。\n into bullet points."""
+    if not s: return ""
+    s = str(s)
+    parts = re.split(r'[；。\n]+', s)
+    parts = [p.strip() for p in parts if p.strip() and len(p.strip()) > 1]
+    if len(parts) <= 1:
+        return f'<span class="text-cell">{esc(s)}</span>'
+    items = ''.join(f'<li>{esc(p)}</li>' for p in parts)
+    return f'<ul class="bullet-list">{items}</ul>'
+
+def text_inline(s):
+    """Short inline text, no bullets."""
+    return esc(str(s)) if s else "—"
 
 MARKET_FLAGS = {
     "中国大陆":"🇨🇳","美国":"🇺🇸","欧洲":"🇪🇺","日本":"🇯🇵",
-    "韩国":"🇰🇷","港台":"🇭🇰🇹🇼","东南亚":"🌏","俄罗斯":"🇷🇺"
+    "韩国":"🇰🇷","港台":"🇭🇰","东南亚":"🌏","俄罗斯":"🇷🇺"
 }
 
-def render_rank_table(rows, cols):
-    if not rows: return "<p style='color:var(--muted);padding:16px'>暂无数据</p>"
-    html = ['<div class="tbl-wrap"><table><thead><tr>']
-    for c in cols:
-        html.append(f'<th>{esc(c)}</th>')
-    html.append('</tr></thead><tbody>')
-    for row in rows:
-        html.append('<tr>')
-        for j, cell in enumerate(row):
-            cell = str(cell) if cell else ""
-            if j == 0:
-                html.append(f'<td><span class="rank-badge">{esc(cell)}</span></td>')
-            elif j == 1:
-                html.append(f'<td><div class="game-name">{esc(cell)}</div><div class="game-type">{esc(row[2]) if len(row)>2 else ""}</div></td>')
-            elif j == 2:
-                continue  # merged into col 1
-            elif j == 5:
-                html.append(f'<td class="content-cell">{esc(cell)}</td>')
-            elif j == 6:
-                html.append(f'<td class="feedback-pos">{esc(cell)}</td>')
-            elif j == 7:
-                html.append(f'<td class="feedback-neg">{esc(cell)}</td>')
-            else:
-                html.append(f'<td>{esc(cell)}</td>')
-        html.append('</tr>')
-    html.append('</tbody></table></div>')
-    return ''.join(html)
+DIM_STYLES = {
+    "UGC":  ("#D1FAE5","#065F46","📹"),
+    "网红":  ("##FEF9C3","#713F12","🌟"),
+    "KOL":  ("#FEF9C3","#713F12","🌟"),
+    "渠道":  ("#DBEAFE","#1E40AF","📲"),
+    "平台":  ("#DBEAFE","#1E40AF","📲"),
+    "异业":  ("#EDE9FE","#5B21B6","🤝"),
+    "媒体":  ("#FFEDD5","#9A3412","📰"),
+    "其他":  ("#F1F5F9","#475569","•"),
+}
 
-def render_mkt_table(rows):
-    if not rows: return "<p style='color:var(--muted);padding:16px'>暂无数据</p>"
-    html = ['<div class="tbl-wrap"><table><thead><tr>',
-            '<th>游戏</th><th>类型</th><th>营销维度</th><th>具体动作</th><th>平台</th><th>爆点数据</th><th>正面反馈</th><th>负面反馈</th>',
-            '</tr></thead><tbody>']
+def dim_style(dim):
+    for k, (bg, color, icon) in DIM_STYLES.items():
+        if k in str(dim): return bg, color, icon
+    return "#F1F5F9","#475569","•"
+
+POLICY_TYPE_STYLES = {
+    "版号": ("#DBEAFE","#1E40AF"),
+    "监管": ("#FEE2E2","#991B1B"),
+    "政策": ("#D1FAE5","#065F46"),
+    "舆论": ("#FEF9C3","#713F12"),
+    "产业": ("#EDE9FE","#5B21B6"),
+}
+def policy_type_style(t):
+    for k,(bg,c) in POLICY_TYPE_STYLES.items():
+        if k in str(t): return bg,c
+    return "#F1F5F9","#475569"
+
+# ── Rank card renderer ────────────────────────────────────────────────────────
+def render_rank_cards(rows):
+    if not rows: return '<p class="empty">暂无数据</p>'
+    html = ['<div class="rank-cards">']
     for row in rows:
         while len(row) < 8: row = list(row) + [""]
-        html.append('<tr>')
-        html.append(f'<td class="game-name">{esc(row[0])}</td>')
-        html.append(f'<td><span class="game-type">{esc(row[1])}</span></td>')
-        html.append(f'<td><span class="dim-badge {dim_class(row[2])}">{esc(row[2])}</span></td>')
-        html.append(f'<td class="content-cell">{esc(row[3])}</td>')
-        html.append(f'<td>{esc(row[4])}</td>')
-        html.append(f'<td class="content-cell">{esc(row[5])}</td>')
-        html.append(f'<td class="feedback-pos">{esc(row[6])}</td>')
-        html.append(f'<td class="feedback-neg">{esc(row[7])}</td>')
-        html.append('</tr>')
-    html.append('</tbody></table></div>')
+        rank, name, typ, dev, platform, content, pos_fb, neg_fb = [str(c) if c else "" for c in row[:8]]
+        # platform chips
+        plat_chips = ''.join(
+            f'<span class="chip chip-plat">{esc(p.strip())}</span>'
+            for p in re.split(r'[/·,、]', platform) if p.strip()
+        ) if platform else ''
+        html.append(f'''
+<div class="rank-card">
+  <div class="rank-card-header">
+    <span class="rank-num">{esc(rank)}</span>
+    <div class="rank-info">
+      <div class="rank-name">{esc(name)}</div>
+      <div class="rank-meta">
+        <span class="chip chip-type">{esc(typ)}</span>
+        {plat_chips}
+        {'<span class="chip chip-dev">'+esc(dev)+'</span>' if dev else ''}
+      </div>
+    </div>
+  </div>
+  {f'<div class="rank-content">{text_to_bullets(content)}</div>' if content else ''}
+  <div class="rank-feedback">
+    {f'<div class="fb-pos"><span class="fb-label">👍 正面</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else ''}
+    {f'<div class="fb-neg"><span class="fb-label">👎 负面</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else ''}
+  </div>
+</div>''')
+    html.append('</div>')
     return ''.join(html)
 
-def render_policy_table(rows):
-    if not rows: return "<p style='color:var(--muted);padding:16px'>暂无数据</p>"
-    html = ['<div class="tbl-wrap"><table><thead><tr>',
-            '<th>政策/热闻标题</th><th>来源</th><th>类型</th><th>事件详情</th><th>行业影响</th><th>风险信号</th>',
-            '</tr></thead><tbody>']
+# ── Mobile tab renderer ───────────────────────────────────────────────────────
+def render_mobile_tabs(rows, sheet_id):
+    if not rows: return '<p class="empty">暂无数据</p>'
+    
+    ios_rows = [r for r in rows if any(x in str(r[4] if len(r)>4 else '') for x in ['iOS','App Store','ios'])]
+    and_rows = [r for r in rows if any(x in str(r[4] if len(r)>4 else '') for x in ['Google','Play','Android','android','安卓'])]
+    other_rows = [r for r in rows if r not in ios_rows and r not in and_rows]
+    
+    tabs = [("all", f"全部 ({len(rows)})", rows)]
+    if ios_rows:    tabs.append(("ios",     f"🍎 iOS ({len(ios_rows)})",         ios_rows))
+    if and_rows:    tabs.append(("android", f"🤖 Android ({len(and_rows)})",     and_rows))
+    if other_rows:  tabs.append(("other",   f"📱 其他 ({len(other_rows)})",       other_rows))
+
+    html = [f'<div class="tab-group" id="mob-tabs-{sheet_id}">']
+    html.append('<div class="tabs">')
+    for i, (tid, label, _) in enumerate(tabs):
+        active = 'active' if i==0 else ''
+        html.append(f'<button class="tab-btn {active}" data-tab="{sheet_id}-{tid}" onclick="switchTab(this,\'{sheet_id}-{tid}\')">{label}</button>')
+    html.append('</div>')
+    
+    for i, (tid, _, tab_rows) in enumerate(tabs):
+        display = '' if i==0 else 'style="display:none"'
+        html.append(f'<div class="tab-panel" id="panel-{sheet_id}-{tid}" {display}>')
+        html.append(render_rank_cards(tab_rows))
+        html.append('</div>')
+    html.append('</div>')
+    return ''.join(html)
+
+# ── Marketing cards ───────────────────────────────────────────────────────────
+def render_mkt_cards(rows):
+    if not rows: return '<p class="empty">暂无数据</p>'
+    html = ['<div class="mkt-cards">']
+    for row in rows:
+        while len(row) < 8: row = list(row) + [""]
+        game, typ, dim, action, platform, kpi, pos_fb, neg_fb = [str(c) if c else "" for c in row[:8]]
+        bg, color, icon = dim_style(dim)
+        html.append(f'''
+<div class="mkt-card">
+  <div class="mkt-card-top">
+    <div class="mkt-left">
+      <div class="mkt-game">{esc(game)}</div>
+      <span class="chip chip-type">{esc(typ)}</span>
+    </div>
+    <span class="dim-badge" style="background:{bg};color:{color}">{icon} {esc(dim)}</span>
+  </div>
+  <div class="mkt-body">
+    <div class="mkt-row"><span class="mkt-label">具体动作</span><div>{text_to_bullets(action)}</div></div>
+    {'<div class="mkt-row"><span class="mkt-label">平台</span><div>'+esc(platform)+'</div></div>' if platform else ''}
+    {'<div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text">'+text_to_bullets(kpi)+'</div></div>' if kpi else ''}
+  </div>
+  <div class="mkt-feedback">
+    {f'<div class="fb-pos"><span class="fb-label">👍 正面</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else ''}
+    {f'<div class="fb-neg"><span class="fb-label">👎 负面</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else ''}
+  </div>
+</div>''')
+    html.append('</div>')
+    return ''.join(html)
+
+# ── Policy cards ──────────────────────────────────────────────────────────────
+def render_policy_cards(rows):
+    if not rows: return '<p class="empty">暂无政策热闻数据</p>'
+    html = ['<div class="policy-list">']
     for row in rows:
         while len(row) < 6: row = list(row) + [""]
-        risk = row[5] if len(row)>5 else ""
-        risk_cls = "pol-risk" if risk else ""
-        html.append('<tr>')
-        html.append(f'<td class="game-name">{esc(row[0])}</td>')
-        html.append(f'<td class="pol-type">{esc(row[1])}</td>')
-        html.append(f'<td><span class="dim-badge dim-oth">{esc(row[2])}</span></td>')
-        html.append(f'<td class="content-cell">{esc(row[3])}</td>')
-        html.append(f'<td class="content-cell">{esc(row[4])}</td>')
-        html.append(f'<td class="{risk_cls}">{esc(risk)}</td>')
-        html.append('</tr>')
-    html.append('</tbody></table></div>')
+        title, source, typ, detail, impact, risk = [str(c) if c else "" for c in row[:6]]
+        bg, color = policy_type_style(typ)
+        risk_html = f'<div class="policy-risk">⚠️ 风险信号：{text_to_bullets(risk)}</div>' if risk else ''
+        html.append(f'''
+<div class="policy-card">
+  <div class="policy-card-header">
+    <span class="policy-type-badge" style="background:{bg};color:{color}">{esc(typ)}</span>
+    <div class="policy-title">{esc(title)}</div>
+    {'<span class="policy-source">📌 '+esc(source)+'</span>' if source else ''}
+  </div>
+  {'<div class="policy-detail">'+text_to_bullets(detail)+'</div>' if detail else ''}
+  {'<div class="policy-impact">💡 影响分析：'+text_to_bullets(impact)+'</div>' if impact else ''}
+  {risk_html}
+</div>''')
+    html.append('</div>')
     return ''.join(html)
+
+# ── Overview card ─────────────────────────────────────────────────────────────
+def render_overview_cards(markets):
+    html = ['<div class="overview-grid">']
+    for m in markets:
+        flag = MARKET_FLAGS.get(m['name'], '🌐')
+        top_pc = m['pc_ranks'][0][1] if m['pc_ranks'] else "—"
+        top_mob = m['mobile_ranks'][0][1] if m['mobile_ranks'] else "—"
+        mkt_count = len(m['mkt_rows'])
+        pol_count = len(m['policy_rows'])
+        name_js = m['name'].replace("'","\\'")
+        html.append(f'''
+<div class="overview-card" onclick="activateMarket('{name_js}')">
+  <div class="ov-flag">{flag}</div>
+  <div class="ov-name">{esc(m['name'])}</div>
+  <div class="ov-stats">
+    <div class="ov-stat"><span>🖥️ PC榜首</span><strong>{esc(top_pc)}</strong></div>
+    <div class="ov-stat"><span>📱 手游榜首</span><strong>{esc(top_mob)}</strong></div>
+    <div class="ov-stat"><span>📣 营销案例</span><strong>{mkt_count}条</strong></div>
+    <div class="ov-stat"><span>⚖️ 政策热闻</span><strong>{pol_count}条</strong></div>
+  </div>
+</div>''')
+    html.append('</div>')
+    return ''.join(html)
+
+# ── Main HTML template ────────────────────────────────────────────────────────
+CSS = """
+:root {
+  --bg: #F0F4F8; --surface: #FFFFFF; --surface2: #F8FAFC;
+  --navy: #1E3A5F; --sky: #2563EB; --sky-lt: #EFF6FF;
+  --orange: #EA580C; --orange-lt: #FFF7ED;
+  --purple: #7C3AED; --purple-lt: #F5F3FF;
+  --rust: #B45309; --rust-lt: #FFFBEB;
+  --mint: #059669; --mint-lt: #D1FAE5;
+  --text: #1E293B; --text-muted: #64748B; --text-light: #94A3B8;
+  --border: #E2E8F0; --border-focus: #93C5FD;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.08);
+  --radius: 10px; --radius-sm: 6px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+/* ── Site header ── */
+.site-header {
+  background: var(--navy); color: white; height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+.logo { font-weight: 700; font-size: 15px; letter-spacing: .3px; }
+.logo span { color: #93C5FD; }
+.header-nav { display: flex; gap: 4px; }
+.header-nav a {
+  color: rgba(255,255,255,.7); text-decoration: none;
+  padding: 6px 14px; border-radius: var(--radius-sm); font-size: 13px; transition: all .15s;
+}
+.header-nav a:hover, .header-nav a.active {
+  background: rgba(255,255,255,.15); color: white;
+}
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, #1E3A5F 0%, #1B4080 100%);
+  color: white; padding: 40px 24px 32px; text-align: center;
+}
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+  border-radius: 20px; padding: 3px 14px; font-size: 12px; margin-bottom: 12px; color: #BAE6FD;
+}
+.hero h1 { font-size: clamp(20px,3.5vw,32px); font-weight: 700; line-height: 1.3; }
+.hero h1 em { color: #93C5FD; font-style: normal; }
+.hero-meta { margin-top: 8px; color: rgba(255,255,255,.7); font-size: 13px; }
+.hero-meta strong { color: white; }
+
+/* ── Market tabs ── */
+.market-tabs-bar {
+  background: white; border-bottom: 2px solid var(--border);
+  display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+  position: sticky; top: 52px; z-index: 100; padding: 0 12px;
+}
+.market-tabs-bar::-webkit-scrollbar { display: none; }
+.mkt-tab {
+  background: none; border: none; cursor: pointer; padding: 12px 18px;
+  color: var(--text-muted); font-size: 13px; font-weight: 500;
+  white-space: nowrap; border-bottom: 2px solid transparent;
+  margin-bottom: -2px; transition: all .15s; font-family: inherit;
+}
+.mkt-tab:hover { color: var(--text); }
+.mkt-tab.active { color: var(--sky); border-bottom-color: var(--sky); font-weight: 600; }
+
+/* ── Overview grid ── */
+.overview-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px;
+}
+.overview-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px; cursor: pointer; transition: all .2s;
+}
+.overview-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.ov-flag { font-size: 28px; margin-bottom: 6px; }
+.ov-name { font-weight: 700; font-size: 15px; margin-bottom: 10px; color: var(--navy); }
+.ov-stats { display: flex; flex-direction: column; gap: 4px; }
+.ov-stat { display: flex; justify-content: space-between; font-size: 12px; }
+.ov-stat span { color: var(--text-muted); }
+.ov-stat strong { color: var(--text); }
+
+/* ── Section ── */
+.page-section { padding: 28px 24px; max-width: 1300px; margin: 0 auto; }
+.market-sheet { display: none; }
+.market-sheet.active { display: block; }
+
+/* ── Section header ── */
+.sec-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; border-radius: var(--radius-sm);
+  font-weight: 700; font-size: 13px; margin: 24px 0 14px;
+}
+.sec-pc     { background: var(--sky-lt);    color: #1D4ED8; border-left: 3px solid var(--sky); }
+.sec-mob    { background: var(--orange-lt); color: #C2410C; border-left: 3px solid var(--orange); }
+.sec-mkt    { background: var(--purple-lt); color: #6D28D9; border-left: 3px solid var(--purple); }
+.sec-pol    { background: var(--rust-lt);   color: #92400E; border-left: 3px solid var(--rust); }
+
+/* ── Rank cards ── */
+.rank-cards { display: flex; flex-direction: column; gap: 10px; }
+.rank-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px; transition: border-color .15s;
+}
+.rank-card:hover { border-color: var(--border-focus); }
+.rank-card-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+.rank-num {
+  background: var(--sky); color: white; border-radius: 6px;
+  padding: 2px 10px; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 3px;
+}
+.rank-name { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+.rank-meta { display: flex; flex-wrap: wrap; gap: 4px; }
+.rank-content { font-size: 12px; color: #334155; margin: 6px 0; border-left: 2px solid var(--border); padding-left: 10px; }
+.rank-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+@media (max-width: 600px) { .rank-feedback { grid-template-columns: 1fr; } }
+.fb-pos, .fb-neg { border-radius: var(--radius-sm); padding: 8px 10px; font-size: 12px; }
+.fb-pos { background: #F0FDF4; border: 1px solid #BBF7D0; }
+.fb-neg { background: #FFF1F2; border: 1px solid #FECDD3; }
+.fb-label { font-weight: 600; display: block; margin-bottom: 3px; font-size: 11px; }
+.fb-pos .fb-label { color: #059669; }
+.fb-neg .fb-label { color: #DC2626; }
+
+/* ── Chips ── */
+.chip {
+  display: inline-block; border-radius: 4px; padding: 1px 8px; font-size: 11px; font-weight: 500;
+}
+.chip-type { background: #E0F2FE; color: #0369A1; }
+.chip-plat { background: #F1F5F9; color: #475569; }
+.chip-dev  { background: #FAF5FF; color: #7E22CE; }
+
+/* ── Tabs (iOS/Android) ── */
+.tab-group { }
+.tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.tab-btn {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+  padding: 5px 14px; font-size: 12px; cursor: pointer; font-family: inherit;
+  color: var(--text-muted); transition: all .15s;
+}
+.tab-btn:hover { border-color: var(--sky); color: var(--sky); }
+.tab-btn.active { background: var(--sky); border-color: var(--sky); color: white; font-weight: 600; }
+
+/* ── Marketing cards ── */
+.mkt-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px,1fr)); gap: 12px; }
+@media (max-width: 860px) { .mkt-cards { grid-template-columns: 1fr; } }
+.mkt-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
+}
+.mkt-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+.mkt-left { flex: 1; min-width: 0; }
+.mkt-game { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+.dim-badge { flex-shrink: 0; border-radius: 6px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
+.mkt-body { font-size: 12px; color: #334155; border-top: 1px solid var(--border); padding-top: 8px; }
+.mkt-row { display: flex; gap: 8px; margin-bottom: 6px; align-items: flex-start; }
+.mkt-label { flex-shrink: 0; color: var(--text-muted); font-weight: 600; min-width: 56px; padding-top: 1px; }
+.kpi-text { color: #0369A1; font-weight: 500; }
+.mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+@media (max-width: 600px) { .mkt-feedback { grid-template-columns: 1fr; } }
+
+/* ── Policy cards ── */
+.policy-list { display: flex; flex-direction: column; gap: 10px; }
+.policy-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
+  border-left: 3px solid var(--rust);
+}
+.policy-card-header { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+.policy-type-badge { border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+.policy-title { font-weight: 600; font-size: 14px; color: var(--navy); flex: 1; }
+.policy-source { color: var(--text-muted); font-size: 11px; width: 100%; }
+.policy-detail { font-size: 12px; color: #334155; margin: 6px 0; border-left: 2px solid var(--border); padding-left: 10px; }
+.policy-impact { font-size: 12px; color: #0369A1; margin: 6px 0; border-left: 2px solid #93C5FD; padding-left: 10px; }
+.policy-risk { font-size: 12px; color: #991B1B; background: #FEF2F2; border-radius: var(--radius-sm); padding: 6px 10px; margin-top: 6px; }
+
+/* ── Bullet list ── */
+.bullet-list { padding-left: 14px; font-size: 12px; }
+.bullet-list li { margin-bottom: 2px; }
+.text-cell { font-size: 12px; }
+.empty { color: var(--text-muted); font-size: 13px; padding: 12px 0; }
+
+/* ── Footer ── */
+footer {
+  text-align: center; padding: 28px 24px; color: var(--text-muted);
+  font-size: 12px; border-top: 1px solid var(--border); background: white; margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+  .site-header { padding: 0 16px; }
+  .page-section { padding: 16px; }
+  .hero { padding: 28px 16px 24px; }
+  .mkt-cards { grid-template-columns: 1fr; }
+}
+"""
+
+JS = """
+function activateMarket(name) {
+  document.querySelectorAll('.mkt-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.market-sheet').forEach(s => s.classList.remove('active'));
+  const tab = document.querySelector(`.mkt-tab[data-market="${name}"]`);
+  const sheet = document.getElementById('sheet-' + name);
+  if (tab) tab.classList.add('active');
+  if (sheet) sheet.classList.add('active');
+  window.scrollTo({top: document.querySelector('.market-tabs-bar').offsetTop - 60, behavior:'smooth'});
+}
+function switchTab(btn, panelId) {
+  const group = btn.closest('.tab-group');
+  group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  group.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+  btn.classList.add('active');
+  const panel = document.getElementById('panel-' + panelId);
+  if (panel) panel.style.display = '';
+}
+// Active nav
+const page = location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.header-nav a').forEach(a => {
+  if (a.getAttribute('href') === page || (page==='' && a.getAttribute('href')==='index.html'))
+    a.classList.add('active');
+});
+// Activate first market tab
+const firstTab = document.querySelector('.mkt-tab');
+if (firstTab) activateMarket(firstTab.dataset.market);
+"""
 
 
 def generate_html(
     title_main, title_sub, period, report_type,
-    markets,   # list of dicts: {name, flag, pc_ranks, mobile_ranks, mkt_rows, policy_rows}
-    output_path,
-    is_weekly=False
+    markets, output_path, is_weekly=False
 ):
-    # Market nav
-    nav_items = []
+    # Market tabs
+    market_tabs = ''.join(
+        f'<button class="mkt-tab" data-market="{esc(m["name"])}">'
+        f'{MARKET_FLAGS.get(m["name"],"🌐")} {esc(m["name"])}</button>'
+        for m in markets
+    )
+
+    # Market sheets
+    sheets = []
     for m in markets:
-        flag = MARKET_FLAGS.get(m['name'], '🌐')
-        nav_items.append(
-            f'<a href="#" data-market="{esc(m["name"])}">{flag} {esc(m["name"])}</a>'
-        )
+        sid = esc(m['name'])
+        # Assign unique id per market for mobile tabs
+        mob_id = sid.replace('大陆','cn').replace('美国','us').replace('欧洲','eu').replace('日本','jp').replace('韩国','kr').replace('港台','tw').replace('东南亚','sea').replace('俄罗斯','ru')
+        sheets.append(f"""
+<div class="market-sheet" id="sheet-{sid}">
+  <div class="page-section">
+    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    {render_rank_cards(m['pc_ranks'])}
 
-    # Overview section
-    overview_cards = []
-    for m in markets:
-        flag = MARKET_FLAGS.get(m['name'], '🌐')
-        top_game = m['pc_ranks'][0][1] if m['pc_ranks'] else "—"
-        top_mobile = m['mobile_ranks'][0][1] if m['mobile_ranks'] else "—"
-        mkt_count = len(m['mkt_rows'])
-        overview_cards.append(f"""
-        <div class="card" onclick="document.querySelector('[data-market=\\'{m['name']}\\']').click()">
-          <div class="card-header">
-            <span class="flag">{flag}</span>
-            <div><div class="market-name">{esc(m['name'])}</div>
-            <div class="market-sub">PC榜首：{esc(top_game)} · 手游榜首：{esc(top_mobile)}</div></div>
-          </div>
-          <div style="color:var(--muted);font-size:12px">本期营销案例 <strong style="color:var(--gold)">{mkt_count}</strong> 条</div>
-        </div>""")
+    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
+    {render_mobile_tabs(m['mobile_ranks'], mob_id)}
 
-    overview_html = f"""
-<section class="section">
-  <div class="section-title">📊 各市场快览</div>
-  <div class="cards-grid">{''.join(overview_cards)}</div>
-</section>"""
+    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    {render_mkt_cards(m['mkt_rows'])}
 
-    # Market detail sections
-    market_sections = []
-    PC_COLS   = ["名次","游戏名称","类型","开发商","平台","游戏内容分析","正面反馈","负面反馈"]
-    MOB_COLS  = ["名次","游戏名称","类型","开发商","商店/榜单","游戏内容分析","正面反馈","负面反馈"]
-
-    for m in markets:
-        flag = MARKET_FLAGS.get(m['name'], '🌐')
-        market_sections.append(f"""
-<div class="market-sheet" id="sheet-{esc(m['name'])}">
-  <section class="section">
-    <div class="sh sh-pc">🖥️ 一、PC / 主机热门游戏榜单（当期 TOP5）</div>
-    {render_rank_table(m['pc_ranks'], PC_COLS)}
-
-    <div class="sh sh-mob">📱 二、手游热门游戏榜单（iOS · Google · 地区头部商店 畅销+下载 TOP10）</div>
-    {render_rank_table(m['mobile_ranks'], MOB_COLS)}
-
-    <div class="sh sh-mkt">📣 三、重点营销热点详情</div>
-    {render_mkt_table(m['mkt_rows'])}
-
-    <div class="sh sh-pol">⚖️ 四、区域产业政策热闻</div>
-    {render_policy_table(m['policy_rows'])}
-  </section>
+    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    {render_policy_cards(m['policy_rows'])}
+  </div>
 </div>""")
 
-    html = HTML_TEMPLATE.format(
-        title=f"{title_main} {title_sub}",
-        title_main=esc(title_main),
-        title_sub=esc(title_sub),
-        period=esc(period),
-        report_type=esc(report_type),
-        generated=datetime.now().strftime("%Y-%m-%d %H:%M"),
-        market_nav_items="\n".join(nav_items),
-        overview_section=overview_html,
-        market_sections="\n".join(market_sections),
-    )
+    overview = f"""
+<div class="page-section" id="overview">
+  <div style="font-weight:700;font-size:16px;color:var(--navy);margin-bottom:14px">📊 各市场快览</div>
+  {render_overview_cards(markets)}
+</div>"""
+
+    html = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{esc(title_main)} {esc(title_sub)}</title>
+<style>{CSS}</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">🎮 <span>KL</span> 全球游戏市场情报</div>
+  <nav class="header-nav">
+    <a href="index.html">周报</a>
+    <a href="monthly.html">月报</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-badge">{esc(report_type)}</div>
+  <h1>{esc(title_main)}<br><em>{esc(title_sub)}</em></h1>
+  <div class="hero-meta">分析周期：<strong>{esc(period)}</strong> &nbsp;·&nbsp; 生成时间：<strong>{datetime.now().strftime("%Y-%m-%d %H:%M")}</strong></div>
+</div>
+
+{overview}
+
+<div class="market-tabs-bar">
+{market_tabs}
+</div>
+
+{''.join(sheets)}
+
+<footer>
+  本报告由 KL游戏市场情报系统自动生成 · 数据来源：官方平台 / 权威媒体 / 第三方数据平台<br>
+  <a href="index.html" style="color:var(--sky)">📅 最新周报</a> &nbsp;·&nbsp; <a href="monthly.html" style="color:var(--sky)">📊 最新月报</a>
+</footer>
+
+<script>{JS}</script>
+</body>
+</html>"""
 
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
@@ -408,4 +516,4 @@ def generate_html(
 
 
 if __name__ == "__main__":
-    print("HTML generator module loaded. Import and call generate_html() to use.")
+    print("html_generator v2 loaded.")
