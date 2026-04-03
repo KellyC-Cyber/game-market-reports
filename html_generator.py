@@ -12,6 +12,7 @@ Features:
 
 from datetime import datetime
 import re
+import os
 
 # ── Text helpers ──────────────────────────────────────────────────────────────
 def esc(s):
@@ -154,32 +155,57 @@ def render_mobile_tabs(rows, sheet_id):
     html.append('</div>')
     return ''.join(html)
 
-# ── Marketing cards ───────────────────────────────────────────────────────────
+# ── Marketing cards (merged by game, sorted by action count) ─────────────────
 def render_mkt_cards(rows):
     if not rows: return '<p class="empty">暂无数据</p>'
-    html = ['<div class="mkt-cards">']
+
+    # Group by game name
+    from collections import OrderedDict
+    groups = OrderedDict()
     for row in rows:
         while len(row) < 8: row = list(row) + [""]
-        game, typ, dim, action, platform, kpi, pos_fb, neg_fb = [str(c) if c else "" for c in row[:8]]
-        bg, color, icon = dim_style(dim)
+        game = str(row[0]) if row[0] else "—"
+        if game not in groups: groups[game] = []
+        groups[game].append(row)
+
+    # Sort: most actions first
+    sorted_groups = sorted(groups.items(), key=lambda x: -len(x[1]))
+
+    html = ['<div class="mkt-cards">']
+    for game, game_rows in sorted_groups:
+        # Use first row for top-level info
+        typ = str(game_rows[0][1]) if len(game_rows[0])>1 else ""
+        # Collect all feedbacks
+        all_pos = '; '.join(str(r[6]) for r in game_rows if len(r)>6 and str(r[6]).strip())
+        all_neg = '; '.join(str(r[7]) for r in game_rows if len(r)>7 and str(r[7]).strip())
+
+        # Build action blocks
+        action_blocks = []
+        for r in game_rows:
+            dim  = str(r[2]) if len(r)>2 else ""
+            act  = str(r[3]) if len(r)>3 else ""
+            plat = str(r[4]) if len(r)>4 else ""
+            kpi  = str(r[5]) if len(r)>5 else ""
+            bg, color, icon = dim_style(dim)
+            parts = []
+            if act:  parts.append(f'<div class="ab-action">{text_to_bullets(act)}</div>')
+            if plat: parts.append(f'<div class="ab-meta"><span class="ab-label">平台</span>{esc(plat)}</div>')
+            if kpi:  parts.append(f'<div class="ab-meta kpi-text"><span class="ab-label">爆点</span>{text_to_bullets(kpi)}</div>')
+            action_blocks.append(f'<div class="action-block"><span class="dim-badge" style="background:{bg};color:{color}">{icon} {esc(dim)}</span>{"".join(parts)}</div>')
+
+        multi = len(game_rows) > 1
+        counter = f'<span class="action-count">{len(game_rows)}个动作</span>' if multi else ''
+
         html.append(f'''
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">{esc(game)}</div>
+      <div class="mkt-game">{esc(game)} {counter}</div>
       <span class="chip chip-type">{esc(typ)}</span>
     </div>
-    <span class="dim-badge" style="background:{bg};color:{color}">{icon} {esc(dim)}</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div>{text_to_bullets(action)}</div></div>
-    {'<div class="mkt-row"><span class="mkt-label">平台</span><div>'+esc(platform)+'</div></div>' if platform else ''}
-    {'<div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text">'+text_to_bullets(kpi)+'</div></div>' if kpi else ''}
-  </div>
-  <div class="mkt-feedback">
-    {f'<div class="fb-pos"><span class="fb-label">👍 正面</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else ''}
-    {f'<div class="fb-neg"><span class="fb-label">👎 负面</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else ''}
-  </div>
+  <div class="mkt-actions">{"".join(action_blocks)}</div>
+  {'<div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span>'+text_to_bullets(all_pos)+'</div><div class="fb-neg"><span class="fb-label">👎 负面</span>'+text_to_bullets(all_neg)+'</div></div>' if all_pos or all_neg else ''}
 </div>''')
     html.append('</div>')
     return ''.join(html)
@@ -318,15 +344,15 @@ body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 .ov-stat strong { color: var(--text); }
 
 /* ── Section ── */
-.page-section { padding: 28px 24px; max-width: 1300px; margin: 0 auto; }
+.page-section { padding: 16px 20px; max-width: 1300px; margin: 0 auto; }
 .market-sheet { display: none; }
 .market-sheet.active { display: block; }
 
 /* ── Section header ── */
 .sec-header {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 16px; border-radius: var(--radius-sm);
-  font-weight: 700; font-size: 13px; margin: 24px 0 14px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 6px;
+  font-weight: 700; font-size: 13px; margin: 16px 0 10px;
 }
 .sec-pc     { background: var(--sky-lt);    color: #1D4ED8; border-left: 3px solid var(--sky); }
 .sec-mob    { background: var(--orange-lt); color: #C2410C; border-left: 3px solid var(--orange); }
@@ -337,53 +363,50 @@ body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 .pc-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 4px;
 }
 @media (max-width: 1100px) { .pc-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 700px)  { .pc-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 460px)  { .pc-grid { grid-template-columns: 1fr; } }
 .pc-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px 12px;
-  display: flex; flex-direction: column; gap: 6px;
-  transition: all .2s;
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 10px;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: all .2s; border-top: 3px solid var(--sky);
 }
 .pc-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.pc-rank {
-  font-size: 28px; font-weight: 800; color: var(--sky);
-  line-height: 1; letter-spacing: -1px;
-}
-.pc-name { font-weight: 700; font-size: 14px; color: var(--navy); line-height: 1.3; }
+.pc-rank { font-size: 24px; font-weight: 800; color: var(--sky); line-height: 1; letter-spacing: -1px; }
+.pc-name { font-weight: 700; font-size: 13px; color: var(--navy); line-height: 1.3; }
 .pc-chips { display: flex; flex-wrap: wrap; gap: 3px; }
 .pc-dev { font-size: 11px; color: var(--text-muted); }
-.pc-content { font-size: 11px; color: #475569; border-top: 1px solid var(--border); padding-top: 6px; }
-.pc-feedback { margin-top: auto; padding-top: 6px; display: flex; flex-direction: column; gap: 4px; }
+.pc-content { font-size: 11px; color: #475569; border-top: 1px solid var(--border); padding-top: 5px; margin-top: 2px; }
+.pc-feedback { padding-top: 4px; display: flex; flex-direction: column; gap: 3px; }
 
 /* ── Mobile list ── */
-.mob-list { display: flex; flex-direction: column; gap: 8px; }
+.mob-list { display: flex; flex-direction: column; gap: 6px; }
 .mob-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 12px 14px;
+  background: white; border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+  border-left: 3px solid var(--orange);
 }
-.mob-left { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+.mob-left { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
 .mob-rank {
-  background: linear-gradient(135deg, var(--orange) 0%, #F97316 100%);
-  color: white; border-radius: 6px; padding: 3px 10px;
-  font-size: 13px; font-weight: 700; flex-shrink: 0; min-width: 36px; text-align: center;
+  background: var(--orange); color: white; border-radius: 5px;
+  padding: 2px 8px; font-size: 12px; font-weight: 700; flex-shrink: 0; min-width: 28px; text-align: center;
 }
-.mob-name { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 3px; }
+.mob-name { font-weight: 600; font-size: 13px; color: var(--navy); margin-bottom: 2px; }
 .mob-chips { display: flex; flex-wrap: wrap; gap: 3px; }
-.mob-content { font-size: 12px; color: #475569; border-left: 2px solid var(--border); padding-left: 8px; margin: 4px 0; }
-.mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+.mob-content { font-size: 11px; color: #475569; border-left: 2px solid var(--border); padding-left: 7px; margin: 3px 0; }
+.mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 4px; }
 @media (max-width: 500px) { .mob-feedback { grid-template-columns: 1fr; } }
 
 /* ── Feedback mini ── */
-.fb-pos.mini, .fb-neg.mini { padding: 5px 8px; font-size: 11px; }
+.fb-pos.mini, .fb-neg.mini { padding: 4px 7px; font-size: 11px; }
 .fb-pos.mini .fb-label, .fb-neg.mini .fb-label { display: inline; margin-right: 4px; }
-.fb-pos { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 8px 10px; font-size: 12px; }
-.fb-neg { background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius-sm); padding: 8px 10px; font-size: 12px; }
-.fb-label { font-weight: 600; display: block; margin-bottom: 3px; font-size: 11px; }
+.fb-pos { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 6px 8px; font-size: 11px; }
+.fb-neg { background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius-sm); padding: 6px 8px; font-size: 11px; }
+.fb-label { font-weight: 600; display: block; margin-bottom: 2px; font-size: 10px; }
 .fb-pos .fb-label { color: #059669; }
 .fb-neg .fb-label { color: #DC2626; }
 
@@ -407,21 +430,30 @@ body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 .tab-btn.active { background: var(--sky); border-color: var(--sky); color: white; font-weight: 600; }
 
 /* ── Marketing cards ── */
-.mkt-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px,1fr)); gap: 12px; }
-@media (max-width: 860px) { .mkt-cards { grid-template-columns: 1fr; } }
+.mkt-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px,1fr)); gap: 10px; }
+@media (max-width: 820px) { .mkt-cards { grid-template-columns: 1fr; } }
 .mkt-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
+  background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px;
+  border-top: 3px solid var(--purple);
 }
-.mkt-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+.mkt-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; margin-bottom: 8px; }
 .mkt-left { flex: 1; min-width: 0; }
-.mkt-game { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
-.dim-badge { flex-shrink: 0; border-radius: 6px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
-.mkt-body { font-size: 12px; color: #334155; border-top: 1px solid var(--border); padding-top: 8px; }
-.mkt-row { display: flex; gap: 8px; margin-bottom: 6px; align-items: flex-start; }
-.mkt-label { flex-shrink: 0; color: var(--text-muted); font-weight: 600; min-width: 56px; padding-top: 1px; }
-.kpi-text { color: #0369A1; font-weight: 500; }
-.mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-@media (max-width: 600px) { .mkt-feedback { grid-template-columns: 1fr; } }
+.mkt-game { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+.action-count { background: var(--purple-lt); color: var(--purple); border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 600; }
+.dim-badge { flex-shrink: 0; border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+/* Action blocks inside mkt card */
+.mkt-actions { display: flex; flex-direction: column; gap: 6px; }
+.action-block {
+  background: var(--surface2); border-radius: 6px; padding: 8px 10px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.action-block .dim-badge { align-self: flex-start; margin-bottom: 2px; }
+.ab-action { font-size: 12px; color: #334155; }
+.ab-meta { font-size: 11px; color: var(--text-muted); display: flex; gap: 4px; align-items: flex-start; }
+.ab-label { font-weight: 600; flex-shrink: 0; color: #64748B; min-width: 28px; }
+.kpi-text { color: #0369A1 !important; font-weight: 500; }
+.mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+@media (max-width: 500px) { .mkt-feedback { grid-template-columns: 1fr; } }
 
 /* ── Policy cards ── */
 .policy-list { display: flex; flex-direction: column; gap: 10px; }
@@ -461,11 +493,12 @@ JS = """
 function activateMarket(name) {
   document.querySelectorAll('.mkt-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.market-sheet').forEach(s => s.classList.remove('active'));
-  const tab = document.querySelector(`.mkt-tab[data-market="${name}"]`);
+  const tab = document.querySelector('.mkt-tab[data-market="' + name + '"]');
   const sheet = document.getElementById('sheet-' + name);
   if (tab) tab.classList.add('active');
   if (sheet) sheet.classList.add('active');
-  window.scrollTo({top: document.querySelector('.market-tabs-bar').offsetTop - 60, behavior:'smooth'});
+  const bar = document.querySelector('.market-tabs-bar');
+  if (bar) window.scrollTo({top: bar.offsetTop - 54, behavior:'smooth'});
 }
 function switchTab(btn, panelId) {
   const group = btn.closest('.tab-group');
@@ -473,23 +506,134 @@ function switchTab(btn, panelId) {
   group.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
   btn.classList.add('active');
   const panel = document.getElementById('panel-' + panelId);
-  if (panel) panel.style.display = '';
+  if (panel) panel.style.display = 'block';
 }
-// Active nav
+// Attach click handlers to market tabs
+document.querySelectorAll('.mkt-tab').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    activateMarket(this.dataset.market);
+  });
+});
+// Active nav link
 const page = location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.header-nav a').forEach(a => {
   if (a.getAttribute('href') === page || (page==='' && a.getAttribute('href')==='index.html'))
     a.classList.add('active');
 });
-// Activate first market tab
+// Activate first market
 const firstTab = document.querySelector('.mkt-tab');
 if (firstTab) activateMarket(firstTab.dataset.market);
 """
 
+# ── Archive styles ────────────────────────────────────────────────────────────
+ARCHIVE_CSS_EXTRA = """
+/* ── Archive bar ── */
+.archive-bar {
+  background: #F8FAFC; border-bottom: 1px solid var(--border);
+  padding: 8px 24px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.archive-bar .ab-label { color: var(--text-muted); font-size: 12px; font-weight: 600; }
+.archive-btn {
+  background: white; border: 1px solid var(--border); border-radius: 16px;
+  padding: 3px 12px; font-size: 12px; color: var(--text-muted);
+  text-decoration: none; transition: all .15s; white-space: nowrap;
+}
+.archive-btn:hover { border-color: var(--sky); color: var(--sky); background: var(--sky-lt); }
+.archive-btn.current { background: var(--sky); border-color: var(--sky); color: white; font-weight: 600; }
+.archive-sep { color: var(--border); font-size: 16px; }
+/* ── Archive index ── */
+.archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 12px; }
+.archive-card {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px; text-decoration: none; display: block; transition: all .2s;
+}
+.archive-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.archive-card .ac-type { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+.archive-card .ac-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+.archive-card .ac-period { font-size: 12px; color: var(--text-muted); }
+.archive-card .ac-badge { display: inline-block; margin-top: 8px; background: var(--sky-lt); color: var(--sky); border-radius: 4px; padding: 1px 8px; font-size: 11px; font-weight: 600; }
+"""
+
+def generate_archive_bar(archive_weekly, archive_monthly, current_file, is_weekly):
+    """Generate a compact bar showing links to past reports."""
+    if not archive_weekly and not archive_monthly:
+        return ""
+    parts = ['<div class="archive-bar">']
+    if archive_weekly:
+        parts.append('<span class="ab-label">📅 往期周报：</span>')
+        for item in archive_weekly:
+            cls = "archive-btn current" if item['file'] == current_file else "archive-btn"
+            parts.append(f'<a href="{esc(item["file"])}" class="{cls}">{esc(item["label"])}</a>')
+    if archive_weekly and archive_monthly:
+        parts.append('<span class="archive-sep">|</span>')
+    if archive_monthly:
+        parts.append('<span class="ab-label">📊 往期月报：</span>')
+        for item in archive_monthly:
+            cls = "archive-btn current" if item['file'] == current_file else "archive-btn"
+            parts.append(f'<a href="{esc(item["file"])}" class="{cls}">{esc(item["label"])}</a>')
+    parts.append('<a href="archive.html" class="archive-btn" style="margin-left:auto">🗂️ 全部存档</a>')
+    parts.append('</div>')
+    return ''.join(parts)
+
+
+def generate_archive_index(archive_weekly, archive_monthly, output_path):
+    """Generate docs/archive.html — full archive index."""
+    cards = []
+    for item in (archive_monthly or []):
+        cards.append(f'''<a href="{esc(item['file'])}" class="archive-card">
+  <div class="ac-type">📊 月度报告</div>
+  <div class="ac-title">{esc(item['title'])}</div>
+  <div class="ac-period">{esc(item['period'])}</div>
+  <span class="ac-badge">月报</span>
+</a>''')
+    for item in (archive_weekly or []):
+        cards.append(f'''<a href="{esc(item['file'])}" class="archive-card">
+  <div class="ac-type">📅 周报</div>
+  <div class="ac-title">{esc(item['title'])}</div>
+  <div class="ac-period">{esc(item['period'])}</div>
+  <span class="ac-badge" style="background:#FFF7ED;color:#C2410C">周报</span>
+</a>''')
+
+    html = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>报告存档 - KL全球游戏市场情报</title>
+<style>{CSS}{ARCHIVE_CSS_EXTRA}</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">🎮 <span>KL</span> 全球游戏市场情报</div>
+  <nav class="header-nav">
+    <a href="index.html">最新周报</a>
+    <a href="monthly.html">最新月报</a>
+    <a href="archive.html" class="active">存档</a>
+  </nav>
+</header>
+<div class="hero">
+  <div class="hero-badge">🗂️ 报告存档</div>
+  <h1>往期报告<br><em>全部周报 · 月报</em></h1>
+  <div class="hero-meta">点击卡片查看历史报告</div>
+</div>
+<div class="page-section">
+  <div style="font-weight:700;font-size:16px;color:var(--navy);margin-bottom:14px">📁 所有报告（最新在前）</div>
+  <div class="archive-grid">
+    {''.join(cards)}
+  </div>
+</div>
+<footer>KL游戏市场情报系统 · <a href="index.html" style="color:var(--sky)">返回最新周报</a></footer>
+</body>
+</html>"""
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(html)
+    print(f"Archive index generated: {output_path}")
+
 
 def generate_html(
     title_main, title_sub, period, report_type,
-    markets, output_path, is_weekly=False
+    markets, output_path, is_weekly=False,
+    archive_weekly=None, archive_monthly=None
 ):
     # Market tabs
     market_tabs = ''.join(
@@ -502,7 +646,6 @@ def generate_html(
     sheets = []
     for m in markets:
         sid = esc(m['name'])
-        # Assign unique id per market for mobile tabs
         mob_id = sid.replace('大陆','cn').replace('美国','us').replace('欧洲','eu').replace('日本','jp').replace('韩国','kr').replace('港台','tw').replace('东南亚','sea').replace('俄罗斯','ru')
         sheets.append(f"""
 <div class="market-sheet" id="sheet-{sid}">
@@ -521,6 +664,9 @@ def generate_html(
   </div>
 </div>""")
 
+    current_file = os.path.basename(output_path)
+    archive_bar = generate_archive_bar(archive_weekly, archive_monthly, current_file, is_weekly)
+
     overview = f"""
 <div class="page-section" id="overview">
   <div style="font-weight:700;font-size:16px;color:var(--navy);margin-bottom:14px">📊 各市场快览</div>
@@ -533,7 +679,7 @@ def generate_html(
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title_main)} {esc(title_sub)}</title>
-<style>{CSS}</style>
+<style>{CSS}{ARCHIVE_CSS_EXTRA}</style>
 </head>
 <body>
 <header class="site-header">
@@ -541,6 +687,7 @@ def generate_html(
   <nav class="header-nav">
     <a href="index.html">周报</a>
     <a href="monthly.html">月报</a>
+    <a href="archive.html">🗂️ 存档</a>
   </nav>
 </header>
 
@@ -550,6 +697,7 @@ def generate_html(
   <div class="hero-meta">分析周期：<strong>{esc(period)}</strong> &nbsp;·&nbsp; 生成时间：<strong>{datetime.now().strftime("%Y-%m-%d %H:%M")}</strong></div>
 </div>
 
+{archive_bar}
 {overview}
 
 <div class="market-tabs-bar">
@@ -560,7 +708,9 @@ def generate_html(
 
 <footer>
   本报告由 KL游戏市场情报系统自动生成 · 数据来源：官方平台 / 权威媒体 / 第三方数据平台<br>
-  <a href="index.html" style="color:var(--sky)">📅 最新周报</a> &nbsp;·&nbsp; <a href="monthly.html" style="color:var(--sky)">📊 最新月报</a>
+  <a href="index.html" style="color:var(--sky)">📅 最新周报</a> &nbsp;·&nbsp;
+  <a href="monthly.html" style="color:var(--sky)">📊 最新月报</a> &nbsp;·&nbsp;
+  <a href="archive.html" style="color:var(--sky)">🗂️ 报告存档</a>
 </footer>
 
 <script>{JS}</script>
@@ -574,4 +724,5 @@ def generate_html(
 
 
 if __name__ == "__main__":
-    print("html_generator v2 loaded.")
+    print("html_generator v3 loaded.")
+

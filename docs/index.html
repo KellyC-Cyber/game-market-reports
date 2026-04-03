@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>全球游戏市场热点周报 2026年3月26日 — 4月1日</title>
+<title>全球游戏市场热点周报2026年3月26日—4月1日 2026年3月26日</title>
 <style>
 :root {
   --bg: #F0F4F8; --surface: #FFFFFF; --surface2: #F8FAFC;
@@ -90,15 +90,15 @@ body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 .ov-stat strong { color: var(--text); }
 
 /* ── Section ── */
-.page-section { padding: 28px 24px; max-width: 1300px; margin: 0 auto; }
+.page-section { padding: 16px 20px; max-width: 1300px; margin: 0 auto; }
 .market-sheet { display: none; }
 .market-sheet.active { display: block; }
 
 /* ── Section header ── */
 .sec-header {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 16px; border-radius: var(--radius-sm);
-  font-weight: 700; font-size: 13px; margin: 24px 0 14px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 6px;
+  font-weight: 700; font-size: 13px; margin: 16px 0 10px;
 }
 .sec-pc     { background: var(--sky-lt);    color: #1D4ED8; border-left: 3px solid var(--sky); }
 .sec-mob    { background: var(--orange-lt); color: #C2410C; border-left: 3px solid var(--orange); }
@@ -109,53 +109,50 @@ body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 .pc-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 4px;
 }
 @media (max-width: 1100px) { .pc-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 700px)  { .pc-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 460px)  { .pc-grid { grid-template-columns: 1fr; } }
 .pc-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px 12px;
-  display: flex; flex-direction: column; gap: 6px;
-  transition: all .2s;
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 10px;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: all .2s; border-top: 3px solid var(--sky);
 }
 .pc-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.pc-rank {
-  font-size: 28px; font-weight: 800; color: var(--sky);
-  line-height: 1; letter-spacing: -1px;
-}
-.pc-name { font-weight: 700; font-size: 14px; color: var(--navy); line-height: 1.3; }
+.pc-rank { font-size: 24px; font-weight: 800; color: var(--sky); line-height: 1; letter-spacing: -1px; }
+.pc-name { font-weight: 700; font-size: 13px; color: var(--navy); line-height: 1.3; }
 .pc-chips { display: flex; flex-wrap: wrap; gap: 3px; }
 .pc-dev { font-size: 11px; color: var(--text-muted); }
-.pc-content { font-size: 11px; color: #475569; border-top: 1px solid var(--border); padding-top: 6px; }
-.pc-feedback { margin-top: auto; padding-top: 6px; display: flex; flex-direction: column; gap: 4px; }
+.pc-content { font-size: 11px; color: #475569; border-top: 1px solid var(--border); padding-top: 5px; margin-top: 2px; }
+.pc-feedback { padding-top: 4px; display: flex; flex-direction: column; gap: 3px; }
 
 /* ── Mobile list ── */
-.mob-list { display: flex; flex-direction: column; gap: 8px; }
+.mob-list { display: flex; flex-direction: column; gap: 6px; }
 .mob-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 12px 14px;
+  background: white; border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+  border-left: 3px solid var(--orange);
 }
-.mob-left { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+.mob-left { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
 .mob-rank {
-  background: linear-gradient(135deg, var(--orange) 0%, #F97316 100%);
-  color: white; border-radius: 6px; padding: 3px 10px;
-  font-size: 13px; font-weight: 700; flex-shrink: 0; min-width: 36px; text-align: center;
+  background: var(--orange); color: white; border-radius: 5px;
+  padding: 2px 8px; font-size: 12px; font-weight: 700; flex-shrink: 0; min-width: 28px; text-align: center;
 }
-.mob-name { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 3px; }
+.mob-name { font-weight: 600; font-size: 13px; color: var(--navy); margin-bottom: 2px; }
 .mob-chips { display: flex; flex-wrap: wrap; gap: 3px; }
-.mob-content { font-size: 12px; color: #475569; border-left: 2px solid var(--border); padding-left: 8px; margin: 4px 0; }
-.mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+.mob-content { font-size: 11px; color: #475569; border-left: 2px solid var(--border); padding-left: 7px; margin: 3px 0; }
+.mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 4px; }
 @media (max-width: 500px) { .mob-feedback { grid-template-columns: 1fr; } }
 
 /* ── Feedback mini ── */
-.fb-pos.mini, .fb-neg.mini { padding: 5px 8px; font-size: 11px; }
+.fb-pos.mini, .fb-neg.mini { padding: 4px 7px; font-size: 11px; }
 .fb-pos.mini .fb-label, .fb-neg.mini .fb-label { display: inline; margin-right: 4px; }
-.fb-pos { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 8px 10px; font-size: 12px; }
-.fb-neg { background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius-sm); padding: 8px 10px; font-size: 12px; }
-.fb-label { font-weight: 600; display: block; margin-bottom: 3px; font-size: 11px; }
+.fb-pos { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 6px 8px; font-size: 11px; }
+.fb-neg { background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius-sm); padding: 6px 8px; font-size: 11px; }
+.fb-label { font-weight: 600; display: block; margin-bottom: 2px; font-size: 10px; }
 .fb-pos .fb-label { color: #059669; }
 .fb-neg .fb-label { color: #DC2626; }
 
@@ -179,21 +176,30 @@ body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 .tab-btn.active { background: var(--sky); border-color: var(--sky); color: white; font-weight: 600; }
 
 /* ── Marketing cards ── */
-.mkt-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px,1fr)); gap: 12px; }
-@media (max-width: 860px) { .mkt-cards { grid-template-columns: 1fr; } }
+.mkt-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px,1fr)); gap: 10px; }
+@media (max-width: 820px) { .mkt-cards { grid-template-columns: 1fr; } }
 .mkt-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
+  background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px;
+  border-top: 3px solid var(--purple);
 }
-.mkt-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+.mkt-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; margin-bottom: 8px; }
 .mkt-left { flex: 1; min-width: 0; }
-.mkt-game { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
-.dim-badge { flex-shrink: 0; border-radius: 6px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
-.mkt-body { font-size: 12px; color: #334155; border-top: 1px solid var(--border); padding-top: 8px; }
-.mkt-row { display: flex; gap: 8px; margin-bottom: 6px; align-items: flex-start; }
-.mkt-label { flex-shrink: 0; color: var(--text-muted); font-weight: 600; min-width: 56px; padding-top: 1px; }
-.kpi-text { color: #0369A1; font-weight: 500; }
-.mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-@media (max-width: 600px) { .mkt-feedback { grid-template-columns: 1fr; } }
+.mkt-game { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+.action-count { background: var(--purple-lt); color: var(--purple); border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 600; }
+.dim-badge { flex-shrink: 0; border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+/* Action blocks inside mkt card */
+.mkt-actions { display: flex; flex-direction: column; gap: 6px; }
+.action-block {
+  background: var(--surface2); border-radius: 6px; padding: 8px 10px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.action-block .dim-badge { align-self: flex-start; margin-bottom: 2px; }
+.ab-action { font-size: 12px; color: #334155; }
+.ab-meta { font-size: 11px; color: var(--text-muted); display: flex; gap: 4px; align-items: flex-start; }
+.ab-label { font-weight: 600; flex-shrink: 0; color: #64748B; min-width: 28px; }
+.kpi-text { color: #0369A1 !important; font-weight: 500; }
+.mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+@media (max-width: 500px) { .mkt-feedback { grid-template-columns: 1fr; } }
 
 /* ── Policy cards ── */
 .policy-list { display: flex; flex-direction: column; gap: 10px; }
@@ -227,6 +233,32 @@ footer {
   .hero { padding: 28px 16px 24px; }
   .mkt-cards { grid-template-columns: 1fr; }
 }
+
+/* ── Archive bar ── */
+.archive-bar {
+  background: #F8FAFC; border-bottom: 1px solid var(--border);
+  padding: 8px 24px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.archive-bar .ab-label { color: var(--text-muted); font-size: 12px; font-weight: 600; }
+.archive-btn {
+  background: white; border: 1px solid var(--border); border-radius: 16px;
+  padding: 3px 12px; font-size: 12px; color: var(--text-muted);
+  text-decoration: none; transition: all .15s; white-space: nowrap;
+}
+.archive-btn:hover { border-color: var(--sky); color: var(--sky); background: var(--sky-lt); }
+.archive-btn.current { background: var(--sky); border-color: var(--sky); color: white; font-weight: 600; }
+.archive-sep { color: var(--border); font-size: 16px; }
+/* ── Archive index ── */
+.archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 12px; }
+.archive-card {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px; text-decoration: none; display: block; transition: all .2s;
+}
+.archive-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.archive-card .ac-type { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+.archive-card .ac-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+.archive-card .ac-period { font-size: 12px; color: var(--text-muted); }
+.archive-card .ac-badge { display: inline-block; margin-top: 8px; background: var(--sky-lt); color: var(--sky); border-radius: 4px; padding: 1px 8px; font-size: 11px; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -235,15 +267,17 @@ footer {
   <nav class="header-nav">
     <a href="index.html">周报</a>
     <a href="monthly.html">月报</a>
+    <a href="archive.html">🗂️ 存档</a>
   </nav>
 </header>
 
 <div class="hero">
   <div class="hero-badge">🗓️ 周报</div>
-  <h1>全球游戏市场热点周报<br><em>2026年3月26日 — 4月1日</em></h1>
-  <div class="hero-meta">分析周期：<strong>2026年3月26日 — 4月1日（第13周）</strong> &nbsp;·&nbsp; 生成时间：<strong>2026-04-03 16:37</strong></div>
+  <h1>全球游戏市场热点周报2026年3月26日—4月1日<br><em>2026年3月26日</em></h1>
+  <div class="hero-meta">分析周期：<strong>2026年3月26日—4月1日</strong> &nbsp;·&nbsp; 生成时间：<strong>2026-04-03 16:57</strong></div>
 </div>
 
+<div class="archive-bar"><span class="ab-label">📅 往期周报：</span><a href="index.html" class="archive-btn current">3/26–4/1</a><a href="weekly-20260319.html" class="archive-btn">3/19–3/25</a><span class="archive-sep">|</span><span class="ab-label">📊 往期月报：</span><a href="monthly.html" class="archive-btn">2026年3月</a><a href="monthly-202602.html" class="archive-btn">2026年2月</a><a href="archive.html" class="archive-btn" style="margin-left:auto">🗂️ 全部存档</a></div>
 
 <div class="page-section" id="overview">
   <div style="font-weight:700;font-size:16px;color:var(--navy);margin-bottom:14px">📊 各市场快览</div>
@@ -391,7 +425,7 @@ footer {
     <span class="chip chip-plat">Steam</span>
   </div>
   <div class="pc-dev">🏢 灵犀互娱</div>
-  <div class="pc-content"><span class="text-cell">持续热度维持</span></div>
+  <div class="pc-content"><ul class="bullet-list"><li>3月试玩测试及集中KOL投放期（正式公测定于2026年9月</li><li>来源：灵犀互娱官方公告）</li><li>试玩版本Steam热度持续</li></ul></div>
   <div class="pc-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>国产动作游戏技术表现获认可</li><li>操作手感评价较好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家认为内容深度不足</li><li>优化问题被提及</li></ul></div></div>
 </div></div>
 
@@ -943,74 +977,22 @@ footer {
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">洛克王国：世界</div>
+      <div class="mkt-game">洛克王国：世界 <span class="action-count">3个动作</span></div>
       <span class="chip chip-type">手游</span>
     </div>
-    <span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><ul class="bullet-list"><li>洛克王国：世界（腾讯魔方工作室群）与iOS App Store及安卓主要平台合作，3月26日全平台同步公测，苹果商店首页设专题推荐位</li><li>全网预约量提前突破6000万</li></ul></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>iOS App Store·安卓各大商店·腾讯系平台</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>3月26日公测首日登顶iOS游戏免费榜#1</li><li>3月27日登顶iOS游戏畅销榜#1（总榜#4）</li><li>开服13小时新进用户超1500万（腾讯官方数据）</li><li>全网预约量6000万（官方数据）</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>15年经典IP情感唤醒效果极强</li><li>开放世界玩法焕新老IP获玩家认可</li><li>首日数据创腾讯近年新游记录</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>App Store用户评分6.6分偏低</li><li>首日付费系统激进被玩家批评</li><li>服务器承压，部分玩家反映卡顿</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span><div class="ab-action"><ul class="bullet-list"><li>洛克王国：世界（腾讯魔方工作室群）与iOS App Store及安卓主要平台合作，3月26日全平台同步公测，苹果商店首页设专题推荐位</li><li>全网预约量提前突破6000万</li></ul></div><div class="ab-meta"><span class="ab-label">平台</span>iOS App Store·安卓各大商店·腾讯系平台</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>3月26日公测首日登顶iOS游戏免费榜#1</li><li>3月27日登顶iOS游戏畅销榜#1（总榜#4）</li><li>开服13小时新进用户超1500万（腾讯官方数据）</li><li>全网预约量6000万（官方数据）</li></ul></div></div><div class="action-block"><span class="dim-badge" style="background:##FEF9C3;color:#713F12">🌟 网红合作</span><div class="ab-action"><span class="text-cell">洛克王国：世界（腾讯）提前邀请抖音、B站、微博头部游戏KOL进行公测前内容预热，公测日多位KOL同步发布体验视频</span></div><div class="ab-meta"><span class="ab-label">平台</span>抖音·B站·微博</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>抖音相关话题#洛克王国世界 公测首周播放量超5亿次</li><li>B站公测相关视频合计播放量超2000万</li><li>Gamelook报道：通过逐层沟通的营销发行策略完成从IP核心玩家到大众用户的转化</li></ul></div></div><div class="action-block"><span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span><div class="ab-action"><span class="text-cell">洛克王国：世界公测后，大量80/90后用户自发在抖音、小红书发布怀旧打卡内容，形成"怀旧童年游戏"主题UGC浪潮</span></div><div class="ab-meta"><span class="ab-label">平台</span>抖音·小红书·微博</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>小红书相关帖子3月26-31日约3万篇</li><li>微博话题阅读量累计超10亿</li><li>抖音#洛克王国童年回忆 话题播放量超2亿次</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>15年经典IP情感唤醒效果极强</li><li>开放世界玩法焕新老IP获玩家认可</li><li>首日数据创腾讯近年新游记录; KOL矩阵覆盖全面，从核心游戏区到泛娱乐区形成层级传播</li><li>怀旧情感内容共鸣强; 怀旧情感触发了大量非活跃游戏用户的自发传播，破圈效果显著</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>App Store用户评分6.6分偏低</li><li>首日付费系统激进被玩家批评</li><li>服务器承压，部分玩家反映卡顿; 部分KOL在体验后发布了较为负面的付费系统评测，5天后畅销榜从#1跌回#3; 部分玩家表示现在玩起来与童年记忆落差较大，认为IP情怀被过度消费</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">洛克王国：世界</div>
-      <span class="chip chip-type">手游</span>
-    </div>
-    <span class="dim-badge" style="background:##FEF9C3;color:#713F12">🌟 网红合作</span>
-  </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">洛克王国：世界（腾讯）提前邀请抖音、B站、微博头部游戏KOL进行公测前内容预热，公测日多位KOL同步发布体验视频</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>抖音·B站·微博</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>抖音相关话题#洛克王国世界 公测首周播放量超5亿次</li><li>B站公测相关视频合计播放量超2000万</li><li>Gamelook报道：通过逐层沟通的营销发行策略完成从IP核心玩家到大众用户的转化</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>KOL矩阵覆盖全面，从核心游戏区到泛娱乐区形成层级传播</li><li>怀旧情感内容共鸣强</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">部分KOL在体验后发布了较为负面的付费系统评测，5天后畅销榜从#1跌回#3</span></div>
-  </div>
-</div>
-<div class="mkt-card">
-  <div class="mkt-card-top">
-    <div class="mkt-left">
-      <div class="mkt-game">洛克王国：世界</div>
-      <span class="chip chip-type">手游</span>
-    </div>
-    <span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span>
-  </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">洛克王国：世界公测后，大量80/90后用户自发在抖音、小红书发布怀旧打卡内容，形成"怀旧童年游戏"主题UGC浪潮</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>抖音·小红书·微博</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>小红书相关帖子3月26-31日约3万篇</li><li>微博话题阅读量累计超10亿</li><li>抖音#洛克王国童年回忆 话题播放量超2亿次</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">怀旧情感触发了大量非活跃游戏用户的自发传播，破圈效果显著</span></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">部分玩家表示现在玩起来与童年记忆落差较大，认为IP情怀被过度消费</span></div>
-  </div>
-</div>
-<div class="mkt-card">
-  <div class="mkt-card-top">
-    <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
+      <div class="mkt-game">Crimson Desert </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Crimson Desert（Pearl Abyss）发售第二周，玩家自发在Reddit/Steam评价区修改负评，大量玩家在YouTube/Twitter上发布操控问题被修复后的正面体验内容，形成自发口碑逆转事件</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Steam评价区·Reddit·YouTube·Instagram</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>Steam评价从Mixed（57%）逆转至Very Positive（80%+），用户评价数破10万条</li><li>Reddit r/CrimsonDesert 相关讨论帖点赞260+</li><li>IGN专题报道Steam评价逆转（youtube.com/watch?v=QTaZJlt7-bA）</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>开发商积极回应玩家反馈并快速推送操控修复补丁是口碑逆转的核心</li><li>玩家自发口碑带动销量持续增长</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">发售初期操控设计已造成口碑损伤，逆转过程中部分玩家仍持观望态度</span></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span><div class="ab-action"><span class="text-cell">Crimson Desert（Pearl Abyss）发售第二周，玩家自发在Reddit/Steam评价区修改负评，大量玩家在YouTube/Twitter上发布操控问题被修复后的正面体验内容，形成自发口碑逆转事件</span></div><div class="ab-meta"><span class="ab-label">平台</span>Steam评价区·Reddit·YouTube·Instagram</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>Steam评价从Mixed（57%）逆转至Very Positive（80%+），用户评价数破10万条</li><li>Reddit r/CrimsonDesert 相关讨论帖点赞260+</li><li>IGN专题报道Steam评价逆转（youtube.com/watch?v=QTaZJlt7-bA）</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>开发商积极回应玩家反馈并快速推送操控修复补丁是口碑逆转的核心</li><li>玩家自发口碑带动销量持续增长</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">发售初期操控设计已造成口碑损伤，逆转过程中部分玩家仍持观望态度</span></div></div>
 </div></div>
 
     <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
@@ -1540,74 +1522,32 @@ footer {
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
+      <div class="mkt-game">Crimson Desert <span class="action-count">2个动作</span></div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><ul class="bullet-list"><li>Crimson Desert（Pearl Abyss）在Steam评价逆转后主动邀请IGN、PC Gamer、Kotaku发布二次跟进报道，强化口碑逆转叙事</li><li>IGN制作专题视频报道Steam评价回升事件</li></ul></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>IGN·PC Gamer·Kotaku·YouTube</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>IGN专题视频YouTube播放量约18,200次（youtube.com/watch?v=QTaZJlt7-bA）</li><li>PC Gamer报道估计阅读量约10万次（pcgamer.com/crimson-desert-239000-players）</li><li>Steam评价10万条以上，80%+好评</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>开发商积极响应并快速修复获玩家高度认可</li><li>媒体跟进报道的口碑逆转叙事有效推动犹豫玩家购买</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>初期口碑伤害已造成，部分玩家永久性失去兴趣</li><li>Kotaku评测标题仍以负面角度（操控差）为主</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span><div class="ab-action"><ul class="bullet-list"><li>Crimson Desert（Pearl Abyss）在Steam评价逆转后主动邀请IGN、PC Gamer、Kotaku发布二次跟进报道，强化口碑逆转叙事</li><li>IGN制作专题视频报道Steam评价回升事件</li></ul></div><div class="ab-meta"><span class="ab-label">平台</span>IGN·PC Gamer·Kotaku·YouTube</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>IGN专题视频YouTube播放量约18,200次（youtube.com/watch?v=QTaZJlt7-bA）</li><li>PC Gamer报道估计阅读量约10万次（pcgamer.com/crimson-desert-239000-players）</li><li>Steam评价10万条以上，80%+好评</li></ul></div></div><div class="action-block"><span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span><div class="ab-action"><span class="text-cell">Crimson Desert（Pearl Abyss）与Steam协同，在Steam口碑逆转后获得Steam新闻推送加权，算法自动将游戏推荐给更多潜在用户</span></div><div class="ab-meta"><span class="ab-label">平台</span>Steam</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>发售两周后Steam周销量仍维持全球#2</li><li>Steam同时在线本周新高276,000（instagram.com/reel/DWhMhPWIO6I）</li><li>累计400万份销量（ign.com/articles/crimson-desert-sells-4-million）</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>开发商积极响应并快速修复获玩家高度认可</li><li>媒体跟进报道的口碑逆转叙事有效推动犹豫玩家购买; Steam算法对高评价内容的自然推流有效放大了口碑逆转的商业价值</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>初期口碑伤害已造成，部分玩家永久性失去兴趣</li><li>Kotaku评测标题仍以负面角度（操控差）为主; 依赖平台自然推流的可持续性有限，需持续内容更新维持热度</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
+      <div class="mkt-game">Slay the Spire 2 </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Crimson Desert（Pearl Abyss）与Steam协同，在Steam口碑逆转后获得Steam新闻推送加权，算法自动将游戏推荐给更多潜在用户</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Steam</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>发售两周后Steam周销量仍维持全球#2</li><li>Steam同时在线本周新高276,000（instagram.com/reel/DWhMhPWIO6I）</li><li>累计400万份销量（ign.com/articles/crimson-desert-sells-4-million）</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">Steam算法对高评价内容的自然推流有效放大了口碑逆转的商业价值</span></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">依赖平台自然推流的可持续性有限，需持续内容更新维持热度</span></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span><div class="ab-action"><span class="text-cell">Slay the Spire 2（Mega Crit Games）EA阶段凭借系列口碑，玩家自发在Reddit、YouTube、TikTok大量产出攻略/卡组分享/高难挑战内容</span></div><div class="ab-meta"><span class="ab-label">平台</span>Reddit·YouTube·TikTok·Steam</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>发售首周突破300万份（gamesmarket.global）</li><li>Steam好评率95%+</li><li>Reddit r/slaythespire 本周新帖约500条</li><li>YouTube攻略视频播放量合计约500万次</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>正版内容制作者和社区的高度活跃有效延长了游戏的话题热度</li><li>EA定价合理获玩家好评</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>EA阶段内容量限制了部分玩家的购买动力</li><li>开发商被玩家"监督"进度的压力较大</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Slay the Spire 2</div>
+      <div class="mkt-game">GTA6 </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Slay the Spire 2（Mega Crit Games）EA阶段凭借系列口碑，玩家自发在Reddit、YouTube、TikTok大量产出攻略/卡组分享/高难挑战内容</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Reddit·YouTube·TikTok·Steam</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>发售首周突破300万份（gamesmarket.global）</li><li>Steam好评率95%+</li><li>Reddit r/slaythespire 本周新帖约500条</li><li>YouTube攻略视频播放量合计约500万次</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>正版内容制作者和社区的高度活跃有效延长了游戏的话题热度</li><li>EA定价合理获玩家好评</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>EA阶段内容量限制了部分玩家的购买动力</li><li>开发商被玩家"监督"进度的压力较大</li></ul></div>
-  </div>
-</div>
-<div class="mkt-card">
-  <div class="mkt-card-top">
-    <div class="mkt-left">
-      <div class="mkt-game">GTA6</div>
-      <span class="chip chip-type">PC主机</span>
-    </div>
-    <span class="dim-badge" style="background:#F1F5F9;color:#475569">• 其他</span>
-  </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><ul class="bullet-list"><li>Take-Two/Rockstar官方本周于纽约Times Square投放GTA6大型户外广告牌，明确夏季营销季正式启动</li><li>无额外官方内容发布，依赖社区自发传播</li></ul></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Times Square·YouTube·Twitter/X·Reddit</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>Times Square广告牌引发全球游戏媒体和社区账号自发传播，估算媒体价值超500万美元</li><li>YouTube社区视频新增约300万播放</li><li>Reddit每日新增讨论帖600+条</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">纯户外广告引发的自发传播效率极高，品牌影响力无需多说</span></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>无新实质内容发布，部分玩家开始感到预热疲劳</li><li>发售日不明确引发焦虑</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#F1F5F9;color:#475569">• 其他</span><div class="ab-action"><ul class="bullet-list"><li>Take-Two/Rockstar官方本周于纽约Times Square投放GTA6大型户外广告牌，明确夏季营销季正式启动</li><li>无额外官方内容发布，依赖社区自发传播</li></ul></div><div class="ab-meta"><span class="ab-label">平台</span>Times Square·YouTube·Twitter/X·Reddit</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>Times Square广告牌引发全球游戏媒体和社区账号自发传播，估算媒体价值超500万美元</li><li>YouTube社区视频新增约300万播放</li><li>Reddit每日新增讨论帖600+条</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">纯户外广告引发的自发传播效率极高，品牌影响力无需多说</span></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>无新实质内容发布，部分玩家开始感到预热疲劳</li><li>发售日不明确引发焦虑</li></ul></div></div>
 </div></div>
 
     <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
@@ -2152,56 +2092,32 @@ footer {
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
+      <div class="mkt-game">Crimson Desert </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Crimson Desert（Pearl Abyss）本周凭借Steam评价逆转事件获得Eurogamer、GamesRadar等欧洲媒体主动跟进报道，无需额外公关资源即产生大量欧洲媒体曝光</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Eurogamer·GamesRadar·IGN UK·YouTube</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>Eurogamer跟进报道阅读量约8万次</li><li>GamesRadar报道约5万次</li><li>欧洲Steam区周销量#1</li><li>本周Steam同时在线新高276,000（全球，含欧洲用户约占35%估算约96,000）</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>开发商积极回应玩家反馈的态度在欧洲玩家中获高度好感</li><li>口碑逆转叙事在欧洲社区自发传播</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>欧洲玩家对初期混乱口碑的记忆较深</li><li>部分德国玩家在论坛仍持谨慎态度</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span><div class="ab-action"><span class="text-cell">Crimson Desert（Pearl Abyss）本周凭借Steam评价逆转事件获得Eurogamer、GamesRadar等欧洲媒体主动跟进报道，无需额外公关资源即产生大量欧洲媒体曝光</span></div><div class="ab-meta"><span class="ab-label">平台</span>Eurogamer·GamesRadar·IGN UK·YouTube</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>Eurogamer跟进报道阅读量约8万次</li><li>GamesRadar报道约5万次</li><li>欧洲Steam区周销量#1</li><li>本周Steam同时在线新高276,000（全球，含欧洲用户约占35%估算约96,000）</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>开发商积极回应玩家反馈的态度在欧洲玩家中获高度好感</li><li>口碑逆转叙事在欧洲社区自发传播</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>欧洲玩家对初期混乱口碑的记忆较深</li><li>部分德国玩家在论坛仍持谨慎态度</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Slay the Spire 2</div>
+      <div class="mkt-game">Slay the Spire 2 </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Slay the Spire 2（Mega Crit Games）在Steam EA定价合理（约25欧元），欧洲卡牌/Roguelike受众高度接受EA模式，本周Steam欧洲区仍强势维持热销前3</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Steam</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>本周Steam欧洲区周销量前3</li><li>Steam好评率95%+</li><li>欧洲独立游戏媒体（PC Gamer欧洲版等）主动跟进报道</li><li>发售以来累计300万份（全球含欧洲约30%）</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">EA定价合理且内容完成度高，欧洲独立游戏玩家接受度高</span></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>EA阶段内容量有限</li><li>部分欧洲玩家等待正式版再购入</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span><div class="ab-action"><span class="text-cell">Slay the Spire 2（Mega Crit Games）在Steam EA定价合理（约25欧元），欧洲卡牌/Roguelike受众高度接受EA模式，本周Steam欧洲区仍强势维持热销前3</span></div><div class="ab-meta"><span class="ab-label">平台</span>Steam</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>本周Steam欧洲区周销量前3</li><li>Steam好评率95%+</li><li>欧洲独立游戏媒体（PC Gamer欧洲版等）主动跟进报道</li><li>发售以来累计300万份（全球含欧洲约30%）</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">EA定价合理且内容完成度高，欧洲独立游戏玩家接受度高</span></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>EA阶段内容量有限</li><li>部分欧洲玩家等待正式版再购入</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">七大罪：Origin</div>
+      <div class="mkt-game">七大罪：Origin </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">七大罪：Origin（Netmarble）3月大热后延续，法国/德国玩家本周持续在Reddit、Steam社区和YouTube发布游戏评测和玩法视频，3月的Steam榜单突破引发的讨论持续发酵</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Steam·Reddit·YouTube·法国/德国游戏社区</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>法国Steam榜单突破的相关讨论帖本周仍有新评论</li><li>YouTube法语评测视频本周新增约50万播放</li><li>r/CrimsonDesert等欧洲社区对韩国AAA游戏的讨论活跃</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">法德玩家对亚洲动漫IP突破欧洲市场感到惊喜，口碑持续发酵</span></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">欧洲玩家对游戏内抽卡系统的抵触情绪在3月底集中爆发，部分玩家开始退款或负评</span></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span><div class="ab-action"><span class="text-cell">七大罪：Origin（Netmarble）3月大热后延续，法国/德国玩家本周持续在Reddit、Steam社区和YouTube发布游戏评测和玩法视频，3月的Steam榜单突破引发的讨论持续发酵</span></div><div class="ab-meta"><span class="ab-label">平台</span>Steam·Reddit·YouTube·法国/德国游戏社区</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>法国Steam榜单突破的相关讨论帖本周仍有新评论</li><li>YouTube法语评测视频本周新增约50万播放</li><li>r/CrimsonDesert等欧洲社区对韩国AAA游戏的讨论活跃</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">法德玩家对亚洲动漫IP突破欧洲市场感到惊喜，口碑持续发酵</span></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">欧洲玩家对游戏内抽卡系统的抵触情绪在3月底集中爆发，部分玩家开始退款或负评</span></div></div>
 </div></div>
 
     <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
@@ -2438,7 +2354,7 @@ footer {
     </div>
   </div>
   <div class="mob-content"><span class="text-cell">版本更新带动下载</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>角色剧情深度受好评</li><li>老玩家活跃度高</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>氪金深度高</li><li>3月为版本末期内容较少</li></ul></div></div>
+  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>角色剧情深度受好评</li><li>老玩家活跃度高</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>氪金深度高</li><li>版本末期内容较少</li></ul></div></div>
 </div></div></div><div class="tab-panel" id="panel-jp-hot" style="display:none"><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
@@ -2588,7 +2504,7 @@ footer {
     </div>
   </div>
   <div class="mob-content"><span class="text-cell">版本更新带动下载</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>角色剧情深度受好评</li><li>老玩家活跃度高</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>氪金深度高</li><li>3月为版本末期内容较少</li></ul></div></div>
+  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>角色剧情深度受好评</li><li>老玩家活跃度高</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>氪金深度高</li><li>版本末期内容较少</li></ul></div></div>
 </div></div></div><div class="tab-panel" id="panel-jp-ios" style="display:none"><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
@@ -2678,7 +2594,7 @@ footer {
     </div>
   </div>
   <div class="mob-content"><span class="text-cell">版本更新带动下载</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>角色剧情深度受好评</li><li>老玩家活跃度高</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>氪金深度高</li><li>3月为版本末期内容较少</li></ul></div></div>
+  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>角色剧情深度受好评</li><li>老玩家活跃度高</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>氪金深度高</li><li>版本末期内容较少</li></ul></div></div>
 </div></div></div><div class="tab-panel" id="panel-jp-android" style="display:none"><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
@@ -2746,38 +2662,22 @@ footer {
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
+      <div class="mkt-game">Crimson Desert </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Crimson Desert（Pearl Abyss）本周凭借Steam评价逆转成为全球游戏新闻焦点，Famitsu、4Gamer等日本媒体主动跟进报道销量突破及口碑逆转事件</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Famitsu·4Gamer·Twitter/X</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>Famitsu跟进报道浏览量约5万次</li><li>4Gamer销量报道约3万次</li><li>Twitter/X日本游戏区相关讨论约3000条</li><li>日本PS Store周销量#1</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>日本媒体对韩国AAA开放世界大作表现持积极关注</li><li>口碑逆转叙事在日本社区引发正面讨论</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>部分日本玩家认为操控问题比海外玩家描述更明显</li><li>等待修复后购买的声音较多</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span><div class="ab-action"><span class="text-cell">Crimson Desert（Pearl Abyss）本周凭借Steam评价逆转成为全球游戏新闻焦点，Famitsu、4Gamer等日本媒体主动跟进报道销量突破及口碑逆转事件</span></div><div class="ab-meta"><span class="ab-label">平台</span>Famitsu·4Gamer·Twitter/X</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>Famitsu跟进报道浏览量约5万次</li><li>4Gamer销量报道约3万次</li><li>Twitter/X日本游戏区相关讨论约3000条</li><li>日本PS Store周销量#1</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>日本媒体对韩国AAA开放世界大作表现持积极关注</li><li>口碑逆转叙事在日本社区引发正面讨论</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>部分日本玩家认为操控问题比海外玩家描述更明显</li><li>等待修复后购买的声音较多</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">七大罪：Origin</div>
+      <div class="mkt-game">七大罪：Origin </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><ul class="bullet-list"><li>七大罪：Origin（Netmarble）本周凭借3月欧洲Steam登顶的余热，在日本本土持续获得Famitsu系媒体二次报道</li><li>韩国IP出海成功反哺日本本土传播</li></ul></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Famitsu·Twitter/X·Steam</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>Famitsu相关报道本周浏览量约2万次</li><li>Twitter/X日本区七大罪相关帖互动约2000条</li><li>日本Steam周销量仍维持前5</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>日本玩家对韩国IP欧洲突破持正面看法</li><li>IP情怀受众在3月大热后仍持续活跃</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">日本玩家对Netmarble的抽卡设计有既有认知，部分长期玩家持谨慎态度</span></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span><div class="ab-action"><ul class="bullet-list"><li>七大罪：Origin（Netmarble）本周凭借3月欧洲Steam登顶的余热，在日本本土持续获得Famitsu系媒体二次报道</li><li>韩国IP出海成功反哺日本本土传播</li></ul></div><div class="ab-meta"><span class="ab-label">平台</span>Famitsu·Twitter/X·Steam</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>Famitsu相关报道本周浏览量约2万次</li><li>Twitter/X日本区七大罪相关帖互动约2000条</li><li>日本Steam周销量仍维持前5</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>日本玩家对韩国IP欧洲突破持正面看法</li><li>IP情怀受众在3月大热后仍持续活跃</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">日本玩家对Netmarble的抽卡设计有既有认知，部分长期玩家持谨慎态度</span></div></div>
 </div></div>
 
     <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
@@ -3262,38 +3162,12 @@ footer {
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
+      <div class="mkt-game">Crimson Desert <span class="action-count">2个动作</span></div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Crimson Desert（Pearl Abyss韩国本土团队）销量突破400万件，韩国本土媒体（게임메카、한국경제等）大量报道，韩国玩家在Naver Cafe和Twitter/X发布大量本土英雄式庆祝内容</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Naver Cafe·Twitter/X·게임메카·한국경제·YouTube</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>게임메카报道阅读量约10万次</li><li>Naver Cafe Pearl Abyss相关社区帖文评论约500条</li><li>Twitter/X韩国游戏区庆祝讨论约5000条</li><li>YouTube韩语评测/评论视频合计新增约200万播放</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">韩国本土开发商全球成功带来强烈民族自豪感，形成国内媒体自发正向传播飞轮</span></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>部分韩国玩家认为Pearl Abyss过度依赖海外市场而忽视本土玩家体验</li><li>操控问题同样影响了本土玩家</li></ul></div>
-  </div>
-</div>
-<div class="mkt-card">
-  <div class="mkt-card-top">
-    <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
-      <span class="chip chip-type">PC主机</span>
-    </div>
-    <span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span>
-  </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Crimson Desert（Pearl Abyss）本周主动向韩国游戏媒体게임메카、인벤发布官方声明，说明Steam评价逆转情况及后续内容更新路线图</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>게임메카·인벤·Twitter/X</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>게임메카官方声明报道阅读量约8万次</li><li>인벤相关报道约5万次</li><li>Pearl Abyss官方Twitter/X帖文互动约3000次</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>官方主动沟通有效平息了韩国玩家的部分质疑</li><li>路线图发布增强了玩家对后续内容的信心</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">韩国玩家期待值极高，路线图承诺如未兑现将面临更严厉的反弹</span></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span><div class="ab-action"><span class="text-cell">Crimson Desert（Pearl Abyss韩国本土团队）销量突破400万件，韩国本土媒体（게임메카、한국경제等）大量报道，韩国玩家在Naver Cafe和Twitter/X发布大量本土英雄式庆祝内容</span></div><div class="ab-meta"><span class="ab-label">平台</span>Naver Cafe·Twitter/X·게임메카·한국경제·YouTube</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>게임메카报道阅读量约10万次</li><li>Naver Cafe Pearl Abyss相关社区帖文评论约500条</li><li>Twitter/X韩国游戏区庆祝讨论约5000条</li><li>YouTube韩语评测/评论视频合计新增约200万播放</li></ul></div></div><div class="action-block"><span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span><div class="ab-action"><span class="text-cell">Crimson Desert（Pearl Abyss）本周主动向韩国游戏媒体게임메카、인벤发布官方声明，说明Steam评价逆转情况及后续内容更新路线图</span></div><div class="ab-meta"><span class="ab-label">平台</span>게임메카·인벤·Twitter/X</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>게임메카官方声明报道阅读量约8万次</li><li>인벤相关报道约5万次</li><li>Pearl Abyss官方Twitter/X帖文互动约3000次</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>韩国本土开发商全球成功带来强烈民族自豪感，形成国内媒体自发正向传播飞轮; 官方主动沟通有效平息了韩国玩家的部分质疑</li><li>路线图发布增强了玩家对后续内容的信心</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>部分韩国玩家认为Pearl Abyss过度依赖海外市场而忽视本土玩家体验</li><li>操控问题同样影响了本土玩家; 韩国玩家期待值极高，路线图承诺如未兑现将面临更严厉的反弹</li></ul></div></div>
 </div></div>
 
     <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
@@ -3853,56 +3727,32 @@ footer {
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">洛克王國：世界</div>
+      <div class="mkt-game">洛克王國：世界 </div>
       <span class="chip chip-type">手游</span>
     </div>
-    <span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">洛克王國：世界（腾讯）台湾繁中版随全球3月26日同步公测，台湾80/90后玩家自发在Dcard、PTT、Facebook TW发布怀旧童年回忆内容，形成台湾本土UGC浪潮</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Dcard游戏板·PTT C_Chat·Facebook TW·YouTube TW</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>Dcard游戏板相关讨论帖3月26-31日约500篇</li><li>PTT C_Chat推文数超300条</li><li>Facebook TW相关分享约1万次</li><li>台湾iOS免费下载榜首日登顶</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>台湾玩家与中国大陆一样对经典IP有强烈怀旧情怀</li><li>繁中版本推出有效降低语言门槛</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>台湾Dcard批评文章指出付费系统激进</li><li>iOS评分偏低（约3.5/5）的消息在台湾社区快速传播</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span><div class="ab-action"><span class="text-cell">洛克王國：世界（腾讯）台湾繁中版随全球3月26日同步公测，台湾80/90后玩家自发在Dcard、PTT、Facebook TW发布怀旧童年回忆内容，形成台湾本土UGC浪潮</span></div><div class="ab-meta"><span class="ab-label">平台</span>Dcard游戏板·PTT C_Chat·Facebook TW·YouTube TW</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>Dcard游戏板相关讨论帖3月26-31日约500篇</li><li>PTT C_Chat推文数超300条</li><li>Facebook TW相关分享约1万次</li><li>台湾iOS免费下载榜首日登顶</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>台湾玩家与中国大陆一样对经典IP有强烈怀旧情怀</li><li>繁中版本推出有效降低语言门槛</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>台湾Dcard批评文章指出付费系统激进</li><li>iOS评分偏低（约3.5/5）的消息在台湾社区快速传播</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
+      <div class="mkt-game">Crimson Desert </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Crimson Desert（Pearl Abyss）Steam评价逆转事件本周引发台湾巴哈姆特GNN、遊戲基地等本土媒体跟进报道，台湾玩家在巴哈姆特讨论板积极发帖</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>巴哈姆特GNN·遊戲基地·PTT</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>巴哈姆特GNN跟进报道阅读量约3万次</li><li>巴哈姆特讨论板Crimson Desert相关帖评论约200条</li><li>台湾Steam区本周销量进入周榜#1</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>台湾玩家对全球大热AAA游戏跟进积极</li><li>媒体跟进报道口碑逆转叙事有效</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>台湾玩家对初期操控问题仍有记忆</li><li>部分玩家在巴哈姆特发文表示等待完善后再购买</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#FFEDD5;color:#9A3412">📰 媒体合作</span><div class="ab-action"><span class="text-cell">Crimson Desert（Pearl Abyss）Steam评价逆转事件本周引发台湾巴哈姆特GNN、遊戲基地等本土媒体跟进报道，台湾玩家在巴哈姆特讨论板积极发帖</span></div><div class="ab-meta"><span class="ab-label">平台</span>巴哈姆特GNN·遊戲基地·PTT</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>巴哈姆特GNN跟进报道阅读量约3万次</li><li>巴哈姆特讨论板Crimson Desert相关帖评论约200条</li><li>台湾Steam区本周销量进入周榜#1</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>台湾玩家对全球大热AAA游戏跟进积极</li><li>媒体跟进报道口碑逆转叙事有效</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>台湾玩家对初期操控问题仍有记忆</li><li>部分玩家在巴哈姆特发文表示等待完善后再购买</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">崩壞：星穹鐵道</div>
+      <div class="mkt-game">崩壞：星穹鐵道 </div>
       <span class="chip chip-type">手游</span>
     </div>
-    <span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">崩壞：星穹鐵道台港澳代理旺拓本周在台湾iOS App Store 4.0版本期继续维持商店推荐资源位，并在Dcard发布版本更新通知</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>iOS App Store TW/HK·Dcard·PTT</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>台湾iOS畅销榜本周#1</li><li>Dcard版本更新帖互动约200条</li><li>PTT C_Chat相关讨论串推文数约300条</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">旺拓代理版本台湾玩家信任度高，4.0版本尾期仍维持高付费率</span></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">台湾玩家批评4.0付费角色定价与购买力不成比例</span></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span><div class="ab-action"><span class="text-cell">崩壞：星穹鐵道台港澳代理旺拓本周在台湾iOS App Store 4.0版本期继续维持商店推荐资源位，并在Dcard发布版本更新通知</span></div><div class="ab-meta"><span class="ab-label">平台</span>iOS App Store TW/HK·Dcard·PTT</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>台湾iOS畅销榜本周#1</li><li>Dcard版本更新帖互动约200条</li><li>PTT C_Chat相关讨论串推文数约300条</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">旺拓代理版本台湾玩家信任度高，4.0版本尾期仍维持高付费率</span></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">台湾玩家批评4.0付费角色定价与购买力不成比例</span></div></div>
 </div></div>
 
     <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
@@ -4537,56 +4387,32 @@ footer {
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">ROV（Arena of Valor）</div>
+      <div class="mkt-game">ROV（Arena of Valor） </div>
       <span class="chip chip-type">手游</span>
     </div>
-    <span class="dim-badge" style="background:##FEF9C3;color:#713F12">🌟 网红合作</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">ROV（Garena TH代理）本周3月末赛季收官活动，配合泰国头部实况主（Streamer）在YouTube TH进行赛季最终BOSS内容展示直播，并通过LINE TH官方账号推送赛季结束提醒</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>YouTube TH·Facebook TH·LINE TH</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>泰国ROV官方YouTube频道本周新增约50万播放</li><li>LINE TH官方推播打开率约15%（行业均值8%）</li><li>Facebook TH官方赛季收官帖互动约8000次</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>泰国本土实况主生态成熟，KOL合作ROI稳定</li><li>LINE作为泰国最主流通讯工具是最有效的推送渠道</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>泰国玩家对赛季收官活动福利力度感到失望</li><li>部分玩家表示已将主要时间转向Crimson Desert等PC游戏</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:##FEF9C3;color:#713F12">🌟 网红合作</span><div class="ab-action"><span class="text-cell">ROV（Garena TH代理）本周3月末赛季收官活动，配合泰国头部实况主（Streamer）在YouTube TH进行赛季最终BOSS内容展示直播，并通过LINE TH官方账号推送赛季结束提醒</span></div><div class="ab-meta"><span class="ab-label">平台</span>YouTube TH·Facebook TH·LINE TH</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>泰国ROV官方YouTube频道本周新增约50万播放</li><li>LINE TH官方推播打开率约15%（行业均值8%）</li><li>Facebook TH官方赛季收官帖互动约8000次</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>泰国本土实况主生态成熟，KOL合作ROI稳定</li><li>LINE作为泰国最主流通讯工具是最有效的推送渠道</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>泰国玩家对赛季收官活动福利力度感到失望</li><li>部分玩家表示已将主要时间转向Crimson Desert等PC游戏</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
+      <div class="mkt-game">Crimson Desert </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Crimson Desert（Pearl Abyss）全球400万销量+Steam评价逆转事件本周在东南亚PC玩家社区（泰国/印尼Facebook游戏组、YouTube SEA频道）引发自发讨论和试玩内容产出</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Facebook SEA游戏组·YouTube SEA·Steam SEA</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>泰国最大游戏Facebook组相关讨论本周约200帖</li><li>YouTube SEA泰语/印尼语Crimson Desert体验视频合计新增约100万播放</li><li>Steam SEA区本周销量进入周榜前2</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>东南亚PC玩家对全球大热AAA开放世界游戏跟进积极</li><li>价格对部分玩家仍有门槛但高端用户购买意愿强</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>Crimson Desert售价对东南亚普通玩家购买力偏高</li><li>需要高端PC配置也限制了受众范围</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span><div class="ab-action"><span class="text-cell">Crimson Desert（Pearl Abyss）全球400万销量+Steam评价逆转事件本周在东南亚PC玩家社区（泰国/印尼Facebook游戏组、YouTube SEA频道）引发自发讨论和试玩内容产出</span></div><div class="ab-meta"><span class="ab-label">平台</span>Facebook SEA游戏组·YouTube SEA·Steam SEA</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>泰国最大游戏Facebook组相关讨论本周约200帖</li><li>YouTube SEA泰语/印尼语Crimson Desert体验视频合计新增约100万播放</li><li>Steam SEA区本周销量进入周榜前2</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>东南亚PC玩家对全球大热AAA开放世界游戏跟进积极</li><li>价格对部分玩家仍有门槛但高端用户购买意愿强</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>Crimson Desert售价对东南亚普通玩家购买力偏高</li><li>需要高端PC配置也限制了受众范围</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Mobile Legends: Bang Bang</div>
+      <div class="mkt-game">Mobile Legends: Bang Bang </div>
       <span class="chip chip-type">手游</span>
     </div>
-    <span class="dim-badge" style="background:#F1F5F9;color:#475569">• 其他</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">Mobile Legends: Bang Bang（Moonton）本周官宣与印尼本土电商平台Tokopedia/Shopee的3月末充值促销活动收官，同时预告4月新赛季内容，维持印尼玩家期待</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>Tokopedia·Shopee·YouTube ID·TikTok ID</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>印尼Tokopedia/Shopee充值促销活动参与约50万用户（Moonton内部数据）</li><li>TikTok ID相关新赛季预告视频约200万播放</li><li>YouTube ID MLBB频道本周新增约500万播放</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>印尼本土电商平台充值合作是MLBB最有效的付费转化渠道</li><li>TikTok在印尼的影响力极强</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>印尼玩家批评MLBB新赛季付费内容售价上涨</li><li>与Free Fire、PUBG Mobile的竞争继续加剧</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#F1F5F9;color:#475569">• 其他</span><div class="ab-action"><span class="text-cell">Mobile Legends: Bang Bang（Moonton）本周官宣与印尼本土电商平台Tokopedia/Shopee的3月末充值促销活动收官，同时预告4月新赛季内容，维持印尼玩家期待</span></div><div class="ab-meta"><span class="ab-label">平台</span>Tokopedia·Shopee·YouTube ID·TikTok ID</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>印尼Tokopedia/Shopee充值促销活动参与约50万用户（Moonton内部数据）</li><li>TikTok ID相关新赛季预告视频约200万播放</li><li>YouTube ID MLBB频道本周新增约500万播放</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>印尼本土电商平台充值合作是MLBB最有效的付费转化渠道</li><li>TikTok在印尼的影响力极强</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>印尼玩家批评MLBB新赛季付费内容售价上涨</li><li>与Free Fire、PUBG Mobile的竞争继续加剧</li></ul></div></div>
 </div></div>
 
     <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
@@ -4991,38 +4817,22 @@ footer {
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">Crimson Desert</div>
+      <div class="mkt-game">Crimson Desert </div>
       <span class="chip chip-type">PC主机</span>
     </div>
-    <span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><ul class="bullet-list"><li>Crimson Desert全球400万销量+Steam评价逆转事件在俄罗斯VK游戏组和Telegram游戏频道引发自发讨论</li><li>俄区玩家主要通过VPN获取游戏信息</li></ul></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>VK·Telegram·本土游戏论坛</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>VK相关讨论帖本周约200条（估算）</li><li>Telegram游戏频道相关内容浏览量约5万次</li><li>无法官方营销触达，均为自发传播</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">俄区硬核玩家对全球大热AAA游戏热情仍在</span></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>西方发行商完全无法触达俄区，营销ROI为零</li><li>灰色渠道购买风险高</li></ul></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#D1FAE5;color:#065F46">📹 玩家生成内容（UGC）</span><div class="ab-action"><ul class="bullet-list"><li>Crimson Desert全球400万销量+Steam评价逆转事件在俄罗斯VK游戏组和Telegram游戏频道引发自发讨论</li><li>俄区玩家主要通过VPN获取游戏信息</li></ul></div><div class="ab-meta"><span class="ab-label">平台</span>VK·Telegram·本土游戏论坛</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>VK相关讨论帖本周约200条（估算）</li><li>Telegram游戏频道相关内容浏览量约5万次</li><li>无法官方营销触达，均为自发传播</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">俄区硬核玩家对全球大热AAA游戏热情仍在</span></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>西方发行商完全无法触达俄区，营销ROI为零</li><li>灰色渠道购买风险高</li></ul></div></div>
 </div>
 <div class="mkt-card">
   <div class="mkt-card-top">
     <div class="mkt-left">
-      <div class="mkt-game">War Thunder Mobile</div>
+      <div class="mkt-game">War Thunder Mobile </div>
       <span class="chip chip-type">手游</span>
     </div>
-    <span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span>
   </div>
-  <div class="mkt-body">
-    <div class="mkt-row"><span class="mkt-label">具体动作</span><div><span class="text-cell">War Thunder Mobile（Gaijin Entertainment）本周在RuStore发布新版本更新，配合RuStore平台推荐资源位，主动进行本土化推广</span></div></div>
-    <div class="mkt-row"><span class="mkt-label">平台</span><div>RuStore·VK·Telegram</div></div>
-    <div class="mkt-row"><span class="mkt-label">爆点数据</span><div class="kpi-text"><ul class="bullet-list"><li>RuStore本周下载量较上周提升约15%（行业估算）</li><li>VK官方页面互动约5000次</li><li>Telegram游戏频道相关帖浏览量约3万次</li></ul></div></div>
-  </div>
-  <div class="mkt-feedback">
-    <div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>本土游戏公司在俄市场有天然优势</li><li>RuStore是目前最有效的本土分发渠道</li></ul></div>
-    <div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">非俄区市场扩张受品牌争议影响</span></div>
-  </div>
+  <div class="mkt-actions"><div class="action-block"><span class="dim-badge" style="background:#DBEAFE;color:#1E40AF">📲 渠道合作（平台合作）</span><div class="ab-action"><span class="text-cell">War Thunder Mobile（Gaijin Entertainment）本周在RuStore发布新版本更新，配合RuStore平台推荐资源位，主动进行本土化推广</span></div><div class="ab-meta"><span class="ab-label">平台</span>RuStore·VK·Telegram</div><div class="ab-meta kpi-text"><span class="ab-label">爆点</span><ul class="bullet-list"><li>RuStore本周下载量较上周提升约15%（行业估算）</li><li>VK官方页面互动约5000次</li><li>Telegram游戏频道相关帖浏览量约3万次</li></ul></div></div></div>
+  <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>本土游戏公司在俄市场有天然优势</li><li>RuStore是目前最有效的本土分发渠道</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">非俄区市场扩张受品牌争议影响</span></div></div>
 </div></div>
 
     <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
@@ -5052,18 +4862,21 @@ footer {
 
 <footer>
   本报告由 KL游戏市场情报系统自动生成 · 数据来源：官方平台 / 权威媒体 / 第三方数据平台<br>
-  <a href="index.html" style="color:var(--sky)">📅 最新周报</a> &nbsp;·&nbsp; <a href="monthly.html" style="color:var(--sky)">📊 最新月报</a>
+  <a href="index.html" style="color:var(--sky)">📅 最新周报</a> &nbsp;·&nbsp;
+  <a href="monthly.html" style="color:var(--sky)">📊 最新月报</a> &nbsp;·&nbsp;
+  <a href="archive.html" style="color:var(--sky)">🗂️ 报告存档</a>
 </footer>
 
 <script>
 function activateMarket(name) {
   document.querySelectorAll('.mkt-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.market-sheet').forEach(s => s.classList.remove('active'));
-  const tab = document.querySelector(`.mkt-tab[data-market="${name}"]`);
+  const tab = document.querySelector('.mkt-tab[data-market="' + name + '"]');
   const sheet = document.getElementById('sheet-' + name);
   if (tab) tab.classList.add('active');
   if (sheet) sheet.classList.add('active');
-  window.scrollTo({top: document.querySelector('.market-tabs-bar').offsetTop - 60, behavior:'smooth'});
+  const bar = document.querySelector('.market-tabs-bar');
+  if (bar) window.scrollTo({top: bar.offsetTop - 54, behavior:'smooth'});
 }
 function switchTab(btn, panelId) {
   const group = btn.closest('.tab-group');
@@ -5071,15 +4884,21 @@ function switchTab(btn, panelId) {
   group.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
   btn.classList.add('active');
   const panel = document.getElementById('panel-' + panelId);
-  if (panel) panel.style.display = '';
+  if (panel) panel.style.display = 'block';
 }
-// Active nav
+// Attach click handlers to market tabs
+document.querySelectorAll('.mkt-tab').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    activateMarket(this.dataset.market);
+  });
+});
+// Active nav link
 const page = location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.header-nav a').forEach(a => {
   if (a.getAttribute('href') === page || (page==='' && a.getAttribute('href')==='index.html'))
     a.classList.add('active');
 });
-// Activate first market tab
+// Activate first market
 const firstTab = document.querySelector('.mkt-tab');
 if (firstTab) activateMarket(firstTab.dataset.market);
 </script>
