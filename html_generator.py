@@ -67,34 +67,59 @@ def policy_type_style(t):
     return "#F1F5F9","#475569"
 
 # ── Rank card renderer ────────────────────────────────────────────────────────
-def render_rank_cards(rows):
+def render_pc_cards(rows):
+    """PC/Console: 5 cards in a horizontal row, clean and compact."""
     if not rows: return '<p class="empty">暂无数据</p>'
-    html = ['<div class="rank-cards">']
+    html = ['<div class="pc-grid">']
     for row in rows:
         while len(row) < 8: row = list(row) + [""]
         rank, name, typ, dev, platform, content, pos_fb, neg_fb = [str(c) if c else "" for c in row[:8]]
-        # platform chips
-        plat_chips = ''.join(
-            f'<span class="chip chip-plat">{esc(p.strip())}</span>'
-            for p in re.split(r'[/·,、]', platform) if p.strip()
-        ) if platform else ''
+        # Extract rank number
+        rank_num = re.sub(r'[^0-9]', '', rank) or rank[:3]
+        plat_short = platform.split('/')[0].split('·')[0].strip() if platform else ""
         html.append(f'''
-<div class="rank-card">
-  <div class="rank-card-header">
-    <span class="rank-num">{esc(rank)}</span>
-    <div class="rank-info">
-      <div class="rank-name">{esc(name)}</div>
-      <div class="rank-meta">
+<div class="pc-card">
+  <div class="pc-rank">#{rank_num}</div>
+  <div class="pc-name">{esc(name)}</div>
+  <div class="pc-chips">
+    <span class="chip chip-type">{esc(typ)}</span>
+    {'<span class="chip chip-plat">'+esc(plat_short)+'</span>' if plat_short else ''}
+  </div>
+  {'<div class="pc-dev">🏢 '+esc(dev)+'</div>' if dev else ''}
+  {'<div class="pc-content">'+text_to_bullets(content)+'</div>' if content else ''}
+  <div class="pc-feedback">
+    {f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else ''}
+    {f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else ''}
+  </div>
+</div>''')
+    html.append('</div>')
+    return ''.join(html)
+
+def render_rank_cards(rows):
+    """Generic vertical rank cards (used by mobile tab panels)."""
+    if not rows: return '<p class="empty">暂无数据</p>'
+    html = ['<div class="mob-list">']
+    for row in rows:
+        while len(row) < 8: row = list(row) + [""]
+        rank, name, typ, dev, platform, content, pos_fb, neg_fb = [str(c) if c else "" for c in row[:8]]
+        rank_clean = re.sub(r'^(畅销|下载)#?', '', rank).strip()
+        html.append(f'''
+<div class="mob-card">
+  <div class="mob-left">
+    <span class="mob-rank">{esc(rank_clean)}</span>
+    <div>
+      <div class="mob-name">{esc(name)}</div>
+      <div class="mob-chips">
         <span class="chip chip-type">{esc(typ)}</span>
-        {plat_chips}
+        {'<span class="chip chip-plat">'+esc(platform)+'</span>' if platform else ''}
         {'<span class="chip chip-dev">'+esc(dev)+'</span>' if dev else ''}
       </div>
     </div>
   </div>
-  {f'<div class="rank-content">{text_to_bullets(content)}</div>' if content else ''}
-  <div class="rank-feedback">
-    {f'<div class="fb-pos"><span class="fb-label">👍 正面</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else ''}
-    {f'<div class="fb-neg"><span class="fb-label">👎 负面</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else ''}
+  {'<div class="mob-content">'+text_to_bullets(content)+'</div>' if content else ''}
+  <div class="mob-feedback">
+    {f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else ''}
+    {f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else ''}
   </div>
 </div>''')
     html.append('</div>')
@@ -103,23 +128,30 @@ def render_rank_cards(rows):
 # ── Mobile tab renderer ───────────────────────────────────────────────────────
 def render_mobile_tabs(rows, sheet_id):
     if not rows: return '<p class="empty">暂无数据</p>'
-    
-    ios_rows = [r for r in rows if any(x in str(r[4] if len(r)>4 else '') for x in ['iOS','App Store','ios'])]
-    and_rows = [r for r in rows if any(x in str(r[4] if len(r)>4 else '') for x in ['Google','Play','Android','android','安卓'])]
-    other_rows = [r for r in rows if r not in ios_rows and r not in and_rows]
-    
-    tabs = [("all", f"全部 ({len(rows)})", rows)]
-    if ios_rows:    tabs.append(("ios",     f"🍎 iOS ({len(ios_rows)})",         ios_rows))
-    if and_rows:    tabs.append(("android", f"🤖 Android ({len(and_rows)})",     and_rows))
-    if other_rows:  tabs.append(("other",   f"📱 其他 ({len(other_rows)})",       other_rows))
+
+    def has(row, *kws):
+        t = str(row[0]) + str(row[4] if len(row)>4 else '')
+        return any(k in t for k in kws)
+
+    # Split by 畅销 / 下载
+    hot_rows  = [r for r in rows if '畅销' in str(r[0])]
+    dl_rows   = [r for r in rows if '下载' in str(r[0])]
+    # Split by platform
+    ios_rows  = [r for r in rows if any(x in str(r[4] if len(r)>4 else '') for x in ['iOS','App Store'])]
+    and_rows  = [r for r in rows if any(x in str(r[4] if len(r)>4 else '') for x in ['Google','Play','Android','安卓'])]
+
+    tabs = [("all", f"全部 {len(rows)}", rows)]
+    if hot_rows:  tabs.append(("hot",     f"💰 畅销榜 {len(hot_rows)}", hot_rows))
+    if dl_rows:   tabs.append(("dl",      f"⬇️ 下载榜 {len(dl_rows)}",  dl_rows))
+    if ios_rows:  tabs.append(("ios",     f"🍎 iOS {len(ios_rows)}",    ios_rows))
+    if and_rows:  tabs.append(("android", f"🤖 Android {len(and_rows)}", and_rows))
 
     html = [f'<div class="tab-group" id="mob-tabs-{sheet_id}">']
     html.append('<div class="tabs">')
     for i, (tid, label, _) in enumerate(tabs):
         active = 'active' if i==0 else ''
-        html.append(f'<button class="tab-btn {active}" data-tab="{sheet_id}-{tid}" onclick="switchTab(this,\'{sheet_id}-{tid}\')">{label}</button>')
+        html.append(f'<button class="tab-btn {active}" onclick="switchTab(this,\'{sheet_id}-{tid}\')">{label}</button>')
     html.append('</div>')
-    
     for i, (tid, _, tab_rows) in enumerate(tabs):
         display = '' if i==0 else 'style="display:none"'
         html.append(f'<div class="tab-panel" id="panel-{sheet_id}-{tid}" {display}>')
@@ -307,26 +339,56 @@ body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 .sec-mkt    { background: var(--purple-lt); color: #6D28D9; border-left: 3px solid var(--purple); }
 .sec-pol    { background: var(--rust-lt);   color: #92400E; border-left: 3px solid var(--rust); }
 
-/* ── Rank cards ── */
-.rank-cards { display: flex; flex-direction: column; gap: 10px; }
-.rank-card {
+/* ── PC Grid (5 across) ── */
+.pc-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 4px;
+}
+@media (max-width: 1100px) { .pc-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px)  { .pc-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px)  { .pc-grid { grid-template-columns: 1fr; } }
+.pc-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px 16px; transition: border-color .15s;
+  border-radius: var(--radius); padding: 14px 12px;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: all .2s;
 }
-.rank-card:hover { border-color: var(--border-focus); }
-.rank-card-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
-.rank-num {
-  background: var(--sky); color: white; border-radius: 6px;
-  padding: 2px 10px; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 3px;
+.pc-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.pc-rank {
+  font-size: 28px; font-weight: 800; color: var(--sky);
+  line-height: 1; letter-spacing: -1px;
 }
-.rank-name { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
-.rank-meta { display: flex; flex-wrap: wrap; gap: 4px; }
-.rank-content { font-size: 12px; color: #334155; margin: 6px 0; border-left: 2px solid var(--border); padding-left: 10px; }
-.rank-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-@media (max-width: 600px) { .rank-feedback { grid-template-columns: 1fr; } }
-.fb-pos, .fb-neg { border-radius: var(--radius-sm); padding: 8px 10px; font-size: 12px; }
-.fb-pos { background: #F0FDF4; border: 1px solid #BBF7D0; }
-.fb-neg { background: #FFF1F2; border: 1px solid #FECDD3; }
+.pc-name { font-weight: 700; font-size: 14px; color: var(--navy); line-height: 1.3; }
+.pc-chips { display: flex; flex-wrap: wrap; gap: 3px; }
+.pc-dev { font-size: 11px; color: var(--text-muted); }
+.pc-content { font-size: 11px; color: #475569; border-top: 1px solid var(--border); padding-top: 6px; }
+.pc-feedback { margin-top: auto; padding-top: 6px; display: flex; flex-direction: column; gap: 4px; }
+
+/* ── Mobile list ── */
+.mob-list { display: flex; flex-direction: column; gap: 8px; }
+.mob-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px;
+}
+.mob-left { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+.mob-rank {
+  background: linear-gradient(135deg, var(--orange) 0%, #F97316 100%);
+  color: white; border-radius: 6px; padding: 3px 10px;
+  font-size: 13px; font-weight: 700; flex-shrink: 0; min-width: 36px; text-align: center;
+}
+.mob-name { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 3px; }
+.mob-chips { display: flex; flex-wrap: wrap; gap: 3px; }
+.mob-content { font-size: 12px; color: #475569; border-left: 2px solid var(--border); padding-left: 8px; margin: 4px 0; }
+.mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+@media (max-width: 500px) { .mob-feedback { grid-template-columns: 1fr; } }
+
+/* ── Feedback mini ── */
+.fb-pos.mini, .fb-neg.mini { padding: 5px 8px; font-size: 11px; }
+.fb-pos.mini .fb-label, .fb-neg.mini .fb-label { display: inline; margin-right: 4px; }
+.fb-pos { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 8px 10px; font-size: 12px; }
+.fb-neg { background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius-sm); padding: 8px 10px; font-size: 12px; }
 .fb-label { font-weight: 600; display: block; margin-bottom: 3px; font-size: 11px; }
 .fb-pos .fb-label { color: #059669; }
 .fb-neg .fb-label { color: #DC2626; }
@@ -452,7 +514,7 @@ def generate_html(
 <div class="market-sheet" id="sheet-{sid}">
   <div class="page-section">
     <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
-    {render_rank_cards(m['pc_ranks'])}
+    {render_pc_cards(m['pc_ranks'])}
 
     <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
     {render_mobile_tabs(m['mobile_ranks'], mob_id)}
