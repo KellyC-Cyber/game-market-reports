@@ -226,24 +226,28 @@ def render_mkt_cards(rows):
 # ── Policy cards ──────────────────────────────────────────────────────────────
 def render_policy_cards(rows):
     if not rows: return '<p class="empty">暂无政策热闻数据</p>'
-    html = ['<div class="policy-list">']
-    for row in rows:
+    # Type → short label for vertical text
+    TYPE_LABELS = {'版号': '版号', '监管': '监管', '政策利好': '利好', '产业': '产业', '舆论': '舆论', '其他': '其他'}
+    html = ['<div class="gazette-body-wrap"><div class="policy-gazette">']
+    for i, row in enumerate(rows):
         while len(row) < 6: row = list(row) + [""]
         title, source, typ, detail, impact, risk = [str(c) if c else "" for c in row[:6]]
-        bg, color = policy_type_style(typ)
-        risk_html = f'<div class="policy-risk">⚠️ 风险信号：{text_to_bullets(risk)}</div>' if risk else ''
+        typ_short = TYPE_LABELS.get(typ, typ[:2] if typ else '—')
         html.append(f'''
-<div class="policy-card">
-  <div class="policy-card-header">
-    <span class="policy-type-badge" style="background:{bg};color:{color}">{esc(typ)}</span>
-    <div class="policy-title">{esc(title)}</div>
-    {'<span class="policy-source">📌 '+esc(source)+'</span>' if source else ''}
+<div class="gazette-entry">
+  <div class="gazette-left">
+    <span class="gazette-num">{str(i+1).zfill(2)}</span>
+    <span class="gazette-type-vert">{esc(typ_short)}</span>
   </div>
-  {'<div class="policy-detail">'+text_to_bullets(detail)+'</div>' if detail else ''}
-  {'<div class="policy-impact">💡 影响分析：'+text_to_bullets(impact)+'</div>' if impact else ''}
-  {risk_html}
+  <div class="gazette-body">
+    <div class="gazette-headline">{esc(title)}</div>
+    {'<div class="gazette-byline">'+esc(source)+'</div>' if source else ''}
+    {'<div class="gazette-detail">'+text_to_bullets(detail)+'</div>' if detail else ''}
+    {'<div class="gazette-impact">'+text_to_bullets(impact)+'</div>' if impact else ''}
+    {'<div class="gazette-risk">⚠ 风险信号：'+text_to_bullets(risk)+'</div>' if risk else ''}
+  </div>
 </div>''')
-    html.append('</div>')
+    html.append('</div></div>')
     return ''.join(html)
 
 # ── Overview card ─────────────────────────────────────────────────────────────
@@ -289,7 +293,7 @@ CSS = """
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Jost', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  background: var(--ivory); color: var(--charcoal); font-size: 14px; line-height: 1.6;
+  background: var(--ivory); color: var(--charcoal); font-size: 15px; line-height: 1.7;
 }
 /* ── Site header ── */
 .site-header {
@@ -351,7 +355,7 @@ body {
 .overview-card { background: var(--white); padding: 14px; cursor: pointer; transition: background .15s; }
 .overview-card:hover { background: var(--gold-lt); }
 .ov-flag { font-size: 20px; margin-bottom: 5px; }
-.ov-name { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 14px; color: var(--dark); margin-bottom: 7px; letter-spacing: .5px; }
+.ov-name { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 15px; color: var(--dark); margin-bottom: 7px; letter-spacing: .5px; }
 .ov-stats { display: flex; flex-direction: column; gap: 2px; }
 .ov-stat { display: flex; justify-content: space-between; font-size: 11px; }
 .ov-stat span { color: var(--mid); } .ov-stat strong { color: var(--dark); }
@@ -360,7 +364,7 @@ body {
 .market-sheet { display: none; } .market-sheet.active { display: block; }
 .sec-header {
   display: flex; align-items: center; gap: 14px; padding: 0; margin: 18px 0 10px;
-  font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 600;
+  font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600;
   letter-spacing: 2.5px; text-transform: uppercase; color: var(--dark);
 }
 .sec-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
@@ -370,25 +374,25 @@ body {
 @media (max-width: 700px)  { .pc-grid { grid-template-columns: repeat(2,1fr); } }
 .pc-card { background: var(--white); padding: 12px 11px; display: flex; flex-direction: column; gap: 4px; transition: background .15s; }
 .pc-card:hover { background: var(--ivory); }
-.pc-rank { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 700; color: var(--gold); line-height: 1; }
-.pc-name { font-weight: 600; font-size: 12px; color: var(--dark); line-height: 1.3; }
+.pc-rank { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; color: var(--gold); line-height: 1; }
+.pc-name { font-weight: 600; font-size: 13px; color: var(--dark); line-height: 1.3; }
 .pc-chips { display: flex; flex-wrap: wrap; gap: 2px; }
 .pc-dev { font-size: 10px; color: var(--light); letter-spacing: .3px; }
-.pc-content { font-size: 11px; color: var(--mid); border-top: 1px solid var(--border-lt); padding-top: 5px; margin-top: 2px; }
+.pc-content { font-size: 12px; color: var(--mid); border-top: 1px solid var(--border-lt); padding-top: 5px; margin-top: 2px; }
 .pc-feedback { padding-top: 3px; display: flex; flex-direction: column; gap: 3px; }
 /* ── Mobile list ── */
 .mob-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); background: var(--border); }
 .mob-card { background: var(--white); padding: 8px 12px; display: flex; align-items: flex-start; gap: 9px; transition: background .15s; }
 .mob-card:hover { background: var(--ivory); }
-.mob-rank { background: var(--gold); color: var(--black); font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 700; min-width: 30px; text-align: center; padding: 2px 5px; flex-shrink: 0; }
+.mob-rank { background: var(--gold); color: var(--black); font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 700; min-width: 30px; text-align: center; padding: 2px 5px; flex-shrink: 0; }
 .mob-main { flex: 1; min-width: 0; }
-.mob-name { font-weight: 600; font-size: 12px; color: var(--dark); }
+.mob-name { font-weight: 600; font-size: 13px; color: var(--dark); }
 .mob-chips { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 2px; }
-.mob-content { font-size: 11px; color: var(--mid); margin-top: 3px; }
+.mob-content { font-size: 12px; color: var(--mid); margin-top: 3px; }
 .mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 4px; }
 @media (max-width: 500px) { .mob-feedback { grid-template-columns: 1fr; } }
 /* ── Chips ── */
-.chip { display: inline-block; border-radius: 0; padding: 1px 6px; font-size: 10px; font-weight: 500; letter-spacing: .5px; text-transform: uppercase; }
+.chip { display: inline-block; border-radius: 0; padding: 2px 7px; font-size: 11px; font-weight: 500; letter-spacing: .5px; text-transform: uppercase; }
 .chip-type { background: var(--ivory-dk); color: var(--mid); border: 1px solid var(--border); }
 .chip-plat { background: transparent; color: var(--light); border: 1px solid var(--border-lt); }
 .chip-dev  { background: transparent; color: var(--gold-dk); border: 1px solid rgba(201,168,76,.3); }
@@ -403,20 +407,20 @@ body {
 @media (max-width: 720px) { .mkt-cards { grid-template-columns: 1fr; } }
 .mkt-card { background: var(--white); padding: 12px 14px; }
 .mkt-card-top { margin-bottom: 8px; }
-.mkt-game { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 15px; color: var(--dark); letter-spacing: .5px; display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.mkt-game { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 17px; color: var(--dark); letter-spacing: .5px; display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
 .action-count { background: var(--gold); color: var(--black); font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1px; padding: 1px 6px; text-transform: uppercase; }
 .dim-badge { display: inline-block; border-radius: 0; padding: 2px 7px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
 .mkt-actions { display: flex; flex-direction: column; gap: 5px; }
 .action-block { background: var(--ivory); border-left: 2px solid var(--gold); padding: 7px 9px; display: flex; flex-direction: column; gap: 3px; }
 .action-block .dim-badge { align-self: flex-start; margin-bottom: 2px; }
-.ab-action { font-size: 11px; color: var(--charcoal); }
-.ab-meta { font-size: 11px; color: var(--mid); display: flex; gap: 5px; align-items: flex-start; }
+.ab-action { font-size: 13px; color: var(--charcoal); }
+.ab-meta { font-size: 12px; color: var(--mid); display: flex; gap: 5px; align-items: flex-start; }
 .ab-label { font-weight: 600; flex-shrink: 0; color: var(--gold-dk); min-width: 28px; }
 .kpi-text { color: var(--dark) !important; font-weight: 500; }
 .mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 7px; }
 @media (max-width: 500px) { .mkt-feedback { grid-template-columns: 1fr; } }
 /* ── Feedback ── */
-.fb-pos, .fb-neg { border-radius: 0; padding: 5px 8px; font-size: 11px; }
+.fb-pos, .fb-neg { border-radius: 0; padding: 6px 9px; font-size: 12px; }
 .fb-pos { background: #F5FBF5; border-left: 2px solid #5A9A5A; }
 .fb-neg { background: #FBF5F5; border-left: 2px solid #9A5A5A; }
 .fb-pos.mini, .fb-neg.mini { padding: 4px 7px; }
@@ -428,14 +432,100 @@ body {
 .policy-card { background: var(--white); padding: 10px 14px; }
 .policy-card-header { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 7px; margin-bottom: 5px; }
 .policy-type-badge { border-radius: 0; padding: 2px 7px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
-.policy-title { font-weight: 600; font-size: 13px; color: var(--dark); flex: 1; }
+.policy-title { font-weight: 600; font-size: 14px; color: var(--dark); flex: 1; }
 .policy-source { color: var(--light); font-size: 11px; width: 100%; }
-.policy-detail { font-size: 11px; color: var(--charcoal); border-left: 2px solid var(--gold); padding-left: 8px; margin: 4px 0; }
-.policy-impact { font-size: 11px; color: var(--mid); border-left: 2px solid var(--border); padding-left: 8px; margin: 4px 0; }
-.policy-risk { font-size: 11px; color: #7A3A3A; background: #FBF5F5; border-left: 2px solid #9A5A5A; padding: 5px 8px; margin-top: 4px; }
+.policy-detail { font-size: 13px; color: var(--charcoal); border-left: 2px solid var(--gold); padding-left: 8px; margin: 4px 0; }
+.policy-impact { font-size: 12px; color: var(--mid); border-left: 2px solid var(--border); padding-left: 8px; margin: 4px 0; }
+.policy-risk { font-size: 12px; color: #7A3A3A; background: #FBF5F5; border-left: 2px solid #9A5A5A; padding: 5px 8px; margin-top: 4px; }
 /* ── Bullets ── */
-.bullet-list { padding-left: 13px; font-size: 11px; } .bullet-list li { margin-bottom: 2px; }
-.text-cell { font-size: 11px; } .empty { color: var(--light); font-size: 12px; padding: 10px 0; font-style: italic; }
+.bullet-list { padding-left: 14px; font-size: 12px; } .bullet-list li { margin-bottom: 2px; }
+.text-cell { font-size: 13px; } .empty { color: var(--light); font-size: 12px; padding: 10px 0; font-style: italic; }
+
+
+/* ── Marketing section prominence ── */
+.mkt-section-wrap {
+  background: var(--charcoal);
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  padding: 18px 22px;
+  margin: 18px -22px;
+}
+.mkt-section-wrap .sec-header {
+  color: var(--gold) !important;
+}
+.mkt-section-wrap .sec-header::after {
+  background: var(--gold-dk);
+}
+.mkt-section-wrap .mkt-cards {
+  background: var(--gold-dk);
+  border-color: var(--gold-dk);
+}
+.mkt-section-wrap .mkt-card {
+  background: #1E1B16;
+  color: var(--ivory);
+}
+.mkt-section-wrap .mkt-game { color: var(--gold-lt); }
+.mkt-section-wrap .action-block { background: #2A2620; border-left-color: var(--gold); }
+.mkt-section-wrap .ab-action { color: var(--ivory-dk); }
+.mkt-section-wrap .ab-meta { color: var(--light); }
+.mkt-section-wrap .ab-label { color: var(--gold-dk); }
+.mkt-section-wrap .mkt-toggle { color: var(--gold-dk); border-top-color: rgba(201,168,76,.2); }
+.mkt-section-wrap .mkt-toggle:hover { color: var(--gold); }
+.mkt-section-wrap .chip-type { background: rgba(201,168,76,.15); color: var(--gold-lt); border-color: rgba(201,168,76,.3); }
+.mkt-section-wrap .dim-badge { border: 1px solid rgba(201,168,76,.3); }
+.mkt-section-wrap .fb-pos { background: rgba(90,154,90,.1); border-left-color: #5A9A5A; color: #9FCCA0; }
+.mkt-section-wrap .fb-neg { background: rgba(154,90,90,.1); border-left-color: #9A5A5A; color: #CCAAAA; }
+.mkt-section-wrap .fb-label { color: inherit; }
+.mkt-section-wrap .action-count { background: var(--gold); color: var(--black); }
+@media (max-width: 768px) { .mkt-section-wrap { margin: 14px -14px; padding: 14px 14px; } }
+
+/* ── Policy section - gazette style ── */
+.policy-gazette { display: flex; flex-direction: column; gap: 0; }
+.gazette-entry {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 0; border-bottom: 1px solid var(--border-lt);
+  transition: background .15s;
+}
+.gazette-entry:last-child { border-bottom: none; }
+.gazette-entry:hover { background: var(--ivory); }
+.gazette-left {
+  background: var(--dark); padding: 14px 10px;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-start; gap: 8px; border-right: 2px solid var(--gold);
+}
+.gazette-type-vert {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-family: 'Cormorant Garamond', serif; font-size: 11px;
+  font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); white-space: nowrap;
+}
+.gazette-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 22px;
+  font-weight: 700; color: var(--gold-dk); line-height: 1;
+}
+.gazette-body { padding: 12px 16px; }
+.gazette-headline {
+  font-family: 'Cormorant Garamond', serif; font-weight: 600;
+  font-size: 15px; color: var(--dark); letter-spacing: .3px;
+  line-height: 1.4; margin-bottom: 4px;
+}
+.gazette-byline {
+  font-size: 11px; color: var(--light); letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.gazette-detail {
+  font-size: 13px; color: var(--charcoal); margin-bottom: 6px;
+  border-left: 2px solid var(--gold); padding-left: 10px; line-height: 1.6;
+}
+.gazette-impact {
+  font-size: 12px; color: var(--mid); padding: 5px 8px;
+  background: var(--ivory-dk); border-left: 2px solid var(--border);
+  margin-bottom: 5px; font-style: italic;
+}
+.gazette-risk {
+  font-size: 12px; color: #7A3A3A; background: #FBF5F5;
+  border-left: 2px solid #9A5A5A; padding: 5px 9px;
+}
 
 /* ── Collapse / expand micro-interaction ── */
 .collapsible { display: none; overflow: hidden; transition: none; }
@@ -652,8 +742,10 @@ def generate_html(
     <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
     {render_mobile_tabs(m['mobile_ranks'], mob_id)}
 
-    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
-    {render_mkt_cards(m['mkt_rows'])}
+    <div class="mkt-section-wrap">
+      <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> 营销热点详情</div>
+      {render_mkt_cards(m['mkt_rows'])}
+    </div>
 
     <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     {render_policy_cards(m['policy_rows'])}
