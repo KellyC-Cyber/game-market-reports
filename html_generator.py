@@ -69,53 +69,77 @@ def policy_type_style(t):
 
 # ── Rank card renderer ────────────────────────────────────────────────────────
 def render_pc_cards(rows):
-    """PC/Console: 5 cards in a horizontal row, clean and compact."""
+    """PC/Console: 5 cards. Click to expand content+feedback."""
     if not rows: return '<p class="empty">暂无数据</p>'
     html = ['<div class="pc-grid">']
-    for row in rows:
+    for i, row in enumerate(rows):
         while len(row) < 8: row = list(row) + [""]
         rank, name, typ, dev, platform, content, pos_fb, neg_fb = [str(c) if c else "" for c in row[:8]]
-        # Extract rank number
         rank_num = re.sub(r'[^0-9]', '', rank) or rank[:3]
         plat_short = platform.split('/')[0].split('·')[0].strip() if platform else ""
+        cid = f"pc-detail-{i}"
+        has_detail = bool(content or pos_fb or neg_fb)
+        detail_html = ""
+        if has_detail:
+            detail_html = f'<div class="collapsible" id="{cid}">'
+            if content: detail_html += f'<div class="pc-content">{text_to_bullets(content)}</div>'
+            if pos_fb or neg_fb:
+                detail_html += '<div class="pc-feedback">'
+                if pos_fb: detail_html += f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>'
+                if neg_fb: detail_html += f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>'
+                detail_html += '</div>'
+            detail_html += '</div>'
+        toggle = f' onclick="toggleDetail(\'{cid}\')" class="pc-card expandable"' if has_detail else ' class="pc-card"'
         html.append(f'''
-<div class="pc-card">
+<div{toggle}>
   <div class="pc-rank">#{rank_num}</div>
   <div class="pc-name">{esc(name)}</div>
   <div class="pc-chips">
     <span class="chip chip-type">{esc(typ)}</span>
     {'<span class="chip chip-plat">'+esc(plat_short)+'</span>' if plat_short else ''}
   </div>
-  {'<div class="pc-dev">🏢 '+esc(dev)+'</div>' if dev else ''}
-  {'<div class="pc-content">'+text_to_bullets(content)+'</div>' if content else ''}
-  {'<div class="pc-feedback">' + (f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else '') + (f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else '') + '</div>' if (pos_fb or neg_fb) else ''}
+  {'<div class="pc-dev">'+esc(dev)+'</div>' if dev else ''}
+  {'<div class="expand-hint">点击展开详情</div>' if has_detail else ''}
+  {detail_html}
 </div>''')
     html.append('</div>')
     return ''.join(html)
 
 def render_rank_cards(rows):
-    """Generic vertical rank cards (used by mobile tab panels)."""
+    """Mobile rank cards: click to expand content+feedback."""
     if not rows: return '<p class="empty">暂无数据</p>'
     html = ['<div class="mob-list">']
-    for row in rows:
+    for i, row in enumerate(rows):
         while len(row) < 8: row = list(row) + [""]
         rank, name, typ, dev, platform, content, pos_fb, neg_fb = [str(c) if c else "" for c in row[:8]]
         rank_clean = re.sub(r'^(畅销|下载)#?', '', rank).strip()
+        cid = f"mob-detail-{id(rows)}-{i}"
+        has_detail = bool(content or pos_fb or neg_fb)
+        detail_html = ""
+        if has_detail:
+            detail_html = f'<div class="collapsible" id="{cid}">'
+            if content: detail_html += f'<div class="mob-content">{text_to_bullets(content)}</div>'
+            if pos_fb or neg_fb:
+                detail_html += '<div class="mob-feedback">'
+                if pos_fb: detail_html += f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>'
+                if neg_fb: detail_html += f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>'
+                detail_html += '</div>'
+            detail_html += '</div>'
+        toggle = f'onclick="toggleDetail(\'{cid}\')" ' if has_detail else ''
+        expandable = 'expandable' if has_detail else ''
         html.append(f'''
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">{esc(rank_clean)}</span>
-    <div>
-      <div class="mob-name">{esc(name)}</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">{esc(typ)}</span>
-        {'<span class="chip chip-plat">'+esc(platform)+'</span>' if platform else ''}
-        {'<span class="chip chip-dev">'+esc(dev)+'</span>' if dev else ''}
-      </div>
+<div class="mob-card {expandable}" {toggle}>
+  <span class="mob-rank">{esc(rank_clean)}</span>
+  <div class="mob-main">
+    <div class="mob-name">{esc(name)}</div>
+    <div class="mob-chips">
+      <span class="chip chip-type">{esc(typ)}</span>
+      {'<span class="chip chip-plat">'+esc(platform)+'</span>' if platform else ''}
+      {'<span class="chip chip-dev">'+esc(dev)+'</span>' if dev else ''}
     </div>
+    {detail_html}
   </div>
-  {'<div class="mob-content">'+text_to_bullets(content)+'</div>' if content else ''}
-  {'<div class="mob-feedback">' + (f'<div class="fb-pos mini"><span class="fb-label">👍</span>{text_to_bullets(pos_fb)}</div>' if pos_fb else '') + (f'<div class="fb-neg mini"><span class="fb-label">👎</span>{text_to_bullets(neg_fb)}</div>' if neg_fb else '') + '</div>' if (pos_fb or neg_fb) else ''}
+  {'<span class="expand-arrow">›</span>' if has_detail else ''}
 </div>''')
     html.append('</div>')
     return ''.join(html)
@@ -192,8 +216,9 @@ def render_mkt_cards(rows):
       <span class="chip chip-type">{esc(typ)}</span>
     </div>
   </div>
-  <div class="mkt-actions">{"".join(action_blocks)}</div>
-  {'<div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span>'+text_to_bullets(all_pos)+'</div><div class="fb-neg"><span class="fb-label">👎 负面</span>'+text_to_bullets(all_neg)+'</div></div>' if all_pos or all_neg else ''}
+  <div class="mkt-actions collapsible" id="mkt-{abs(hash(game))}">{"".join(action_blocks)}</div>
+  {'<div class="mkt-feedback collapsible" id="mktfb-'+str(abs(hash(game)))+'">'+'<div class="fb-pos"><span class="fb-label">👍 正面</span>'+text_to_bullets(all_pos)+'</div><div class="fb-neg"><span class="fb-label">👎 负面</span>'+text_to_bullets(all_neg)+'</div></div>' if all_pos or all_neg else ''}
+  <div class="mkt-toggle" onclick="toggleMkt(this,'{abs(hash(game))}')">展开详情 ›</div>
 </div>''')
     html.append('</div>')
     return ''.join(html)
@@ -411,6 +436,32 @@ body {
 /* ── Bullets ── */
 .bullet-list { padding-left: 13px; font-size: 11px; } .bullet-list li { margin-bottom: 2px; }
 .text-cell { font-size: 11px; } .empty { color: var(--light); font-size: 12px; padding: 10px 0; font-style: italic; }
+
+/* ── Collapse / expand micro-interaction ── */
+.collapsible { display: none; overflow: hidden; transition: none; }
+.collapsible.open { display: block; animation: fadeIn .2s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+.expandable { cursor: pointer; transition: background .15s; }
+.expandable:hover { background: var(--ivory) !important; }
+.expandable.is-open { background: var(--ivory) !important; }
+.expand-hint { font-size: 10px; color: var(--light); letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
+.expand-arrow { font-size: 18px; color: var(--light); line-height: 1; flex-shrink: 0; transition: transform .2s; display: none; }
+.mob-card .expand-arrow { display: block; }
+.expand-arrow.open { transform: rotate(90deg); }
+
+/* mkt toggle button */
+.mkt-toggle {
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold-dk); cursor: pointer; margin-top: 6px;
+  padding: 4px 0; border-top: 1px solid var(--border-lt); transition: color .15s;
+}
+.mkt-toggle:hover { color: var(--gold); }
+.mkt-toggle.open { color: var(--mid); }
+
+/* Mobile card layout with arrow */
+.mob-card { display: flex; align-items: flex-start; gap: 9px; }
+
 /* ── Footer ── */
 footer { text-align: center; padding: 22px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; border-top: 2px solid var(--gold-dk); background: var(--black); color: var(--light); margin-top: 28px; }
 footer a { color: var(--gold); text-decoration: none; }
@@ -436,11 +487,28 @@ function switchTab(btn, panelId) {
   const panel = document.getElementById('panel-' + panelId);
   if (panel) panel.style.display = 'block';
 }
+function toggleDetail(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const card = el.closest('.expandable');
+  const hint = card && card.querySelector('.expand-hint');
+  const arrow = card && card.querySelector('.expand-arrow');
+  const isOpen = el.classList.toggle('open');
+  if (hint) hint.style.display = isOpen ? 'none' : '';
+  if (arrow) { arrow.textContent = isOpen ? '⌄' : '›'; arrow.classList.toggle('open', isOpen); }
+  if (card) card.classList.toggle('is-open', isOpen);
+}
+function toggleMkt(btn, id) {
+  const actions = document.getElementById('mkt-' + id);
+  const fb = document.getElementById('mktfb-' + id);
+  const isOpen = btn.classList.toggle('open');
+  if (actions) actions.classList.toggle('open', isOpen);
+  if (fb) fb.classList.toggle('open', isOpen);
+  btn.textContent = isOpen ? '收起 ‹' : '展开详情 ›';
+}
 // Attach click handlers to market tabs
 document.querySelectorAll('.mkt-tab').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    activateMarket(this.dataset.market);
-  });
+  btn.addEventListener('click', function() { activateMarket(this.dataset.market); });
 });
 // Active nav link
 const page = location.pathname.split('/').pop() || 'index.html';
