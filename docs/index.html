@@ -5,234 +5,174 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>全球游戏市场热点周报2026年3月26日—4月1日 2026年3月26日</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --bg: #F0F4F8; --surface: #FFFFFF; --surface2: #F8FAFC;
-  --navy: #1E3A5F; --sky: #2563EB; --sky-lt: #EFF6FF;
-  --orange: #EA580C; --orange-lt: #FFF7ED;
-  --purple: #7C3AED; --purple-lt: #F5F3FF;
-  --rust: #B45309; --rust-lt: #FFFBEB;
-  --mint: #059669; --mint-lt: #D1FAE5;
-  --text: #1E293B; --text-muted: #64748B; --text-light: #94A3B8;
-  --border: #E2E8F0; --border-focus: #93C5FD;
-  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.08);
-  --radius: 10px; --radius-sm: 6px;
+  --gold: #C9A84C; --gold-lt: #F5EDD4; --gold-dk: #9A7A2E;
+  --ivory: #F7F3EC; --ivory-dk: #EDE6D8;
+  --black: #0D0B08; --charcoal: #1C1A17; --dark: #2A2620;
+  --mid: #6B6458; --light: #A89E94; --white: #FDFAF5;
+  --border: #D4C8A8; --border-lt: #EAE0C8;
+  --bg: var(--ivory); --surface: var(--white); --surface2: var(--ivory-dk);
+  --shadow: 0 2px 8px rgba(13,11,8,.10);
+  --shadow-md: 0 4px 16px rgba(13,11,8,.14);
+  --radius: 2px; --radius-sm: 1px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-  background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
-
+body {
+  font-family: 'Jost', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--ivory); color: var(--charcoal); font-size: 14px; line-height: 1.6;
+}
 /* ── Site header ── */
 .site-header {
-  background: var(--navy); color: #FFFFFF; height: 52px;
+  background: var(--black); height: 56px; padding: 0 28px;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 24px; position: sticky; top: 0; z-index: 200;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  position: sticky; top: 0; z-index: 200;
+  border-bottom: 2px solid var(--gold-dk);
 }
-.site-header * { color: inherit; }
-.logo { font-weight: 700; font-size: 15px; letter-spacing: .3px; color: #FFFFFF; }
-.logo span { color: #93C5FD; }
-.header-nav { display: flex; gap: 4px; }
+.site-header * { color: var(--gold) !important; }
+.logo { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; }
+.logo span { color: var(--white) !important; font-weight: 300; }
+.header-nav { display: flex; }
 .header-nav a {
-  color: rgba(255,255,255,.75) !important; text-decoration: none;
-  padding: 6px 14px; border-radius: var(--radius-sm); font-size: 13px; transition: all .15s;
+  color: var(--light) !important; text-decoration: none; padding: 8px 16px;
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500;
+  border-left: 1px solid rgba(201,168,76,.2); transition: all .15s;
 }
-.header-nav a:hover, .header-nav a.active {
-  background: rgba(255,255,255,.18); color: #FFFFFF !important;
-}
-
+.header-nav a:first-child { border-left: none; }
+.header-nav a:hover, .header-nav a.active { color: var(--gold) !important; background: rgba(201,168,76,.1); }
 /* ── Hero ── */
 .hero {
-  background: linear-gradient(135deg, #1E3A5F 0%, #1B4080 100%);
-  color: #FFFFFF; padding: 40px 24px 32px; text-align: center;
+  background: var(--black); padding: 44px 28px 36px; text-align: center;
+  position: relative; overflow: hidden; border-bottom: 3px solid var(--gold);
 }
-.hero * { color: inherit; }
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(201,168,76,.03) 20px, rgba(201,168,76,.03) 21px);
+}
 .hero-badge {
-  display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
-  border-radius: 20px; padding: 3px 14px; font-size: 12px; margin-bottom: 12px; color: #BAE6FD;
+  display: inline-block; border: 1px solid var(--gold-dk);
+  color: var(--gold); font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; padding: 4px 18px; margin-bottom: 14px;
 }
-.hero h1 { font-size: clamp(20px,3.5vw,32px); font-weight: 700; line-height: 1.3; color: #FFFFFF; }
-.hero h1 em { color: #93C5FD; font-style: normal; }
-.hero-meta { margin-top: 8px; color: rgba(255,255,255,.75); font-size: 13px; }
-.hero-meta strong { color: #FFFFFF; }
-
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px,4vw,46px); font-weight: 600; color: var(--white);
+  letter-spacing: 2px; line-height: 1.2;
+}
+.hero h1 em { color: var(--gold); font-style: normal; }
+.hero-meta { margin-top: 10px; color: var(--light); font-size: 12px; letter-spacing: 1px; }
+.hero-meta strong { color: var(--gold-lt); }
 /* ── Market tabs ── */
 .market-tabs-bar {
-  background: white; border-bottom: 2px solid var(--border);
-  display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
-  position: sticky; top: 52px; z-index: 100; padding: 0 12px;
+  background: var(--charcoal); border-bottom: 2px solid var(--gold-dk);
+  display: flex; overflow-x: auto; scrollbar-width: none;
+  position: sticky; top: 56px; z-index: 100;
 }
 .market-tabs-bar::-webkit-scrollbar { display: none; }
 .mkt-tab {
   background: none; border: none; cursor: pointer; padding: 12px 18px;
-  color: var(--text-muted); font-size: 13px; font-weight: 500;
-  white-space: nowrap; border-bottom: 2px solid transparent;
-  margin-bottom: -2px; transition: all .15s; font-family: inherit;
+  color: var(--light); font-size: 10px; font-weight: 500; white-space: nowrap;
+  letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid transparent;
+  margin-bottom: -2px; transition: all .15s; font-family: 'Jost', sans-serif;
 }
-.mkt-tab:hover { color: var(--text); }
-.mkt-tab.active { color: var(--sky); border-bottom-color: var(--sky); font-weight: 600; }
-
-/* ── Overview grid ── */
-.overview-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px;
-}
-.overview-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 16px; cursor: pointer; transition: all .2s;
-}
-.overview-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.ov-flag { font-size: 28px; margin-bottom: 6px; }
-.ov-name { font-weight: 700; font-size: 15px; margin-bottom: 10px; color: var(--navy); }
-.ov-stats { display: flex; flex-direction: column; gap: 4px; }
-.ov-stat { display: flex; justify-content: space-between; font-size: 12px; }
-.ov-stat span { color: var(--text-muted); }
-.ov-stat strong { color: var(--text); }
-
+.mkt-tab:hover { color: var(--gold-lt); }
+.mkt-tab.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
+/* ── Overview ── */
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1px; border: 1px solid var(--border); background: var(--border); }
+.overview-card { background: var(--white); padding: 14px; cursor: pointer; transition: background .15s; }
+.overview-card:hover { background: var(--gold-lt); }
+.ov-flag { font-size: 20px; margin-bottom: 5px; }
+.ov-name { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 14px; color: var(--dark); margin-bottom: 7px; letter-spacing: .5px; }
+.ov-stats { display: flex; flex-direction: column; gap: 2px; }
+.ov-stat { display: flex; justify-content: space-between; font-size: 11px; }
+.ov-stat span { color: var(--mid); } .ov-stat strong { color: var(--dark); }
 /* ── Section ── */
-.page-section { padding: 16px 20px; max-width: 1300px; margin: 0 auto; }
-.market-sheet { display: none; }
-.market-sheet.active { display: block; }
-
-/* ── Section header ── */
+.page-section { padding: 16px 22px; max-width: 1360px; margin: 0 auto; }
+.market-sheet { display: none; } .market-sheet.active { display: block; }
 .sec-header {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 14px; border-radius: 6px;
-  font-weight: 700; font-size: 13px; margin: 16px 0 10px;
+  display: flex; align-items: center; gap: 14px; padding: 0; margin: 18px 0 10px;
+  font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--dark);
 }
-.sec-pc     { background: var(--sky-lt);    color: #1D4ED8; border-left: 3px solid var(--sky); }
-.sec-mob    { background: var(--orange-lt); color: #C2410C; border-left: 3px solid var(--orange); }
-.sec-mkt    { background: var(--purple-lt); color: #6D28D9; border-left: 3px solid var(--purple); }
-.sec-pol    { background: var(--rust-lt);   color: #92400E; border-left: 3px solid var(--rust); }
-
-/* ── PC Grid (5 across) ── */
-.pc-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin-bottom: 4px;
-}
-@media (max-width: 1100px) { .pc-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 700px)  { .pc-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 460px)  { .pc-grid { grid-template-columns: 1fr; } }
-.pc-card {
-  background: white; border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 12px 10px;
-  display: flex; flex-direction: column; gap: 4px;
-  transition: all .2s; border-top: 3px solid var(--sky);
-}
-.pc-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.pc-rank { font-size: 24px; font-weight: 800; color: var(--sky); line-height: 1; letter-spacing: -1px; }
-.pc-name { font-weight: 700; font-size: 13px; color: var(--navy); line-height: 1.3; }
-.pc-chips { display: flex; flex-wrap: wrap; gap: 3px; }
-.pc-dev { font-size: 11px; color: var(--text-muted); }
-.pc-content { font-size: 11px; color: #475569; border-top: 1px solid var(--border); padding-top: 5px; margin-top: 2px; }
-.pc-feedback { padding-top: 4px; display: flex; flex-direction: column; gap: 3px; }
-
+.sec-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+/* ── PC Grid ── */
+.pc-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; border: 1px solid var(--border); background: var(--border); }
+@media (max-width: 1100px) { .pc-grid { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 700px)  { .pc-grid { grid-template-columns: repeat(2,1fr); } }
+.pc-card { background: var(--white); padding: 12px 11px; display: flex; flex-direction: column; gap: 4px; transition: background .15s; }
+.pc-card:hover { background: var(--ivory); }
+.pc-rank { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 700; color: var(--gold); line-height: 1; }
+.pc-name { font-weight: 600; font-size: 12px; color: var(--dark); line-height: 1.3; }
+.pc-chips { display: flex; flex-wrap: wrap; gap: 2px; }
+.pc-dev { font-size: 10px; color: var(--light); letter-spacing: .3px; }
+.pc-content { font-size: 11px; color: var(--mid); border-top: 1px solid var(--border-lt); padding-top: 5px; margin-top: 2px; }
+.pc-feedback { padding-top: 3px; display: flex; flex-direction: column; gap: 3px; }
 /* ── Mobile list ── */
-.mob-list { display: flex; flex-direction: column; gap: 6px; }
-.mob-card {
-  background: white; border: 1px solid var(--border);
-  border-radius: 8px; padding: 10px 12px;
-  border-left: 3px solid var(--orange);
-}
-.mob-left { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
-.mob-rank {
-  background: var(--orange); color: white; border-radius: 5px;
-  padding: 2px 8px; font-size: 12px; font-weight: 700; flex-shrink: 0; min-width: 28px; text-align: center;
-}
-.mob-name { font-weight: 600; font-size: 13px; color: var(--navy); margin-bottom: 2px; }
-.mob-chips { display: flex; flex-wrap: wrap; gap: 3px; }
-.mob-content { font-size: 11px; color: #475569; border-left: 2px solid var(--border); padding-left: 7px; margin: 3px 0; }
-.mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 4px; }
+.mob-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); background: var(--border); }
+.mob-card { background: var(--white); padding: 8px 12px; display: flex; align-items: flex-start; gap: 9px; transition: background .15s; }
+.mob-card:hover { background: var(--ivory); }
+.mob-rank { background: var(--gold); color: var(--black); font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 700; min-width: 30px; text-align: center; padding: 2px 5px; flex-shrink: 0; }
+.mob-main { flex: 1; min-width: 0; }
+.mob-name { font-weight: 600; font-size: 12px; color: var(--dark); }
+.mob-chips { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 2px; }
+.mob-content { font-size: 11px; color: var(--mid); margin-top: 3px; }
+.mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 4px; }
 @media (max-width: 500px) { .mob-feedback { grid-template-columns: 1fr; } }
-
-/* ── Feedback mini ── */
-.fb-pos.mini, .fb-neg.mini { padding: 4px 7px; font-size: 11px; }
-.fb-pos.mini .fb-label, .fb-neg.mini .fb-label { display: inline; margin-right: 4px; }
-.fb-pos { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 6px 8px; font-size: 11px; }
-.fb-neg { background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius-sm); padding: 6px 8px; font-size: 11px; }
-.fb-label { font-weight: 600; display: block; margin-bottom: 2px; font-size: 10px; }
-.fb-pos .fb-label { color: #059669; }
-.fb-neg .fb-label { color: #DC2626; }
-
 /* ── Chips ── */
-.chip {
-  display: inline-block; border-radius: 4px; padding: 1px 8px; font-size: 11px; font-weight: 500;
-}
-.chip-type { background: #E0F2FE; color: #0369A1; }
-.chip-plat { background: #F1F5F9; color: #475569; }
-.chip-dev  { background: #FAF5FF; color: #7E22CE; }
-
-/* ── Tabs (iOS/Android) ── */
-.tab-group { }
-.tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
-.tab-btn {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-  padding: 5px 14px; font-size: 12px; cursor: pointer; font-family: inherit;
-  color: var(--text-muted); transition: all .15s;
-}
-.tab-btn:hover { border-color: var(--sky); color: var(--sky); }
-.tab-btn.active { background: var(--sky); border-color: var(--sky); color: white; font-weight: 600; }
-
+.chip { display: inline-block; border-radius: 0; padding: 1px 6px; font-size: 10px; font-weight: 500; letter-spacing: .5px; text-transform: uppercase; }
+.chip-type { background: var(--ivory-dk); color: var(--mid); border: 1px solid var(--border); }
+.chip-plat { background: transparent; color: var(--light); border: 1px solid var(--border-lt); }
+.chip-dev  { background: transparent; color: var(--gold-dk); border: 1px solid rgba(201,168,76,.3); }
+/* ── Mobile tabs ── */
+.tabs { display: flex; gap: 0; margin-bottom: 8px; border: 1px solid var(--border); width: fit-content; }
+.tab-btn { background: var(--white); border: none; border-right: 1px solid var(--border); padding: 5px 14px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Jost', sans-serif; color: var(--mid); transition: all .15s; }
+.tab-btn:last-child { border-right: none; }
+.tab-btn:hover { background: var(--ivory-dk); color: var(--dark); }
+.tab-btn.active { background: var(--gold); color: var(--black); font-weight: 600; }
 /* ── Marketing cards ── */
-.mkt-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px,1fr)); gap: 10px; }
-@media (max-width: 820px) { .mkt-cards { grid-template-columns: 1fr; } }
-.mkt-card {
-  background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px;
-  border-top: 3px solid var(--purple);
-}
-.mkt-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; margin-bottom: 8px; }
-.mkt-left { flex: 1; min-width: 0; }
-.mkt-game { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
-.action-count { background: var(--purple-lt); color: var(--purple); border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 600; }
-.dim-badge { flex-shrink: 0; border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
-/* Action blocks inside mkt card */
-.mkt-actions { display: flex; flex-direction: column; gap: 6px; }
-.action-block {
-  background: var(--surface2); border-radius: 6px; padding: 8px 10px;
-  display: flex; flex-direction: column; gap: 4px;
-}
+.mkt-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+@media (max-width: 720px) { .mkt-cards { grid-template-columns: 1fr; } }
+.mkt-card { background: var(--white); padding: 12px 14px; }
+.mkt-card-top { margin-bottom: 8px; }
+.mkt-game { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 15px; color: var(--dark); letter-spacing: .5px; display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.action-count { background: var(--gold); color: var(--black); font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1px; padding: 1px 6px; text-transform: uppercase; }
+.dim-badge { display: inline-block; border-radius: 0; padding: 2px 7px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.mkt-actions { display: flex; flex-direction: column; gap: 5px; }
+.action-block { background: var(--ivory); border-left: 2px solid var(--gold); padding: 7px 9px; display: flex; flex-direction: column; gap: 3px; }
 .action-block .dim-badge { align-self: flex-start; margin-bottom: 2px; }
-.ab-action { font-size: 12px; color: #334155; }
-.ab-meta { font-size: 11px; color: var(--text-muted); display: flex; gap: 4px; align-items: flex-start; }
-.ab-label { font-weight: 600; flex-shrink: 0; color: #64748B; min-width: 28px; }
-.kpi-text { color: #0369A1 !important; font-weight: 500; }
-.mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+.ab-action { font-size: 11px; color: var(--charcoal); }
+.ab-meta { font-size: 11px; color: var(--mid); display: flex; gap: 5px; align-items: flex-start; }
+.ab-label { font-weight: 600; flex-shrink: 0; color: var(--gold-dk); min-width: 28px; }
+.kpi-text { color: var(--dark) !important; font-weight: 500; }
+.mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 7px; }
 @media (max-width: 500px) { .mkt-feedback { grid-template-columns: 1fr; } }
-
-/* ── Policy cards ── */
-.policy-list { display: flex; flex-direction: column; gap: 10px; }
-.policy-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
-  border-left: 3px solid var(--rust);
-}
-.policy-card-header { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
-.policy-type-badge { border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
-.policy-title { font-weight: 600; font-size: 14px; color: var(--navy); flex: 1; }
-.policy-source { color: var(--text-muted); font-size: 11px; width: 100%; }
-.policy-detail { font-size: 12px; color: #334155; margin: 6px 0; border-left: 2px solid var(--border); padding-left: 10px; }
-.policy-impact { font-size: 12px; color: #0369A1; margin: 6px 0; border-left: 2px solid #93C5FD; padding-left: 10px; }
-.policy-risk { font-size: 12px; color: #991B1B; background: #FEF2F2; border-radius: var(--radius-sm); padding: 6px 10px; margin-top: 6px; }
-
-/* ── Bullet list ── */
-.bullet-list { padding-left: 14px; font-size: 12px; }
-.bullet-list li { margin-bottom: 2px; }
-.text-cell { font-size: 12px; }
-.empty { color: var(--text-muted); font-size: 13px; padding: 12px 0; }
-
+/* ── Feedback ── */
+.fb-pos, .fb-neg { border-radius: 0; padding: 5px 8px; font-size: 11px; }
+.fb-pos { background: #F5FBF5; border-left: 2px solid #5A9A5A; }
+.fb-neg { background: #FBF5F5; border-left: 2px solid #9A5A5A; }
+.fb-pos.mini, .fb-neg.mini { padding: 4px 7px; }
+.fb-pos.mini .fb-label, .fb-neg.mini .fb-label { display: inline; margin-right: 4px; }
+.fb-label { font-weight: 600; display: block; margin-bottom: 2px; font-size: 10px; letter-spacing: .5px; text-transform: uppercase; }
+.fb-pos .fb-label { color: #3A7A3A; } .fb-neg .fb-label { color: #7A3A3A; }
+/* ── Policy ── */
+.policy-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); background: var(--border); }
+.policy-card { background: var(--white); padding: 10px 14px; }
+.policy-card-header { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 7px; margin-bottom: 5px; }
+.policy-type-badge { border-radius: 0; padding: 2px 7px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
+.policy-title { font-weight: 600; font-size: 13px; color: var(--dark); flex: 1; }
+.policy-source { color: var(--light); font-size: 11px; width: 100%; }
+.policy-detail { font-size: 11px; color: var(--charcoal); border-left: 2px solid var(--gold); padding-left: 8px; margin: 4px 0; }
+.policy-impact { font-size: 11px; color: var(--mid); border-left: 2px solid var(--border); padding-left: 8px; margin: 4px 0; }
+.policy-risk { font-size: 11px; color: #7A3A3A; background: #FBF5F5; border-left: 2px solid #9A5A5A; padding: 5px 8px; margin-top: 4px; }
+/* ── Bullets ── */
+.bullet-list { padding-left: 13px; font-size: 11px; } .bullet-list li { margin-bottom: 2px; }
+.text-cell { font-size: 11px; } .empty { color: var(--light); font-size: 12px; padding: 10px 0; font-style: italic; }
 /* ── Footer ── */
-footer {
-  text-align: center; padding: 28px 24px; color: var(--text-muted);
-  font-size: 12px; border-top: 1px solid var(--border); background: white; margin-top: 32px;
-}
-
-@media (max-width: 768px) {
-  .site-header { padding: 0 16px; }
-  .page-section { padding: 16px; }
-  .hero { padding: 28px 16px 24px; }
-  .mkt-cards { grid-template-columns: 1fr; }
-}
+footer { text-align: center; padding: 22px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; border-top: 2px solid var(--gold-dk); background: var(--black); color: var(--light); margin-top: 28px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media (max-width: 768px) { .site-header { padding: 0 16px; } .page-section { padding: 12px 14px; } .hero { padding: 28px 16px 22px; } .mkt-cards { grid-template-columns: 1fr; } }
 
 /* ── Archive bar ── */
 .archive-bar {
@@ -274,7 +214,8 @@ footer {
 <div class="hero">
   <div class="hero-badge">🗓️ 周报</div>
   <h1>全球游戏市场热点周报2026年3月26日—4月1日<br><em>2026年3月26日</em></h1>
-  <div class="hero-meta">分析周期：<strong>2026年3月26日—4月1日</strong> &nbsp;·&nbsp; 生成时间：<strong>2026-04-03 16:57</strong></div>
+  <div class="hero-meta">分析周期：<strong>2026年3月26日—4月1日</strong> &nbsp;·&nbsp; 生成时间：<strong>2026-04-03 17:21</strong></div>
+  <div style="margin-top:14px;font-size:11px;letter-spacing:8px;color:var(--gold-dk)">✦ &nbsp; ✦ &nbsp; ✦</div>
 </div>
 
 <div class="archive-bar"><span class="ab-label">📅 往期周报：</span><a href="index.html" class="archive-btn current">3/26–4/1</a><a href="weekly-20260319.html" class="archive-btn">3/19–3/25</a><span class="archive-sep">|</span><span class="ab-label">📊 往期月报：</span><a href="monthly.html" class="archive-btn">2026年3月</a><a href="monthly-202602.html" class="archive-btn">2026年2月</a><a href="archive.html" class="archive-btn" style="margin-left:auto">🗂️ 全部存档</a></div>
@@ -371,7 +312,7 @@ footer {
 
 <div class="market-sheet" id="sheet-中国大陆">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <div class="pc-grid">
 <div class="pc-card">
   <div class="pc-rank">#1</div>
@@ -429,8 +370,8 @@ footer {
   <div class="pc-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>国产动作游戏技术表现获认可</li><li>操作手感评价较好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家认为内容深度不足</li><li>优化问题被提及</li></ul></div></div>
 </div></div>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
-    <div class="tab-group" id="mob-tabs-中国cn"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'中国cn-all')">全部 10</button><button class="tab-btn " onclick="switchTab(this,'中国cn-hot')">💰 畅销榜 5</button><button class="tab-btn " onclick="switchTab(this,'中国cn-dl')">⬇️ 下载榜 5</button><button class="tab-btn " onclick="switchTab(this,'中国cn-ios')">🍎 iOS 8</button><button class="tab-btn " onclick="switchTab(this,'中国cn-android')">🤖 Android 8</button></div><div class="tab-panel" id="panel-中国cn-all" ><div class="mob-list">
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
+    <div class="tab-group" id="mob-tabs-中国cn"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'中国cn-all')">全部  10</button><button class="tab-btn " onclick="switchTab(this,'中国cn-hot')">畅销榜  5</button><button class="tab-btn " onclick="switchTab(this,'中国cn-dl')">下载榜  5</button></div><div class="tab-panel" id="panel-中国cn-all" ><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
     <span class="mob-rank">1 (iOS CN，3月27日)</span>
@@ -730,249 +671,9 @@ footer {
   </div>
   <div class="mob-content"><span class="text-cell">本周版本更新带动下载小幅回升</span></div>
   
-</div></div></div><div class="tab-panel" id="panel-中国cn-ios" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (iOS CN，3月27日)</span>
-    <div>
-      <div class="mob-name">洛克王国：世界</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界/抓宠</span>
-        <span class="chip chip-plat">iOS App Store CN</span>
-        <span class="chip chip-dev">腾讯魔方工作室</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">【新游发售首周）2026年3月26日全平台公测上线：iOS/安卓/PC同步开服，首日登顶iOS游戏免费下载榜#1，3月27日登顶iOS游戏畅销榜#1（总榜#4），开服13小时新进用户1500万，无版本更新，流量全部来自公测上线事件本身（来源：腾讯官方数据）</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>IP情感共鸣爆发</li><li>首日数据创腾讯新游纪录</li><li>怀旧UGC自发传播规模大</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>iOS评分6.6偏低</li><li>付费引导在首周被集中批评</li><li>首周末活跃用户相比开服峰值明显下降</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (iOS CN)</span>
-    <div>
-      <div class="mob-name">王者荣耀</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS/安卓</span>
-        <span class="chip chip-dev">腾讯</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">【暂无经核实的3月26日-4月1日具体版本更新信息，请以腾讯官网pvp.qq.com公告补充）</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>赛季更新节奏稳定</li><li>本土化运营成熟</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>新英雄平衡性讨论持续</li><li>赛季皮肤定价讨论</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (iOS CN)</span>
-    <div>
-      <div class="mob-name">崩坏：星穹铁道</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">ARPG</span>
-        <span class="chip chip-plat">iOS/安卓</span>
-        <span class="chip chip-dev">米哈游</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>4.1版本「献给破晓的失控」：2026年3月25日全球同步上线（本周前一天），本周为4.1版本第一周</li><li>不死途5星角色卡池运营中，「星铁FES」大型剧情活动启动（全球统一运营·各区版本内容一致·来源：sr.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>星铁FES活动规模获好评</li><li>不死途角色机制创意获部分玩家认可</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家对不死途强度定价争议</li><li>4.0→4.1版本切换期抽卡资源消耗集中</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (iOS CN)</span>
-    <div>
-      <div class="mob-name">和平精英</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS/安卓</span>
-        <span class="chip chip-dev">腾讯</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">【暂无经核实的本周具体版本更新信息，请以腾讯官方公告补充）</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>大DAU稳定</li><li>本土化运营能力强</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>玩法创新不足</li><li>部分服务器外挂问题</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (iOS CN)</span>
-    <div>
-      <div class="mob-name">原神</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界ARPG</span>
-        <span class="chip chip-plat">iOS/安卓/华为</span>
-        <span class="chip chip-dev">米哈游</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>5.5版本「众火溯还之日」：2026年3月26日全球同步上线（本周第一天）</li><li>新5星角色伊安珊（雷元素辅助）卡池开启，新区域「沃陆之邦·圣山」开放，版本活动「荣花竞捷之争」启动（全球统一运营·各区版本内容一致·来源：ys.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>5.5版本纳塔主线剧情被玩家期待为系列高潮</li><li>伊安珊辅助机制受到关注</li><li>圣山区域探索量丰富</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>5.4版本末期等待积累了玩家焦虑</li><li>伊安珊强度争议在卡池开启前已发酵</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (iOS CN)</span>
-    <div>
-      <div class="mob-name">洛克王国：世界</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界/抓宠</span>
-        <span class="chip chip-plat">iOS App Store CN</span>
-        <span class="chip chip-dev">腾讯魔方工作室</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">【新游发售首周）2026年3月26日全平台公测上线：iOS/安卓/PC同步开服，首日登顶iOS游戏免费下载榜#1，3月27日登顶iOS游戏畅销榜#1（总榜#4），开服13小时新进用户1500万，无版本更新，流量全部来自公测上线事件本身（来源：腾讯官方数据）</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>IP情感共鸣爆发</li><li>首日数据创腾讯新游纪录</li><li>怀旧UGC自发传播规模大</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>iOS评分6.6偏低</li><li>付费引导在首周被集中批评</li><li>首周末活跃用户相比开服峰值明显下降</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (iOS CN)</span>
-    <div>
-      <div class="mob-name">沙威玛传奇</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">休闲</span>
-        <span class="chip chip-plat">iOS/安卓/抖音小游戏</span>
-        <span class="chip chip-dev">国内独立厂商</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">抖音话题长尾，持续维持下载前列</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>抖音29.9亿话题验证爆款</li><li>短平快玩法传播效果极好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>游戏深度不足</li><li>核心玩家长期留存率存疑</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (iOS CN)</span>
-    <div>
-      <div class="mob-name">三角洲行动</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS/安卓</span>
-        <span class="chip chip-dev">腾讯</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周版本更新带动下载小幅回升</span></div>
-  
-</div></div></div><div class="tab-panel" id="panel-中国cn-android" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (iOS CN)</span>
-    <div>
-      <div class="mob-name">王者荣耀</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS/安卓</span>
-        <span class="chip chip-dev">腾讯</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">【暂无经核实的3月26日-4月1日具体版本更新信息，请以腾讯官网pvp.qq.com公告补充）</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>赛季更新节奏稳定</li><li>本土化运营成熟</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>新英雄平衡性讨论持续</li><li>赛季皮肤定价讨论</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (iOS CN)</span>
-    <div>
-      <div class="mob-name">崩坏：星穹铁道</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">ARPG</span>
-        <span class="chip chip-plat">iOS/安卓</span>
-        <span class="chip chip-dev">米哈游</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>4.1版本「献给破晓的失控」：2026年3月25日全球同步上线（本周前一天），本周为4.1版本第一周</li><li>不死途5星角色卡池运营中，「星铁FES」大型剧情活动启动（全球统一运营·各区版本内容一致·来源：sr.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>星铁FES活动规模获好评</li><li>不死途角色机制创意获部分玩家认可</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家对不死途强度定价争议</li><li>4.0→4.1版本切换期抽卡资源消耗集中</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (iOS CN)</span>
-    <div>
-      <div class="mob-name">和平精英</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS/安卓</span>
-        <span class="chip chip-dev">腾讯</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">【暂无经核实的本周具体版本更新信息，请以腾讯官方公告补充）</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>大DAU稳定</li><li>本土化运营能力强</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>玩法创新不足</li><li>部分服务器外挂问题</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (iOS CN)</span>
-    <div>
-      <div class="mob-name">原神</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界ARPG</span>
-        <span class="chip chip-plat">iOS/安卓/华为</span>
-        <span class="chip chip-dev">米哈游</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>5.5版本「众火溯还之日」：2026年3月26日全球同步上线（本周第一天）</li><li>新5星角色伊安珊（雷元素辅助）卡池开启，新区域「沃陆之邦·圣山」开放，版本活动「荣花竞捷之争」启动（全球统一运营·各区版本内容一致·来源：ys.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>5.5版本纳塔主线剧情被玩家期待为系列高潮</li><li>伊安珊辅助机制受到关注</li><li>圣山区域探索量丰富</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>5.4版本末期等待积累了玩家焦虑</li><li>伊安珊强度争议在卡池开启前已发酵</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (安卓)</span>
-    <div>
-      <div class="mob-name">鹅鸭杀（手游）</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">社交推理</span>
-        <span class="chip chip-plat">安卓应用商店</span>
-        <span class="chip chip-dev">金山世游/虎牙</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">3月末仍维持下载榜前列，长尾效应明显</span></div>
-  
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (iOS CN)</span>
-    <div>
-      <div class="mob-name">沙威玛传奇</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">休闲</span>
-        <span class="chip chip-plat">iOS/安卓/抖音小游戏</span>
-        <span class="chip chip-dev">国内独立厂商</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">抖音话题长尾，持续维持下载前列</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>抖音29.9亿话题验证爆款</li><li>短平快玩法传播效果极好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>游戏深度不足</li><li>核心玩家长期留存率存疑</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (安卓)</span>
-    <div>
-      <div class="mob-name">王者荣耀</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">安卓应用商店</span>
-        <span class="chip chip-dev">腾讯</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">【暂无经核实的3月26日-4月1日具体版本更新信息，请以腾讯官网pvp.qq.com公告补充）</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>赛季更新节奏稳定</li><li>本土化运营成熟</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>新英雄平衡性讨论持续</li><li>赛季皮肤定价讨论</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (iOS CN)</span>
-    <div>
-      <div class="mob-name">三角洲行动</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS/安卓</span>
-        <span class="chip chip-dev">腾讯</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周版本更新带动下载小幅回升</span></div>
-  
 </div></div></div></div>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <div class="mkt-cards">
 <div class="mkt-card">
   <div class="mkt-card-top">
@@ -995,7 +696,7 @@ footer {
   <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>开发商积极回应玩家反馈并快速推送操控修复补丁是口碑逆转的核心</li><li>玩家自发口碑带动销量持续增长</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">发售初期操控设计已造成口碑损伤，逆转过程中部分玩家仍持观望态度</span></div></div>
 </div></div>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <div class="policy-list">
 <div class="policy-card">
   <div class="policy-card-header">
@@ -1021,7 +722,7 @@ footer {
 </div>
 <div class="market-sheet" id="sheet-美国">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <div class="pc-grid">
 <div class="pc-card">
   <div class="pc-rank">#1</div>
@@ -1079,8 +780,8 @@ footer {
   <div class="pc-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>开发商快速修复操控问题赢得玩家信任</li><li>开放世界体验和战斗深度在修复后被重新评价</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>初期口碑损伤部分永久留存</li><li>部分玩家认为初期操控问题本不应发生</li></ul></div></div>
 </div></div>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
-    <div class="tab-group" id="mob-tabs-us"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'us-all')">全部 10</button><button class="tab-btn " onclick="switchTab(this,'us-hot')">💰 畅销榜 5</button><button class="tab-btn " onclick="switchTab(this,'us-dl')">⬇️ 下载榜 5</button><button class="tab-btn " onclick="switchTab(this,'us-ios')">🍎 iOS 5</button><button class="tab-btn " onclick="switchTab(this,'us-android')">🤖 Android 4</button></div><div class="tab-panel" id="panel-us-all" ><div class="mob-list">
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
+    <div class="tab-group" id="mob-tabs-us"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'us-all')">全部  10</button><button class="tab-btn " onclick="switchTab(this,'us-hot')">畅销榜  5</button><button class="tab-btn " onclick="switchTab(this,'us-dl')">下载榜  5</button></div><div class="tab-panel" id="panel-us-all" ><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
     <span class="mob-rank">1 (iOS US)</span>
@@ -1380,144 +1081,9 @@ footer {
   </div>
   <div class="mob-content"><ul class="bullet-list"><li>发售后第二周（发售日2026年3月19日）：本周内开发商推送操控改善补丁，Steam评价从Mixed（57%）逆转至Very Positive（80%+），本周末累计销量突破400万份</li><li>无新内容DLC（来源：SteamDB / monsterhunter.com更新页）</li></ul></div>
   <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>开发商快速修复操控问题赢得玩家信任</li><li>开放世界体验和战斗深度在修复后被重新评价</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>初期口碑损伤部分永久留存</li><li>部分玩家认为初期操控问题本不应发生</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-us-ios" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (iOS US)</span>
-    <div>
-      <div class="mob-name">Honor of Kings</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS App Store US</span>
-        <span class="chip chip-dev">Tencent</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周美区iOS畅销保持前列，3月末维持强势</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>全球化运营成熟</li><li>赛季内容更新节奏好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分地区服务器延迟问题</li><li>新英雄平衡性争议</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (iOS US)</span>
-    <div>
-      <div class="mob-name">Royal Match</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">消除休闲</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">Dream Games</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周稳定买量，美区畅销前2</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>休闲消除玩法简单易上手</li><li>关卡设计新颖</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>关卡难度曲线后期偏陡</li><li>付费引导较为频繁</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (iOS US)</span>
-    <div>
-      <div class="mob-name">Candy Crush Saga</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">消除休闲</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">King</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周老牌大DAU稳定</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>经典消除玩法</li><li>更新节奏稳定</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>老玩家认为创新不足</li><li>付费关卡引导较多</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (iOS US)</span>
-    <div>
-      <div class="mob-name">Block Blast!</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">消除休闲</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">Hungry Studio</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周美区iOS下载榜继续#1</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>简单易上手</li><li>无需网络可离线游戏</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>内容深度有限</li><li>广告较多</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (iOS US)</span>
-    <div>
-      <div class="mob-name">Free Fire</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">Garena</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周下载前3</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>低配置友好</li><li>赛事生态成熟</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>外挂问题是最大痛点</li><li>皮肤付费系统被批激进</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-us-android" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google US)</span>
-    <div>
-      <div class="mob-name">Last War: Survival Game</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">策略生存</span>
-        <span class="chip chip-plat">Google Play US</span>
-        <span class="chip chip-dev">First Fun</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">中国出海买量持续，美区畅销前3</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>策略深度获认可</li><li>全球化买量效果显著</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">付费系统被部分玩家批评过于P2W</span></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (Google US)</span>
-    <div>
-      <div class="mob-name">Whiteout Survival</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">策略生存</span>
-        <span class="chip chip-plat">Google Play US</span>
-        <span class="chip chip-dev">Century Games</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">买量持续，本周稳定前5</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>策略深度获认可</li><li>全球化买量效果显著</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">付费系统P2W程度被部分玩家批评</span></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (Google US)</span>
-    <div>
-      <div class="mob-name">Roblox</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">UGC/休闲</span>
-        <span class="chip chip-plat">Google Play</span>
-        <span class="chip chip-dev">Roblox Corp</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">稳定下载榜前列</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>UGC创作生态丰富</li><li>青少年用户粘性强</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>内容质量参差不齐</li><li>家长对安全性存在顾虑</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (Google US)</span>
-    <div>
-      <div class="mob-name">Monopoly GO!</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">休闲</span>
-        <span class="chip chip-plat">Google Play</span>
-        <span class="chip chip-dev">Scopely</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">买量持续</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>轻度休闲玩法易上手</li><li>社交互动功能受欢迎</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家认为随机性过强</li><li>付费引导较频繁</li></ul></div></div>
 </div></div></div></div>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <div class="mkt-cards">
 <div class="mkt-card">
   <div class="mkt-card-top">
@@ -1550,7 +1116,7 @@ footer {
   <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">纯户外广告引发的自发传播效率极高，品牌影响力无需多说</span></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>无新实质内容发布，部分玩家开始感到预热疲劳</li><li>发售日不明确引发焦虑</li></ul></div></div>
 </div></div>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <div class="policy-list">
 <div class="policy-card">
   <div class="policy-card-header">
@@ -1576,7 +1142,7 @@ footer {
 </div>
 <div class="market-sheet" id="sheet-欧洲">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <div class="pc-grid">
 <div class="pc-card">
   <div class="pc-rank">#1</div>
@@ -1634,8 +1200,8 @@ footer {
   <div class="pc-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><span class="text-cell">新赛季平衡性调整获核心玩家好评</span></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">赛季通行证付费内容被部分玩家批评价格偏高</span></div></div>
 </div></div>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
-    <div class="tab-group" id="mob-tabs-eu"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'eu-all')">全部 10</button><button class="tab-btn " onclick="switchTab(this,'eu-hot')">💰 畅销榜 5</button><button class="tab-btn " onclick="switchTab(this,'eu-dl')">⬇️ 下载榜 5</button><button class="tab-btn " onclick="switchTab(this,'eu-ios')">🍎 iOS 6</button><button class="tab-btn " onclick="switchTab(this,'eu-android')">🤖 Android 4</button></div><div class="tab-panel" id="panel-eu-all" ><div class="mob-list">
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
+    <div class="tab-group" id="mob-tabs-eu"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'eu-all')">全部  10</button><button class="tab-btn " onclick="switchTab(this,'eu-hot')">畅销榜  5</button><button class="tab-btn " onclick="switchTab(this,'eu-dl')">下载榜  5</button></div><div class="tab-panel" id="panel-eu-all" ><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
     <span class="mob-rank">1 (iOS UK)</span>
@@ -1935,159 +1501,9 @@ footer {
   </div>
   <div class="mob-content"><span class="text-cell">3月Steam热销长尾，法区移动端下载跟进</span></div>
   <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>动漫IP还原度高</li><li>战斗系统受ARPG玩家认可</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>抽卡机制被欧洲玩家强烈批评</li><li>德国内容审查引发关注</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-eu-ios" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (iOS UK)</span>
-    <div>
-      <div class="mob-name">Candy Crush Saga</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">消除休闲</span>
-        <span class="chip chip-plat">iOS App Store UK</span>
-        <span class="chip chip-dev">King</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">英国本土游戏周畅销稳定#1</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>经典消除玩法</li><li>更新节奏稳定</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>老玩家认为创新不足</li><li>付费关卡引导较多</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (iOS FR)</span>
-    <div>
-      <div class="mob-name">Honor of Kings</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS App Store FR</span>
-        <span class="chip chip-dev">Tencent</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周法区畅销前2</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>全球化运营成熟</li><li>赛季内容更新节奏好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分地区服务器延迟问题</li><li>新英雄平衡性争议</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (iOS EU综)</span>
-    <div>
-      <div class="mob-name">Royal Match</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">消除</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">Dream Games</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">欧洲各区稳定畅销</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>休闲消除玩法简单易上手</li><li>关卡设计新颖</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>关卡难度曲线后期偏陡</li><li>付费引导较为频繁</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (iOS UK)</span>
-    <div>
-      <div class="mob-name">Block Blast!</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">消除休闲</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">Hungry Studio</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周英区iOS下载#1</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>简单易上手</li><li>无需网络可离线游戏</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>内容深度有限</li><li>广告较多</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (iOS UK)</span>
-    <div>
-      <div class="mob-name">Monopoly GO!</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">休闲</span>
-        <span class="chip chip-plat">iOS App Store UK</span>
-        <span class="chip chip-dev">Scopely</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">买量持续</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>轻度休闲玩法易上手</li><li>社交互动功能受欢迎</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家认为随机性过强</li><li>付费引导较频繁</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (iOS FR)</span>
-    <div>
-      <div class="mob-name">七大罪：Origin</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">ARPG</span>
-        <span class="chip chip-plat">iOS App Store FR</span>
-        <span class="chip chip-dev">Netmarble</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">3月Steam热销长尾，法区移动端下载跟进</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>动漫IP还原度高</li><li>战斗系统受ARPG玩家认可</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>抽卡机制被欧洲玩家强烈批评</li><li>德国内容审查引发关注</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-eu-android" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google DE)</span>
-    <div>
-      <div class="mob-name">Clash of Clans</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">策略</span>
-        <span class="chip chip-plat">Google Play DE</span>
-        <span class="chip chip-dev">Supercell</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">德区老牌大DAU稳定</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>长期运营口碑稳定</li><li>公会社交粘性高</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>玩法缺乏创新</li><li>高付费门槛令休闲玩家流失</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (Google UK)</span>
-    <div>
-      <div class="mob-name">Genshin Impact</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界ARPG</span>
-        <span class="chip chip-plat">Google Play UK</span>
-        <span class="chip chip-dev">miHoYo</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>5.5版本「众火溯还之日」：2026年3月26日全球同步上线（本周第一天）</li><li>新5星角色伊安珊（雷元素辅助）卡池开启，新区域「沃陆之邦·圣山」开放，版本活动「荣花竞捷之争」启动（全球统一运营·各区版本内容一致·来源：ys.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>开放世界内容丰富</li><li>视觉效果出色</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>版本末期活跃度明显下降</li><li>付费率偏低</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (Google FR)</span>
-    <div>
-      <div class="mob-name">Free Fire</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">Google Play FR</span>
-        <span class="chip chip-dev">Garena</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">法区下载稳定</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>低配置友好</li><li>赛事生态成熟</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>外挂问题是最大痛点</li><li>皮肤付费系统被批激进</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google DE)</span>
-    <div>
-      <div class="mob-name">Roblox</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">UGC</span>
-        <span class="chip chip-plat">Google Play DE</span>
-        <span class="chip chip-dev">Roblox Corp</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">德国青少年基础稳定</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>UGC创作生态丰富</li><li>青少年用户粘性强</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>内容质量参差不齐</li><li>家长对安全性存在顾虑</li></ul></div></div>
 </div></div></div></div>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <div class="mkt-cards">
 <div class="mkt-card">
   <div class="mkt-card-top">
@@ -2120,7 +1536,7 @@ footer {
   <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">法德玩家对亚洲动漫IP突破欧洲市场感到惊喜，口碑持续发酵</span></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">欧洲玩家对游戏内抽卡系统的抵触情绪在3月底集中爆发，部分玩家开始退款或负评</span></div></div>
 </div></div>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <div class="policy-list">
 <div class="policy-card">
   <div class="policy-card-header">
@@ -2146,7 +1562,7 @@ footer {
 </div>
 <div class="market-sheet" id="sheet-日本">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <div class="pc-grid">
 <div class="pc-card">
   <div class="pc-rank">#1</div>
@@ -2204,8 +1620,8 @@ footer {
   <div class="pc-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>动漫IP还原度高</li><li>战斗系统受ARPG玩家认可</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>抽卡机制被欧洲玩家强烈批评</li><li>德国内容审查引发关注</li></ul></div></div>
 </div></div>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
-    <div class="tab-group" id="mob-tabs-jp"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'jp-all')">全部 10</button><button class="tab-btn " onclick="switchTab(this,'jp-hot')">💰 畅销榜 5</button><button class="tab-btn " onclick="switchTab(this,'jp-dl')">⬇️ 下载榜 5</button><button class="tab-btn " onclick="switchTab(this,'jp-ios')">🍎 iOS 6</button><button class="tab-btn " onclick="switchTab(this,'jp-android')">🤖 Android 4</button></div><div class="tab-panel" id="panel-jp-all" ><div class="mob-list">
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
+    <div class="tab-group" id="mob-tabs-jp"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'jp-all')">全部  10</button><button class="tab-btn " onclick="switchTab(this,'jp-hot')">畅销榜  5</button><button class="tab-btn " onclick="switchTab(this,'jp-dl')">下载榜  5</button></div><div class="tab-panel" id="panel-jp-all" ><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
     <span class="mob-rank">1 (iOS JP)</span>
@@ -2505,159 +1921,9 @@ footer {
   </div>
   <div class="mob-content"><span class="text-cell">版本更新带动下载</span></div>
   <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>角色剧情深度受好评</li><li>老玩家活跃度高</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>氪金深度高</li><li>版本末期内容较少</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-jp-ios" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (iOS JP)</span>
-    <div>
-      <div class="mob-name">モンスターストライク</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">RPG弹射</span>
-        <span class="chip chip-plat">iOS App Store JP</span>
-        <span class="chip chip-dev">MIXI</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周日区iOS畅销#1，长年霸榜</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>经典弹射玩法持续稳定</li><li>IP联动丰富</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>老玩家认为创新停滞</li><li>新用户上手门槛高</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (iOS JP)</span>
-    <div>
-      <div class="mob-name">FGO（Fate/Grand Order）</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">卡牌RPG</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">TYPE-MOON/Aniplex</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">3月末活动期畅销榜稳定前2</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>剧情深度被核心粉丝高度认可</li><li>新章内容口碑佳</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>抽卡系统无保底被长期批评</li><li>活动设计重复感强</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google JP)</span>
-    <div>
-      <div class="mob-name">ウマ娘</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">育成/竞技</span>
-        <span class="chip chip-plat">iOS·Google Play JP</span>
-        <span class="chip chip-dev">Cygames</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周稳定前3</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><span class="text-cell">育成玩法深度获核心玩家认可</span></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家批评随机性过强</li><li>付费礼包性价比争议</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (iOS JP)</span>
-    <div>
-      <div class="mob-name">崩坏：星穹铁道</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">ARPG</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">米哈游</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>4.1版本「献给破晓的失控」：2026年3月25日全球同步上线（本周前一天），本周为4.1版本第一周</li><li>不死途5星角色卡池运营中，「星铁FES」大型剧情活动启动（全球统一运营·各区版本内容一致·来源：sr.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>星铁FES活动规模获好评</li><li>不死途角色机制创意获部分玩家认可</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家对不死途强度定价争议</li><li>4.0→4.1版本切换期抽卡资源消耗集中</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (iOS JP)</span>
-    <div>
-      <div class="mob-name">モンスターストライク</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">RPG弹射</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">MIXI</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">持续买量</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>经典弹射玩法持续稳定</li><li>IP联动丰富</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>老玩家认为创新停滞</li><li>新用户上手门槛高</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (iOS JP)</span>
-    <div>
-      <div class="mob-name">ブルーアーカイブ</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">SRPG</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">Nexon</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">版本更新带动下载</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>角色剧情深度受好评</li><li>老玩家活跃度高</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>氪金深度高</li><li>版本末期内容较少</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-jp-android" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google JP)</span>
-    <div>
-      <div class="mob-name">ウマ娘</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">育成/竞技</span>
-        <span class="chip chip-plat">iOS·Google Play JP</span>
-        <span class="chip chip-dev">Cygames</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周稳定前3</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><span class="text-cell">育成玩法深度获核心玩家认可</span></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家批评随机性过强</li><li>付费礼包性价比争议</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (Google JP)</span>
-    <div>
-      <div class="mob-name">プロ野球スピリッツA</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">体育</span>
-        <span class="chip chip-plat">Google Play JP</span>
-        <span class="chip chip-dev">Konami</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">日本本土体育游戏本周稳定</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>日本棒球迷忠诚度高</li><li>球员卡收集乐趣强</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>高度依赖卡池付费</li><li>数据更新有延迟</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (Google JP)</span>
-    <div>
-      <div class="mob-name">Pokemon GO</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">AR休闲</span>
-        <span class="chip chip-plat">Google Play JP</span>
-        <span class="chip chip-dev">Niantic</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">3月末活动带动下载维持</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>户外社交活动吸引核心粉丝</li><li>社区日体验好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>新内容创意有限</li><li>付费压力和游戏老化受批评</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (Google JP)</span>
-    <div>
-      <div class="mob-name">ドラゴンクエストウォーク</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">AR/RPG</span>
-        <span class="chip chip-plat">Google Play JP</span>
-        <span class="chip chip-dev">Square Enix</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本土IP稳定下载</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>DQ品牌根基深</li><li>户外探索与IP结合独特</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>受地理位置限制</li><li>东京以外活动密度差</li></ul></div></div>
 </div></div></div></div>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <div class="mkt-cards">
 <div class="mkt-card">
   <div class="mkt-card-top">
@@ -2680,7 +1946,7 @@ footer {
   <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>日本玩家对韩国IP欧洲突破持正面看法</li><li>IP情怀受众在3月大热后仍持续活跃</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">日本玩家对Netmarble的抽卡设计有既有认知，部分长期玩家持谨慎态度</span></div></div>
 </div></div>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <div class="policy-list">
 <div class="policy-card">
   <div class="policy-card-header">
@@ -2706,7 +1972,7 @@ footer {
 </div>
 <div class="market-sheet" id="sheet-韩国">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <div class="pc-grid">
 <div class="pc-card">
   <div class="pc-rank">#1</div>
@@ -2764,8 +2030,8 @@ footer {
   <div class="pc-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><span class="text-cell">ARPG深度和Build多样性获高度评价</span></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">EA阶段游戏难度被部分玩家认为过高</span></div></div>
 </div></div>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
-    <div class="tab-group" id="mob-tabs-kr"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'kr-all')">全部 10</button><button class="tab-btn " onclick="switchTab(this,'kr-hot')">💰 畅销榜 5</button><button class="tab-btn " onclick="switchTab(this,'kr-dl')">⬇️ 下载榜 5</button><button class="tab-btn " onclick="switchTab(this,'kr-ios')">🍎 iOS 4</button><button class="tab-btn " onclick="switchTab(this,'kr-android')">🤖 Android 2</button></div><div class="tab-panel" id="panel-kr-all" ><div class="mob-list">
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
+    <div class="tab-group" id="mob-tabs-kr"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'kr-all')">全部  10</button><button class="tab-btn " onclick="switchTab(this,'kr-hot')">畅销榜  5</button><button class="tab-btn " onclick="switchTab(this,'kr-dl')">下载榜  5</button></div><div class="tab-panel" id="panel-kr-all" ><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
     <span class="mob-rank">1 (ONE Store KR)</span>
@@ -3065,99 +2331,9 @@ footer {
   </div>
   <div class="mob-content"><span class="text-cell">稳定下载</span></div>
   <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>极简操作契合韩国休闲手游偏好</li><li>口碑发酵带动下载爆发</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>游戏深度有限</li><li>长期留存率挑战大</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-kr-ios" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (ONE Store KR)</span>
-    <div>
-      <div class="mob-name">리니지W</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">MMORPG</span>
-        <span class="chip chip-plat">ONE Store·iOS</span>
-        <span class="chip chip-dev">NCSoft</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周韩国本土MMORPG稳定畅销#1</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><span class="text-cell">韩国MMORPG深度玩家忠诚度高</span></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">P2W模式被年轻一代玩家批评</span></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (ONE Store KR)</span>
-    <div>
-      <div class="mob-name">배틀그라운드 모바일</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">ONE Store·iOS</span>
-        <span class="chip chip-dev">Krafton</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周ONE Store稳定前2</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>沉浸感强</li><li>韩国本土赛事生态完善</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">平衡性调整引发部分玩家不满</span></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (iOS KR)</span>
-    <div>
-      <div class="mob-name">崩坏：星穹铁道</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">ARPG</span>
-        <span class="chip chip-plat">iOS App Store KR</span>
-        <span class="chip chip-dev">miHoYo</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>4.1版本「献给破晓的失控」：2026年3月25日全球同步上线（本周前一天），本周为4.1版本第一周</li><li>不死途5星角色卡池运营中，「星铁FES」大型剧情活动启动（全球统一运营·各区版本内容一致·来源：sr.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>星铁FES活动规模获好评</li><li>不死途角色机制创意获部分玩家认可</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分玩家对不死途强度定价争议</li><li>4.0→4.1版本切换期抽卡资源消耗集中</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (iOS KR)</span>
-    <div>
-      <div class="mob-name">Pokemon GO</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">AR休闲</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">Niantic</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周韩区活动带动下载</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>户外社交活动吸引核心粉丝</li><li>社区日体验好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>新内容创意有限</li><li>付费压力和游戏老化受批评</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-kr-android" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (Google KR)</span>
-    <div>
-      <div class="mob-name">原神</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界ARPG</span>
-        <span class="chip chip-plat">Google Play KR</span>
-        <span class="chip chip-dev">miHoYo</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>5.5版本「众火溯还之日」：2026年3月26日全球同步上线（本周第一天）</li><li>新5星角色伊安珊（雷元素辅助）卡池开启，新区域「沃陆之邦·圣山」开放，版本活动「荣花竞捷之争」启动（全球统一运营·各区版本内容一致·来源：ys.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>5.5版本纳塔主线剧情被玩家期待为系列高潮</li><li>伊安珊辅助机制受到关注</li><li>圣山区域探索量丰富</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>5.4版本末期等待积累了玩家焦虑</li><li>伊安珊强度争议在卡池开启前已发酵</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google KR)</span>
-    <div>
-      <div class="mob-name">카트라이더：드리프트</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞速</span>
-        <span class="chip chip-plat">Google Play KR</span>
-        <span class="chip chip-dev">Nexon</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">赛季更新带动</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>韩国本土IP情怀深厚</li><li>粉丝基础强</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>重启版优化不足</li><li>与原版体验差距受批评</li></ul></div></div>
 </div></div></div></div>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <div class="mkt-cards">
 <div class="mkt-card">
   <div class="mkt-card-top">
@@ -3170,7 +2346,7 @@ footer {
   <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>韩国本土开发商全球成功带来强烈民族自豪感，形成国内媒体自发正向传播飞轮; 官方主动沟通有效平息了韩国玩家的部分质疑</li><li>路线图发布增强了玩家对后续内容的信心</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>部分韩国玩家认为Pearl Abyss过度依赖海外市场而忽视本土玩家体验</li><li>操控问题同样影响了本土玩家; 韩国玩家期待值极高，路线图承诺如未兑现将面临更严厉的反弹</li></ul></div></div>
 </div></div>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <div class="policy-list">
 <div class="policy-card">
   <div class="policy-card-header">
@@ -3196,7 +2372,7 @@ footer {
 </div>
 <div class="market-sheet" id="sheet-港台">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <div class="pc-grid">
 <div class="pc-card">
   <div class="pc-rank">#1</div>
@@ -3254,8 +2430,8 @@ footer {
   <div class="pc-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>卡牌策略深度持续获95%+好评</li><li>EA阶段社区活跃度维持高位</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>EA阶段内容量有限</li><li>部分玩家等待正式版内容解锁</li></ul></div></div>
 </div></div>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
-    <div class="tab-group" id="mob-tabs-tw"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'tw-all')">全部 10</button><button class="tab-btn " onclick="switchTab(this,'tw-hot')">💰 畅销榜 5</button><button class="tab-btn " onclick="switchTab(this,'tw-dl')">⬇️ 下载榜 5</button><button class="tab-btn " onclick="switchTab(this,'tw-ios')">🍎 iOS 9</button><button class="tab-btn " onclick="switchTab(this,'tw-android')">🤖 Android 2</button></div><div class="tab-panel" id="panel-tw-all" ><div class="mob-list">
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
+    <div class="tab-group" id="mob-tabs-tw"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'tw-all')">全部  10</button><button class="tab-btn " onclick="switchTab(this,'tw-hot')">畅销榜  5</button><button class="tab-btn " onclick="switchTab(this,'tw-dl')">下载榜  5</button></div><div class="tab-panel" id="panel-tw-all" ><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
     <span class="mob-rank">1 (iOS TW)</span>
@@ -3555,174 +2731,9 @@ footer {
   </div>
   <div class="mob-content"><ul class="bullet-list"><li>5.5版本「众火溯还之日」：2026年3月26日全球同步上线（本周第一天）</li><li>新5星角色伊安珊（雷元素辅助）卡池开启，新区域「沃陆之邦·圣山」开放，版本活动「荣花竞捷之争」启动（全球统一运营·各区版本内容一致·来源：ys.mihoyo.com官方公告）</li></ul></div>
   <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>5.5版本纳塔主线剧情被玩家期待为系列高潮</li><li>伊安珊辅助机制受到关注</li><li>圣山区域探索量丰富</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>5.4版本末期等待积累了玩家焦虑</li><li>伊安珊强度争议在卡池开启前已发酵</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-tw-ios" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (iOS TW)</span>
-    <div>
-      <div class="mob-name">崩壞：星穹鐵道</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">ARPG</span>
-        <span class="chip chip-plat">iOS App Store TW</span>
-        <span class="chip chip-dev">米哈游/旺拓代理</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>4.1版本「献给破晓的失控」：2026年3月25日全球同步上线（本周前一天），本周为4.1版本第一周</li><li>不死途5星角色卡池运营中，「星铁FES」大型剧情活动启动（全球统一运营·各区版本内容一致·来源：sr.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><span class="text-cell">剧情深度和角色设计持续获好评</span></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">付费角色定价与购买力比值被台湾玩家批评</span></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (iOS TW)</span>
-    <div>
-      <div class="mob-name">原神</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界ARPG</span>
-        <span class="chip chip-plat">iOS App Store TW</span>
-        <span class="chip chip-dev">米哈游/旺拓代理</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>5.5版本「众火溯还之日」：2026年3月26日全球同步上线（本周第一天）</li><li>新5星角色伊安珊（雷元素辅助）卡池开启，新区域「沃陆之邦·圣山」开放，版本活动「荣花竞捷之争」启动（全球统一运营·各区版本内容一致·来源：ys.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>5.5版本纳塔主线剧情被玩家期待为系列高潮</li><li>伊安珊辅助机制受到关注</li><li>圣山区域探索量丰富</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>5.4版本末期等待积累了玩家焦虑</li><li>伊安珊强度争议在卡池开启前已发酵</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (iOS HK)</span>
-    <div>
-      <div class="mob-name">七大罪：Origin</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">ARPG</span>
-        <span class="chip chip-plat">iOS App Store HK</span>
-        <span class="chip chip-dev">Netmarble</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周港区iOS畅销前3</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>动漫IP还原度高</li><li>战斗系统受ARPG玩家认可</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>抽卡机制被欧洲玩家强烈批评</li><li>德国内容审查引发关注</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (Google Play TW)</span>
-    <div>
-      <div class="mob-name">傳說對決</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS·Google Play TW</span>
-        <span class="chip chip-dev">Garena TW</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周台湾MOBA畅销稳定前4</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>台湾本土化运营成熟</li><li>电竞赛事氛围好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">部分赛季内容与国际服不同步被台湾玩家批评</span></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (iOS TW)</span>
-    <div>
-      <div class="mob-name">洛克王國：世界（繁中版）</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界/抓宠</span>
-        <span class="chip chip-plat">iOS App Store TW</span>
-        <span class="chip chip-dev">腾讯/台湾代理</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">3月26日全球公测，台湾繁中区同步发布，本周冲入畅销前5</span></div>
-  
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (iOS TW)</span>
-    <div>
-      <div class="mob-name">洛克王國：世界（繁中版）</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界/抓宠</span>
-        <span class="chip chip-plat">iOS App Store TW</span>
-        <span class="chip chip-dev">腾讯/台湾代理</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">3月26日公测首日台湾iOS下载爆发，登顶免费下载榜</span></div>
-  
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (iOS TW)</span>
-    <div>
-      <div class="mob-name">崩壞：星穹鐵道</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">ARPG</span>
-        <span class="chip chip-plat">iOS App Store TW</span>
-        <span class="chip chip-dev">米哈游/旺拓</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>4.1版本「献给破晓的失控」：2026年3月25日全球同步上线（本周前一天），本周为4.1版本第一周</li><li>不死途5星角色卡池运营中，「星铁FES」大型剧情活动启动（全球统一运营·各区版本内容一致·来源：sr.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><span class="text-cell">剧情深度和角色设计持续获好评</span></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">付费角色定价与购买力比值被台湾玩家批评</span></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (iOS HK)</span>
-    <div>
-      <div class="mob-name">七大罪：Origin</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">ARPG</span>
-        <span class="chip chip-plat">iOS App Store HK</span>
-        <span class="chip chip-dev">Netmarble</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">港区3月热销长尾，本周下载维持</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>动漫IP还原度高</li><li>战斗系统受ARPG玩家认可</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>抽卡机制被欧洲玩家强烈批评</li><li>德国内容审查引发关注</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (iOS TW)</span>
-    <div>
-      <div class="mob-name">原神</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">开放世界ARPG</span>
-        <span class="chip chip-plat">iOS App Store TW</span>
-        <span class="chip chip-dev">米哈游/旺拓</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>5.5版本「众火溯还之日」：2026年3月26日全球同步上线（本周第一天）</li><li>新5星角色伊安珊（雷元素辅助）卡池开启，新区域「沃陆之邦·圣山」开放，版本活动「荣花竞捷之争」启动（全球统一运营·各区版本内容一致·来源：ys.mihoyo.com官方公告）</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>5.5版本纳塔主线剧情被玩家期待为系列高潮</li><li>伊安珊辅助机制受到关注</li><li>圣山区域探索量丰富</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>5.4版本末期等待积累了玩家焦虑</li><li>伊安珊强度争议在卡池开启前已发酵</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-tw-android" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (Google Play TW)</span>
-    <div>
-      <div class="mob-name">傳說對決</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS·Google Play TW</span>
-        <span class="chip chip-dev">Garena TW</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">本周台湾MOBA畅销稳定前4</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>台湾本土化运营成熟</li><li>电竞赛事氛围好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">部分赛季内容与国际服不同步被台湾玩家批评</span></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google Play TW)</span>
-    <div>
-      <div class="mob-name">傳說對決</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">Google Play TW</span>
-        <span class="chip chip-dev">Garena TW</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">赛季更新带动下载</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>台湾本土化运营成熟</li><li>电竞赛事氛围好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">部分赛季内容与国际服不同步被台湾玩家批评</span></div></div>
 </div></div></div></div>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <div class="mkt-cards">
 <div class="mkt-card">
   <div class="mkt-card-top">
@@ -3755,7 +2766,7 @@ footer {
   <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><span class="text-cell">旺拓代理版本台湾玩家信任度高，4.0版本尾期仍维持高付费率</span></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">台湾玩家批评4.0付费角色定价与购买力不成比例</span></div></div>
 </div></div>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <div class="policy-list">
 <div class="policy-card">
   <div class="policy-card-header">
@@ -3781,7 +2792,7 @@ footer {
 </div>
 <div class="market-sheet" id="sheet-东南亚">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <div class="pc-grid">
 <div class="pc-card">
   <div class="pc-rank">#1</div>
@@ -3839,8 +2850,8 @@ footer {
   <div class="pc-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>卡牌策略深度持续获95%+好评</li><li>EA阶段社区活跃度维持高位</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>EA阶段内容量有限</li><li>部分玩家等待正式版内容解锁</li></ul></div></div>
 </div></div>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
-    <div class="tab-group" id="mob-tabs-sea"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'sea-all')">全部 10</button><button class="tab-btn " onclick="switchTab(this,'sea-hot')">💰 畅销榜 5</button><button class="tab-btn " onclick="switchTab(this,'sea-dl')">⬇️ 下载榜 5</button><button class="tab-btn " onclick="switchTab(this,'sea-ios')">🍎 iOS 7</button><button class="tab-btn " onclick="switchTab(this,'sea-android')">🤖 Android 9</button></div><div class="tab-panel" id="panel-sea-all" ><div class="mob-list">
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
+    <div class="tab-group" id="mob-tabs-sea"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'sea-all')">全部  10</button><button class="tab-btn " onclick="switchTab(this,'sea-hot')">畅销榜  5</button><button class="tab-btn " onclick="switchTab(this,'sea-dl')">下载榜  5</button></div><div class="tab-panel" id="panel-sea-all" ><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
     <span class="mob-rank">1 (Google TH)</span>
@@ -4140,249 +3151,9 @@ footer {
   </div>
   <div class="mob-content"><span class="text-cell">东南亚青少年Roblox本周下载稳定增长</span></div>
   <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>UGC创作生态丰富</li><li>青少年用户粘性强</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>内容质量参差不齐</li><li>家长对安全性存在顾虑</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-sea-ios" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (Google TH)</span>
-    <div>
-      <div class="mob-name">ROV（Arena of Valor）</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS·Google Play TH</span>
-        <span class="chip chip-dev">Garena TH</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>本周泰国Google Play畅销#1</li><li>3月末赛季内容维持强势</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>泰国本土运营深入</li><li>赛季内容更新节奏合理</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分赛季皮肤定价被批评偏高</li><li>竞技平衡争议</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (Google ID)</span>
-    <div>
-      <div class="mob-name">Mobile Legends: Bang Bang</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS·Google Play ID</span>
-        <span class="chip chip-dev">Moonton</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>本周印尼Google Play畅销#1</li><li>月活约5000万维持稳定</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>本土化运营极强</li><li>电竞赛事生态完善</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>高分段平衡性被核心玩家批评</li><li>外挂问题</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google VN)</span>
-    <div>
-      <div class="mob-name">Free Fire</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS·Google Play VN</span>
-        <span class="chip chip-dev">Garena VN</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>本周越南Google Play畅销#1</li><li>赛季活动维持强势</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>低配置友好</li><li>赛事生态成熟</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>外挂问题是最大痛点</li><li>皮肤付费系统被批激进</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (Google SEA综)</span>
-    <div>
-      <div class="mob-name">PUBG Mobile</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS·Google Play</span>
-        <span class="chip chip-dev">Krafton/Tencent</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">东南亚三国均稳定畅销前3-5</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>真实感射击体验强</li><li>地图多样性好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>反外挂措施不足</li><li>版本更新速度慢于竞品</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (Google TH/ID)</span>
-    <div>
-      <div class="mob-name">Honor of Kings（国际版）</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS·Google Play</span>
-        <span class="chip chip-dev">Tencent</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">泰国/印尼市场本周持续增长</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>全球化运营成熟</li><li>赛季内容更新节奏好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分地区服务器延迟问题</li><li>新英雄平衡性争议</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (Google SEA综)</span>
-    <div>
-      <div class="mob-name">PUBG Mobile</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS·Google Play</span>
-        <span class="chip chip-dev">Krafton</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">东南亚三国均维持下载前3</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>真实感射击体验强</li><li>地图多样性好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>反外挂措施不足</li><li>版本更新速度慢于竞品</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (iOS SEA综)</span>
-    <div>
-      <div class="mob-name">Roblox</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">UGC/休闲</span>
-        <span class="chip chip-plat">iOS</span>
-        <span class="chip chip-dev">Roblox Corp</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">东南亚青少年Roblox本周下载稳定增长</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>UGC创作生态丰富</li><li>青少年用户粘性强</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>内容质量参差不齐</li><li>家长对安全性存在顾虑</li></ul></div></div>
-</div></div></div><div class="tab-panel" id="panel-sea-android" style="display:none"><div class="mob-list">
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (Google TH)</span>
-    <div>
-      <div class="mob-name">ROV（Arena of Valor）</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS·Google Play TH</span>
-        <span class="chip chip-dev">Garena TH</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>本周泰国Google Play畅销#1</li><li>3月末赛季内容维持强势</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>泰国本土运营深入</li><li>赛季内容更新节奏合理</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分赛季皮肤定价被批评偏高</li><li>竞技平衡争议</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (Google ID)</span>
-    <div>
-      <div class="mob-name">Mobile Legends: Bang Bang</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS·Google Play ID</span>
-        <span class="chip chip-dev">Moonton</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>本周印尼Google Play畅销#1</li><li>月活约5000万维持稳定</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>本土化运营极强</li><li>电竞赛事生态完善</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>高分段平衡性被核心玩家批评</li><li>外挂问题</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google VN)</span>
-    <div>
-      <div class="mob-name">Free Fire</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS·Google Play VN</span>
-        <span class="chip chip-dev">Garena VN</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><ul class="bullet-list"><li>本周越南Google Play畅销#1</li><li>赛季活动维持强势</li></ul></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>低配置友好</li><li>赛事生态成熟</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>外挂问题是最大痛点</li><li>皮肤付费系统被批激进</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (Google SEA综)</span>
-    <div>
-      <div class="mob-name">PUBG Mobile</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS·Google Play</span>
-        <span class="chip chip-dev">Krafton/Tencent</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">东南亚三国均稳定畅销前3-5</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>真实感射击体验强</li><li>地图多样性好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>反外挂措施不足</li><li>版本更新速度慢于竞品</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">5 (Google TH/ID)</span>
-    <div>
-      <div class="mob-name">Honor of Kings（国际版）</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">iOS·Google Play</span>
-        <span class="chip chip-dev">Tencent</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">泰国/印尼市场本周持续增长</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>全球化运营成熟</li><li>赛季内容更新节奏好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分地区服务器延迟问题</li><li>新英雄平衡性争议</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">1 (Google VN)</span>
-    <div>
-      <div class="mob-name">Free Fire</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">Google Play VN</span>
-        <span class="chip chip-dev">Garena VN</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">越南下载榜#1，本周赛季活动带动</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>低配置友好</li><li>赛事生态成熟</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>外挂问题是最大痛点</li><li>皮肤付费系统被批激进</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">2 (Google ID)</span>
-    <div>
-      <div class="mob-name">Mobile Legends: Bang Bang</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">Google Play ID</span>
-        <span class="chip chip-dev">Moonton</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">印尼下载榜稳定前2</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>本土化运营极强</li><li>电竞赛事生态完善</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>高分段平衡性被核心玩家批评</li><li>外挂问题</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">3 (Google TH)</span>
-    <div>
-      <div class="mob-name">ROV</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技MOBA</span>
-        <span class="chip chip-plat">Google Play TH</span>
-        <span class="chip chip-dev">Garena TH</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">泰国下载榜#1</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>泰国本土运营深入</li><li>赛季内容更新节奏合理</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>部分赛季皮肤定价被批评偏高</li><li>竞技平衡争议</li></ul></div></div>
-</div>
-<div class="mob-card">
-  <div class="mob-left">
-    <span class="mob-rank">4 (Google SEA综)</span>
-    <div>
-      <div class="mob-name">PUBG Mobile</div>
-      <div class="mob-chips">
-        <span class="chip chip-type">竞技射击</span>
-        <span class="chip chip-plat">iOS·Google Play</span>
-        <span class="chip chip-dev">Krafton</span>
-      </div>
-    </div>
-  </div>
-  <div class="mob-content"><span class="text-cell">东南亚三国均维持下载前3</span></div>
-  <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>真实感射击体验强</li><li>地图多样性好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>反外挂措施不足</li><li>版本更新速度慢于竞品</li></ul></div></div>
 </div></div></div></div>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <div class="mkt-cards">
 <div class="mkt-card">
   <div class="mkt-card-top">
@@ -4415,7 +3186,7 @@ footer {
   <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>印尼本土电商平台充值合作是MLBB最有效的付费转化渠道</li><li>TikTok在印尼的影响力极强</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><ul class="bullet-list"><li>印尼玩家批评MLBB新赛季付费内容售价上涨</li><li>与Free Fire、PUBG Mobile的竞争继续加剧</li></ul></div></div>
 </div></div>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <div class="policy-list">
 <div class="policy-card">
   <div class="policy-card-header">
@@ -4451,7 +3222,7 @@ footer {
 </div>
 <div class="market-sheet" id="sheet-俄罗斯">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <div class="pc-grid">
 <div class="pc-card">
   <div class="pc-rank">#1</div>
@@ -4509,8 +3280,8 @@ footer {
   <div class="pc-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>开放世界自由度依然无可比拟</li><li>持续更新保持活力</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><span class="text-cell">等待GTA6的玩家认为继续购买老作品是无奈之举</span></div></div>
 </div></div>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
-    <div class="tab-group" id="mob-tabs-ru"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'ru-all')">全部 10</button><button class="tab-btn " onclick="switchTab(this,'ru-hot')">💰 畅销榜 5</button><button class="tab-btn " onclick="switchTab(this,'ru-dl')">⬇️ 下载榜 5</button></div><div class="tab-panel" id="panel-ru-all" ><div class="mob-list">
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
+    <div class="tab-group" id="mob-tabs-ru"><div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'ru-all')">全部  10</button><button class="tab-btn " onclick="switchTab(this,'ru-hot')">畅销榜  5</button><button class="tab-btn " onclick="switchTab(this,'ru-dl')">下载榜  5</button></div><div class="tab-panel" id="panel-ru-all" ><div class="mob-list">
 <div class="mob-card">
   <div class="mob-left">
     <span class="mob-rank">1 (RuStore)</span>
@@ -4812,7 +3583,7 @@ footer {
   <div class="mob-feedback"><div class="fb-pos mini"><span class="fb-label">👍</span><ul class="bullet-list"><li>真实感射击体验强</li><li>地图多样性好</li></ul></div><div class="fb-neg mini"><span class="fb-label">👎</span><ul class="bullet-list"><li>反外挂措施不足</li><li>版本更新速度慢于竞品</li></ul></div></div>
 </div></div></div></div>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <div class="mkt-cards">
 <div class="mkt-card">
   <div class="mkt-card-top">
@@ -4835,7 +3606,7 @@ footer {
   <div class="mkt-feedback"><div class="fb-pos"><span class="fb-label">👍 正面</span><ul class="bullet-list"><li>本土游戏公司在俄市场有天然优势</li><li>RuStore是目前最有效的本土分发渠道</li></ul></div><div class="fb-neg"><span class="fb-label">👎 负面</span><span class="text-cell">非俄区市场扩张受品牌争议影响</span></div></div>
 </div></div>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <div class="policy-list">
 <div class="policy-card">
   <div class="policy-card-header">

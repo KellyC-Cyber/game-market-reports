@@ -5,234 +5,174 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>全球游戏市场热点月报2026年2月 2026年2月1日</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --bg: #F0F4F8; --surface: #FFFFFF; --surface2: #F8FAFC;
-  --navy: #1E3A5F; --sky: #2563EB; --sky-lt: #EFF6FF;
-  --orange: #EA580C; --orange-lt: #FFF7ED;
-  --purple: #7C3AED; --purple-lt: #F5F3FF;
-  --rust: #B45309; --rust-lt: #FFFBEB;
-  --mint: #059669; --mint-lt: #D1FAE5;
-  --text: #1E293B; --text-muted: #64748B; --text-light: #94A3B8;
-  --border: #E2E8F0; --border-focus: #93C5FD;
-  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.08);
-  --radius: 10px; --radius-sm: 6px;
+  --gold: #C9A84C; --gold-lt: #F5EDD4; --gold-dk: #9A7A2E;
+  --ivory: #F7F3EC; --ivory-dk: #EDE6D8;
+  --black: #0D0B08; --charcoal: #1C1A17; --dark: #2A2620;
+  --mid: #6B6458; --light: #A89E94; --white: #FDFAF5;
+  --border: #D4C8A8; --border-lt: #EAE0C8;
+  --bg: var(--ivory); --surface: var(--white); --surface2: var(--ivory-dk);
+  --shadow: 0 2px 8px rgba(13,11,8,.10);
+  --shadow-md: 0 4px 16px rgba(13,11,8,.14);
+  --radius: 2px; --radius-sm: 1px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-  background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
-
+body {
+  font-family: 'Jost', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--ivory); color: var(--charcoal); font-size: 14px; line-height: 1.6;
+}
 /* ── Site header ── */
 .site-header {
-  background: var(--navy); color: #FFFFFF; height: 52px;
+  background: var(--black); height: 56px; padding: 0 28px;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 24px; position: sticky; top: 0; z-index: 200;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  position: sticky; top: 0; z-index: 200;
+  border-bottom: 2px solid var(--gold-dk);
 }
-.site-header * { color: inherit; }
-.logo { font-weight: 700; font-size: 15px; letter-spacing: .3px; color: #FFFFFF; }
-.logo span { color: #93C5FD; }
-.header-nav { display: flex; gap: 4px; }
+.site-header * { color: var(--gold) !important; }
+.logo { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; }
+.logo span { color: var(--white) !important; font-weight: 300; }
+.header-nav { display: flex; }
 .header-nav a {
-  color: rgba(255,255,255,.75) !important; text-decoration: none;
-  padding: 6px 14px; border-radius: var(--radius-sm); font-size: 13px; transition: all .15s;
+  color: var(--light) !important; text-decoration: none; padding: 8px 16px;
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500;
+  border-left: 1px solid rgba(201,168,76,.2); transition: all .15s;
 }
-.header-nav a:hover, .header-nav a.active {
-  background: rgba(255,255,255,.18); color: #FFFFFF !important;
-}
-
+.header-nav a:first-child { border-left: none; }
+.header-nav a:hover, .header-nav a.active { color: var(--gold) !important; background: rgba(201,168,76,.1); }
 /* ── Hero ── */
 .hero {
-  background: linear-gradient(135deg, #1E3A5F 0%, #1B4080 100%);
-  color: #FFFFFF; padding: 40px 24px 32px; text-align: center;
+  background: var(--black); padding: 44px 28px 36px; text-align: center;
+  position: relative; overflow: hidden; border-bottom: 3px solid var(--gold);
 }
-.hero * { color: inherit; }
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(201,168,76,.03) 20px, rgba(201,168,76,.03) 21px);
+}
 .hero-badge {
-  display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
-  border-radius: 20px; padding: 3px 14px; font-size: 12px; margin-bottom: 12px; color: #BAE6FD;
+  display: inline-block; border: 1px solid var(--gold-dk);
+  color: var(--gold); font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; padding: 4px 18px; margin-bottom: 14px;
 }
-.hero h1 { font-size: clamp(20px,3.5vw,32px); font-weight: 700; line-height: 1.3; color: #FFFFFF; }
-.hero h1 em { color: #93C5FD; font-style: normal; }
-.hero-meta { margin-top: 8px; color: rgba(255,255,255,.75); font-size: 13px; }
-.hero-meta strong { color: #FFFFFF; }
-
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px,4vw,46px); font-weight: 600; color: var(--white);
+  letter-spacing: 2px; line-height: 1.2;
+}
+.hero h1 em { color: var(--gold); font-style: normal; }
+.hero-meta { margin-top: 10px; color: var(--light); font-size: 12px; letter-spacing: 1px; }
+.hero-meta strong { color: var(--gold-lt); }
 /* ── Market tabs ── */
 .market-tabs-bar {
-  background: white; border-bottom: 2px solid var(--border);
-  display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
-  position: sticky; top: 52px; z-index: 100; padding: 0 12px;
+  background: var(--charcoal); border-bottom: 2px solid var(--gold-dk);
+  display: flex; overflow-x: auto; scrollbar-width: none;
+  position: sticky; top: 56px; z-index: 100;
 }
 .market-tabs-bar::-webkit-scrollbar { display: none; }
 .mkt-tab {
   background: none; border: none; cursor: pointer; padding: 12px 18px;
-  color: var(--text-muted); font-size: 13px; font-weight: 500;
-  white-space: nowrap; border-bottom: 2px solid transparent;
-  margin-bottom: -2px; transition: all .15s; font-family: inherit;
+  color: var(--light); font-size: 10px; font-weight: 500; white-space: nowrap;
+  letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid transparent;
+  margin-bottom: -2px; transition: all .15s; font-family: 'Jost', sans-serif;
 }
-.mkt-tab:hover { color: var(--text); }
-.mkt-tab.active { color: var(--sky); border-bottom-color: var(--sky); font-weight: 600; }
-
-/* ── Overview grid ── */
-.overview-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px;
-}
-.overview-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 16px; cursor: pointer; transition: all .2s;
-}
-.overview-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.ov-flag { font-size: 28px; margin-bottom: 6px; }
-.ov-name { font-weight: 700; font-size: 15px; margin-bottom: 10px; color: var(--navy); }
-.ov-stats { display: flex; flex-direction: column; gap: 4px; }
-.ov-stat { display: flex; justify-content: space-between; font-size: 12px; }
-.ov-stat span { color: var(--text-muted); }
-.ov-stat strong { color: var(--text); }
-
+.mkt-tab:hover { color: var(--gold-lt); }
+.mkt-tab.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
+/* ── Overview ── */
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1px; border: 1px solid var(--border); background: var(--border); }
+.overview-card { background: var(--white); padding: 14px; cursor: pointer; transition: background .15s; }
+.overview-card:hover { background: var(--gold-lt); }
+.ov-flag { font-size: 20px; margin-bottom: 5px; }
+.ov-name { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 14px; color: var(--dark); margin-bottom: 7px; letter-spacing: .5px; }
+.ov-stats { display: flex; flex-direction: column; gap: 2px; }
+.ov-stat { display: flex; justify-content: space-between; font-size: 11px; }
+.ov-stat span { color: var(--mid); } .ov-stat strong { color: var(--dark); }
 /* ── Section ── */
-.page-section { padding: 16px 20px; max-width: 1300px; margin: 0 auto; }
-.market-sheet { display: none; }
-.market-sheet.active { display: block; }
-
-/* ── Section header ── */
+.page-section { padding: 16px 22px; max-width: 1360px; margin: 0 auto; }
+.market-sheet { display: none; } .market-sheet.active { display: block; }
 .sec-header {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 14px; border-radius: 6px;
-  font-weight: 700; font-size: 13px; margin: 16px 0 10px;
+  display: flex; align-items: center; gap: 14px; padding: 0; margin: 18px 0 10px;
+  font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--dark);
 }
-.sec-pc     { background: var(--sky-lt);    color: #1D4ED8; border-left: 3px solid var(--sky); }
-.sec-mob    { background: var(--orange-lt); color: #C2410C; border-left: 3px solid var(--orange); }
-.sec-mkt    { background: var(--purple-lt); color: #6D28D9; border-left: 3px solid var(--purple); }
-.sec-pol    { background: var(--rust-lt);   color: #92400E; border-left: 3px solid var(--rust); }
-
-/* ── PC Grid (5 across) ── */
-.pc-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin-bottom: 4px;
-}
-@media (max-width: 1100px) { .pc-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 700px)  { .pc-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 460px)  { .pc-grid { grid-template-columns: 1fr; } }
-.pc-card {
-  background: white; border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 12px 10px;
-  display: flex; flex-direction: column; gap: 4px;
-  transition: all .2s; border-top: 3px solid var(--sky);
-}
-.pc-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.pc-rank { font-size: 24px; font-weight: 800; color: var(--sky); line-height: 1; letter-spacing: -1px; }
-.pc-name { font-weight: 700; font-size: 13px; color: var(--navy); line-height: 1.3; }
-.pc-chips { display: flex; flex-wrap: wrap; gap: 3px; }
-.pc-dev { font-size: 11px; color: var(--text-muted); }
-.pc-content { font-size: 11px; color: #475569; border-top: 1px solid var(--border); padding-top: 5px; margin-top: 2px; }
-.pc-feedback { padding-top: 4px; display: flex; flex-direction: column; gap: 3px; }
-
+.sec-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+/* ── PC Grid ── */
+.pc-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; border: 1px solid var(--border); background: var(--border); }
+@media (max-width: 1100px) { .pc-grid { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 700px)  { .pc-grid { grid-template-columns: repeat(2,1fr); } }
+.pc-card { background: var(--white); padding: 12px 11px; display: flex; flex-direction: column; gap: 4px; transition: background .15s; }
+.pc-card:hover { background: var(--ivory); }
+.pc-rank { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 700; color: var(--gold); line-height: 1; }
+.pc-name { font-weight: 600; font-size: 12px; color: var(--dark); line-height: 1.3; }
+.pc-chips { display: flex; flex-wrap: wrap; gap: 2px; }
+.pc-dev { font-size: 10px; color: var(--light); letter-spacing: .3px; }
+.pc-content { font-size: 11px; color: var(--mid); border-top: 1px solid var(--border-lt); padding-top: 5px; margin-top: 2px; }
+.pc-feedback { padding-top: 3px; display: flex; flex-direction: column; gap: 3px; }
 /* ── Mobile list ── */
-.mob-list { display: flex; flex-direction: column; gap: 6px; }
-.mob-card {
-  background: white; border: 1px solid var(--border);
-  border-radius: 8px; padding: 10px 12px;
-  border-left: 3px solid var(--orange);
-}
-.mob-left { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
-.mob-rank {
-  background: var(--orange); color: white; border-radius: 5px;
-  padding: 2px 8px; font-size: 12px; font-weight: 700; flex-shrink: 0; min-width: 28px; text-align: center;
-}
-.mob-name { font-weight: 600; font-size: 13px; color: var(--navy); margin-bottom: 2px; }
-.mob-chips { display: flex; flex-wrap: wrap; gap: 3px; }
-.mob-content { font-size: 11px; color: #475569; border-left: 2px solid var(--border); padding-left: 7px; margin: 3px 0; }
-.mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 4px; }
+.mob-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); background: var(--border); }
+.mob-card { background: var(--white); padding: 8px 12px; display: flex; align-items: flex-start; gap: 9px; transition: background .15s; }
+.mob-card:hover { background: var(--ivory); }
+.mob-rank { background: var(--gold); color: var(--black); font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 700; min-width: 30px; text-align: center; padding: 2px 5px; flex-shrink: 0; }
+.mob-main { flex: 1; min-width: 0; }
+.mob-name { font-weight: 600; font-size: 12px; color: var(--dark); }
+.mob-chips { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 2px; }
+.mob-content { font-size: 11px; color: var(--mid); margin-top: 3px; }
+.mob-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 4px; }
 @media (max-width: 500px) { .mob-feedback { grid-template-columns: 1fr; } }
-
-/* ── Feedback mini ── */
-.fb-pos.mini, .fb-neg.mini { padding: 4px 7px; font-size: 11px; }
-.fb-pos.mini .fb-label, .fb-neg.mini .fb-label { display: inline; margin-right: 4px; }
-.fb-pos { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 6px 8px; font-size: 11px; }
-.fb-neg { background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius-sm); padding: 6px 8px; font-size: 11px; }
-.fb-label { font-weight: 600; display: block; margin-bottom: 2px; font-size: 10px; }
-.fb-pos .fb-label { color: #059669; }
-.fb-neg .fb-label { color: #DC2626; }
-
 /* ── Chips ── */
-.chip {
-  display: inline-block; border-radius: 4px; padding: 1px 8px; font-size: 11px; font-weight: 500;
-}
-.chip-type { background: #E0F2FE; color: #0369A1; }
-.chip-plat { background: #F1F5F9; color: #475569; }
-.chip-dev  { background: #FAF5FF; color: #7E22CE; }
-
-/* ── Tabs (iOS/Android) ── */
-.tab-group { }
-.tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
-.tab-btn {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-  padding: 5px 14px; font-size: 12px; cursor: pointer; font-family: inherit;
-  color: var(--text-muted); transition: all .15s;
-}
-.tab-btn:hover { border-color: var(--sky); color: var(--sky); }
-.tab-btn.active { background: var(--sky); border-color: var(--sky); color: white; font-weight: 600; }
-
+.chip { display: inline-block; border-radius: 0; padding: 1px 6px; font-size: 10px; font-weight: 500; letter-spacing: .5px; text-transform: uppercase; }
+.chip-type { background: var(--ivory-dk); color: var(--mid); border: 1px solid var(--border); }
+.chip-plat { background: transparent; color: var(--light); border: 1px solid var(--border-lt); }
+.chip-dev  { background: transparent; color: var(--gold-dk); border: 1px solid rgba(201,168,76,.3); }
+/* ── Mobile tabs ── */
+.tabs { display: flex; gap: 0; margin-bottom: 8px; border: 1px solid var(--border); width: fit-content; }
+.tab-btn { background: var(--white); border: none; border-right: 1px solid var(--border); padding: 5px 14px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Jost', sans-serif; color: var(--mid); transition: all .15s; }
+.tab-btn:last-child { border-right: none; }
+.tab-btn:hover { background: var(--ivory-dk); color: var(--dark); }
+.tab-btn.active { background: var(--gold); color: var(--black); font-weight: 600; }
 /* ── Marketing cards ── */
-.mkt-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px,1fr)); gap: 10px; }
-@media (max-width: 820px) { .mkt-cards { grid-template-columns: 1fr; } }
-.mkt-card {
-  background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px;
-  border-top: 3px solid var(--purple);
-}
-.mkt-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; margin-bottom: 8px; }
-.mkt-left { flex: 1; min-width: 0; }
-.mkt-game { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
-.action-count { background: var(--purple-lt); color: var(--purple); border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 600; }
-.dim-badge { flex-shrink: 0; border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
-/* Action blocks inside mkt card */
-.mkt-actions { display: flex; flex-direction: column; gap: 6px; }
-.action-block {
-  background: var(--surface2); border-radius: 6px; padding: 8px 10px;
-  display: flex; flex-direction: column; gap: 4px;
-}
+.mkt-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+@media (max-width: 720px) { .mkt-cards { grid-template-columns: 1fr; } }
+.mkt-card { background: var(--white); padding: 12px 14px; }
+.mkt-card-top { margin-bottom: 8px; }
+.mkt-game { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 15px; color: var(--dark); letter-spacing: .5px; display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.action-count { background: var(--gold); color: var(--black); font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1px; padding: 1px 6px; text-transform: uppercase; }
+.dim-badge { display: inline-block; border-radius: 0; padding: 2px 7px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.mkt-actions { display: flex; flex-direction: column; gap: 5px; }
+.action-block { background: var(--ivory); border-left: 2px solid var(--gold); padding: 7px 9px; display: flex; flex-direction: column; gap: 3px; }
 .action-block .dim-badge { align-self: flex-start; margin-bottom: 2px; }
-.ab-action { font-size: 12px; color: #334155; }
-.ab-meta { font-size: 11px; color: var(--text-muted); display: flex; gap: 4px; align-items: flex-start; }
-.ab-label { font-weight: 600; flex-shrink: 0; color: #64748B; min-width: 28px; }
-.kpi-text { color: #0369A1 !important; font-weight: 500; }
-.mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+.ab-action { font-size: 11px; color: var(--charcoal); }
+.ab-meta { font-size: 11px; color: var(--mid); display: flex; gap: 5px; align-items: flex-start; }
+.ab-label { font-weight: 600; flex-shrink: 0; color: var(--gold-dk); min-width: 28px; }
+.kpi-text { color: var(--dark) !important; font-weight: 500; }
+.mkt-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 7px; }
 @media (max-width: 500px) { .mkt-feedback { grid-template-columns: 1fr; } }
-
-/* ── Policy cards ── */
-.policy-list { display: flex; flex-direction: column; gap: 10px; }
-.policy-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
-  border-left: 3px solid var(--rust);
-}
-.policy-card-header { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
-.policy-type-badge { border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
-.policy-title { font-weight: 600; font-size: 14px; color: var(--navy); flex: 1; }
-.policy-source { color: var(--text-muted); font-size: 11px; width: 100%; }
-.policy-detail { font-size: 12px; color: #334155; margin: 6px 0; border-left: 2px solid var(--border); padding-left: 10px; }
-.policy-impact { font-size: 12px; color: #0369A1; margin: 6px 0; border-left: 2px solid #93C5FD; padding-left: 10px; }
-.policy-risk { font-size: 12px; color: #991B1B; background: #FEF2F2; border-radius: var(--radius-sm); padding: 6px 10px; margin-top: 6px; }
-
-/* ── Bullet list ── */
-.bullet-list { padding-left: 14px; font-size: 12px; }
-.bullet-list li { margin-bottom: 2px; }
-.text-cell { font-size: 12px; }
-.empty { color: var(--text-muted); font-size: 13px; padding: 12px 0; }
-
+/* ── Feedback ── */
+.fb-pos, .fb-neg { border-radius: 0; padding: 5px 8px; font-size: 11px; }
+.fb-pos { background: #F5FBF5; border-left: 2px solid #5A9A5A; }
+.fb-neg { background: #FBF5F5; border-left: 2px solid #9A5A5A; }
+.fb-pos.mini, .fb-neg.mini { padding: 4px 7px; }
+.fb-pos.mini .fb-label, .fb-neg.mini .fb-label { display: inline; margin-right: 4px; }
+.fb-label { font-weight: 600; display: block; margin-bottom: 2px; font-size: 10px; letter-spacing: .5px; text-transform: uppercase; }
+.fb-pos .fb-label { color: #3A7A3A; } .fb-neg .fb-label { color: #7A3A3A; }
+/* ── Policy ── */
+.policy-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); background: var(--border); }
+.policy-card { background: var(--white); padding: 10px 14px; }
+.policy-card-header { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 7px; margin-bottom: 5px; }
+.policy-type-badge { border-radius: 0; padding: 2px 7px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
+.policy-title { font-weight: 600; font-size: 13px; color: var(--dark); flex: 1; }
+.policy-source { color: var(--light); font-size: 11px; width: 100%; }
+.policy-detail { font-size: 11px; color: var(--charcoal); border-left: 2px solid var(--gold); padding-left: 8px; margin: 4px 0; }
+.policy-impact { font-size: 11px; color: var(--mid); border-left: 2px solid var(--border); padding-left: 8px; margin: 4px 0; }
+.policy-risk { font-size: 11px; color: #7A3A3A; background: #FBF5F5; border-left: 2px solid #9A5A5A; padding: 5px 8px; margin-top: 4px; }
+/* ── Bullets ── */
+.bullet-list { padding-left: 13px; font-size: 11px; } .bullet-list li { margin-bottom: 2px; }
+.text-cell { font-size: 11px; } .empty { color: var(--light); font-size: 12px; padding: 10px 0; font-style: italic; }
 /* ── Footer ── */
-footer {
-  text-align: center; padding: 28px 24px; color: var(--text-muted);
-  font-size: 12px; border-top: 1px solid var(--border); background: white; margin-top: 32px;
-}
-
-@media (max-width: 768px) {
-  .site-header { padding: 0 16px; }
-  .page-section { padding: 16px; }
-  .hero { padding: 28px 16px 24px; }
-  .mkt-cards { grid-template-columns: 1fr; }
-}
+footer { text-align: center; padding: 22px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; border-top: 2px solid var(--gold-dk); background: var(--black); color: var(--light); margin-top: 28px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media (max-width: 768px) { .site-header { padding: 0 16px; } .page-section { padding: 12px 14px; } .hero { padding: 28px 16px 22px; } .mkt-cards { grid-template-columns: 1fr; } }
 
 /* ── Archive bar ── */
 .archive-bar {
@@ -274,7 +214,8 @@ footer {
 <div class="hero">
   <div class="hero-badge">📅 月度报告</div>
   <h1>全球游戏市场热点月报2026年2月<br><em>2026年2月1日</em></h1>
-  <div class="hero-meta">分析周期：<strong>2026年2月1日—2月28日</strong> &nbsp;·&nbsp; 生成时间：<strong>2026-04-03 16:57</strong></div>
+  <div class="hero-meta">分析周期：<strong>2026年2月1日—2月28日</strong> &nbsp;·&nbsp; 生成时间：<strong>2026-04-03 17:21</strong></div>
+  <div style="margin-top:14px;font-size:11px;letter-spacing:8px;color:var(--gold-dk)">✦ &nbsp; ✦ &nbsp; ✦</div>
 </div>
 
 <div class="archive-bar"><span class="ab-label">📅 往期周报：</span><a href="index.html" class="archive-btn">3/26–4/1</a><a href="weekly-20260319.html" class="archive-btn">3/19–3/25</a><span class="archive-sep">|</span><span class="ab-label">📊 往期月报：</span><a href="monthly.html" class="archive-btn">2026年3月</a><a href="monthly-202602.html" class="archive-btn current">2026年2月</a><a href="archive.html" class="archive-btn" style="margin-left:auto">🗂️ 全部存档</a></div>
@@ -371,121 +312,121 @@ footer {
 
 <div class="market-sheet" id="sheet-中国大陆">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <p class="empty">暂无政策热闻数据</p>
   </div>
 </div>
 <div class="market-sheet" id="sheet-美国">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <p class="empty">暂无政策热闻数据</p>
   </div>
 </div>
 <div class="market-sheet" id="sheet-欧洲">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <p class="empty">暂无政策热闻数据</p>
   </div>
 </div>
 <div class="market-sheet" id="sheet-日本">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <p class="empty">暂无政策热闻数据</p>
   </div>
 </div>
 <div class="market-sheet" id="sheet-韩国">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <p class="empty">暂无政策热闻数据</p>
   </div>
 </div>
 <div class="market-sheet" id="sheet-港台">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <p class="empty">暂无政策热闻数据</p>
   </div>
 </div>
 <div class="market-sheet" id="sheet-东南亚">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <p class="empty">暂无政策热闻数据</p>
   </div>
 </div>
 <div class="market-sheet" id="sheet-俄罗斯">
   <div class="page-section">
-    <div class="sec-header sec-pc">🖥️ 一、PC / 主机热门游戏榜单（TOP 5）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold)">◆</span> PC · 主机热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mob">📱 二、手游热门游戏榜单（畅销 + 下载 TOP 10）</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--gold-dk)">◆</span> 手游热门榜单</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-mkt">📣 三、重点营销热点详情</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--mid)">◆</span> 营销热点详情</div>
     <p class="empty">暂无数据</p>
 
-    <div class="sec-header sec-pol">⚖️ 四、区域产业政策热闻</div>
+    <div class="sec-header"><span class="sec-icon" style="color:var(--light)">◆</span> 区域产业政策</div>
     <p class="empty">暂无政策热闻数据</p>
   </div>
 </div>
