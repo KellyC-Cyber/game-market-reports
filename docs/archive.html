@@ -288,29 +288,29 @@ footer a { color: var(--gold); text-decoration: none; }
 
 /* ── Archive bar ── */
 .archive-bar {
-  background: #F8FAFC; border-bottom: 1px solid var(--border);
-  padding: 8px 24px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  background: var(--charcoal); border-bottom: 2px solid var(--gold-dk);
+  padding: 7px 24px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
-.archive-bar .ab-label { color: var(--text-muted); font-size: 12px; font-weight: 600; }
+.archive-bar .ab-label { color: var(--light); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
 .archive-btn {
-  background: white; border: 1px solid var(--border); border-radius: 16px;
-  padding: 3px 12px; font-size: 12px; color: var(--text-muted);
-  text-decoration: none; transition: all .15s; white-space: nowrap;
+  background: transparent; border: 1px solid rgba(201,168,76,.3);
+  padding: 3px 12px; font-size: 11px; color: var(--light);
+  text-decoration: none; transition: all .15s; white-space: nowrap; letter-spacing: .5px;
 }
-.archive-btn:hover { border-color: var(--sky); color: var(--sky); background: var(--sky-lt); }
-.archive-btn.current { background: var(--sky); border-color: var(--sky); color: white; font-weight: 600; }
-.archive-sep { color: var(--border); font-size: 16px; }
-/* ── Archive index ── */
-.archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 12px; }
+.archive-btn:hover { border-color: var(--gold); color: var(--gold); }
+.archive-btn.current { background: var(--gold); border-color: var(--gold); color: var(--black); font-weight: 600; }
+.archive-sep { color: var(--gold-dk); font-size: 14px; }
+/* ── Archive index page ── */
+.archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
 .archive-card {
-  background: white; border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 16px; text-decoration: none; display: block; transition: all .2s;
+  background: var(--white); padding: 16px;
+  text-decoration: none; display: block; transition: background .15s;
 }
-.archive-card:hover { border-color: var(--border-focus); box-shadow: var(--shadow-md); transform: translateY(-1px); }
-.archive-card .ac-type { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
-.archive-card .ac-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
-.archive-card .ac-period { font-size: 12px; color: var(--text-muted); }
-.archive-card .ac-badge { display: inline-block; margin-top: 8px; background: var(--sky-lt); color: var(--sky); border-radius: 4px; padding: 1px 8px; font-size: 11px; font-weight: 600; }
+.archive-card:hover { background: var(--gold-lt); }
+.archive-card .ac-type { font-size: 10px; font-weight: 600; color: var(--light); margin-bottom: 5px; letter-spacing: 2px; text-transform: uppercase; }
+.archive-card .ac-title { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 15px; color: var(--dark); margin-bottom: 4px; }
+.archive-card .ac-period { font-size: 12px; color: var(--mid); }
+.archive-card .ac-badge { display: inline-block; margin-top: 8px; background: var(--gold-lt); color: var(--gold-dk); border: 1px solid var(--border); padding: 1px 8px; font-size: 10px; font-weight: 600; letter-spacing: 1px; }
 </style>
 </head>
 <body>
@@ -328,7 +328,7 @@ footer a { color: var(--gold); text-decoration: none; }
   <div class="hero-meta">点击卡片查看历史报告</div>
 </div>
 <div class="page-section">
-  <div style="font-weight:700;font-size:16px;color:var(--navy);margin-bottom:14px">📁 所有报告（最新在前）</div>
+  <div style="font-weight:700;font-size:16px;color:var(--dark);margin-bottom:14px">📁 所有报告（最新在前）</div>
   <div class="archive-grid">
     <a href="monthly.html" class="archive-card">
   <div class="ac-type">📊 月度报告</div>
@@ -353,6 +353,6 @@ footer a { color: var(--gold); text-decoration: none; }
 </a>
   </div>
 </div>
-<footer>KL游戏市场情报系统 · <a href="index.html" style="color:var(--sky)">返回最新周报</a></footer>
+<footer>KL游戏市场情报系统 · <a href="index.html" style="color:var(--gold)">返回最新周报</a></footer>
 </body>
 </html>
